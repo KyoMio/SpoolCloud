@@ -1,8 +1,8 @@
-import { Refine } from "@refinedev/core";
+import { Authenticated, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-import { ErrorComponent } from "@refinedev/antd";
+import { AuthPage, ErrorComponent } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
 import {
@@ -15,19 +15,25 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import loadable from "@loadable/component";
-import routerBindings, { DocumentTitleHandler, UnsavedChangesNotifier } from "@refinedev/react-router";
+import routerBindings, { CatchAllNavigate, DocumentTitleHandler, UnsavedChangesNotifier } from "@refinedev/react-router";
 import { ConfigProvider } from "antd";
 import { Locale } from "antd/es/locale";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router";
+import { TOKEN_KEY, authProvider } from "./authProvider";
 import dataProvider from "./components/dataProvider";
 import { Favicon } from "./components/favicon";
-import { SpoolmanLayout } from "./components/layout";
+import { SpoolCloudLayout } from "./components/layout";
 import liveProvider from "./components/liveProvider";
-import SpoolmanNotificationProvider from "./components/notificationProvider";
+import SpoolCloudNotificationProvider from "./components/notificationProvider";
 import { ColorModeContextProvider } from "./contexts/color-mode";
 import { languages } from "./i18n";
+import { ProfilePage } from "./pages/profile";
+import { NotificationsPage } from "./pages/notifications";
+import { LoginPage } from "./pages/login";
+import { RegisterPage } from "./pages/register";
 import { getAPIURL, getBasePath } from "./utils/url";
 
 interface ResourcePageProps {
@@ -74,12 +80,22 @@ function App() {
     fetchLocale().catch(console.error);
   }, [i18n.language]);
 
+  const axiosInstance = axios.create();
+
+  axiosInstance.interceptors.request.use((request) => {
+    const token = localStorage.getItem(TOKEN_KEY);
+    if (token && request.headers) {
+      request.headers["Authorization"] = `Bearer ${token}`;
+    }
+    return request;
+  });
+
   if (!import.meta.env.VITE_APIURL) {
     return (
       <>
         <h1>Missing API URL</h1>
         <p>
-          App was built without an API URL. Please set the VITE_APIURL environment variable to the URL of your Spoolman
+          App was built without an API URL. Please set the VITE_APIURL environment variable to the URL of your SpoolCloud
           API.
         </p>
       </>
@@ -99,8 +115,9 @@ function App() {
             }}
           >
             <Refine
-              dataProvider={dataProvider(getAPIURL())}
-              notificationProvider={SpoolmanNotificationProvider}
+              dataProvider={dataProvider(getAPIURL(), axiosInstance)}
+              notificationProvider={SpoolCloudNotificationProvider}
+              authProvider={authProvider}
               i18nProvider={i18nProvider}
               routerProvider={routerBindings}
               liveProvider={liveProvider(getAPIURL())}
@@ -183,9 +200,14 @@ function App() {
               <Routes>
                 <Route
                   element={
-                    <SpoolmanLayout>
-                      <Outlet />
-                    </SpoolmanLayout>
+                    <Authenticated
+                      key="authenticated-inner"
+                      fallback={<CatchAllNavigate to="/login" />}
+                    >
+                      <SpoolCloudLayout>
+                        <Outlet />
+                      </SpoolCloudLayout>
+                    </Authenticated>
                   }
                 >
                   <Route index element={<LoadablePage name="home" />} />
@@ -232,7 +254,17 @@ function App() {
                   <Route path="/settings/*" element={<LoadablePage name="settings" />} />
                   <Route path="/help" element={<LoadablePage name="help" />} />
                   <Route path="/locations" element={<LoadablePage name="locations" />} />
+                  <Route path="/profile" element={<ProfilePage />} />
+                  <Route path="/notifications" element={<NotificationsPage />} />
                   <Route path="*" element={<ErrorComponent />} />
+                </Route>
+                <Route
+                  element={
+                    <Outlet />
+                  }
+                >
+                  <Route path="/login" element={<LoginPage />} />
+                  <Route path="/register" element={<RegisterPage />} />
                 </Route>
               </Routes>
 

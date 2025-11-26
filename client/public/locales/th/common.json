@@ -150,7 +150,7 @@
                 },
                 "label": "ลิงก์ QR code",
                 "preview": "ตัวอย่าง:",
-                "tooltip": "จะใช้ลิงก์ภายในที่จะทำงานได้เฉพาะเมื่อสแกนจากฟีเจอร์สแกนของ Spoolman (ค่าเริ่มต้น) URL จะใช้จาก base URL ที่กำหนดไว้ใน settings หรือใช้ URL ของหน้าปัจจุบันหากไม่ได้ตั้งค่า"
+                "tooltip": "จะใช้ลิงก์ภายในที่จะทำงานได้เฉพาะเมื่อสแกนจากฟีเจอร์สแกนของ SpoolCloud (ค่าเริ่มต้น) URL จะใช้จาก base URL ที่กำหนดไว้ใน settings หรือใช้ URL ของหน้าปัจจุบันหากไม่ได้ตั้งค่า"
             },
             "showQRCodeMode": {
                 "withIcon": "พร้อมไอคอน",
@@ -235,40 +235,40 @@
             "unknown": "เกิดข้อผิดพลาดที่ไม่ทราบสาเหตุ ({{error}})",
             "notFound": "ไม่พบกล้อง"
         },
-        "description": "สแกน Spoolman QR code เพื่อดูข้อมูลเกี่ยวกับม้วนพลาสติก",
+        "description": "สแกน SpoolCloud QR code เพื่อดูข้อมูลเกี่ยวกับม้วนพลาสติก",
         "title": "เครื่องสแกน QR Code"
     },
     "documentTitle": {
         "filament": {
-            "clone": "#{{id}} ทำซ้ำเส้นพลาสติก | Spoolman",
-            "edit": "#{{id}} แก้ไขเส้นพลาสติก | Spoolman",
-            "show": "#{{id}} แสดงเส้นพลาสติก | Spoolman",
-            "create": "สร้างเส้นพลาสติก | Spoolman",
-            "list": "เส้นพลาสติก | Spoolman"
+            "clone": "#{{id}} ทำซ้ำเส้นพลาสติก | SpoolCloud",
+            "edit": "#{{id}} แก้ไขเส้นพลาสติก | SpoolCloud",
+            "show": "#{{id}} แสดงเส้นพลาสติก | SpoolCloud",
+            "create": "สร้างเส้นพลาสติก | SpoolCloud",
+            "list": "เส้นพลาสติก | SpoolCloud"
         },
         "home": {
-            "list": "หน้าแรก | Spoolman"
+            "list": "หน้าแรก | SpoolCloud"
         },
         "spool": {
-            "show": "#{{id}} แสดงม้วนพลาสติก | Spoolman",
-            "clone": "#{{id}} ทำซ้ำม้วนพลาสติก | Spoolman",
-            "create": "สร้างม้วนพลาสติก | Spoolman",
-            "list": "ม้วนพลาสติก | Spoolman",
-            "edit": "#{{id}} แก้ไขม้วนพลาสติก | Spoolman"
+            "show": "#{{id}} แสดงม้วนพลาสติก | SpoolCloud",
+            "clone": "#{{id}} ทำซ้ำม้วนพลาสติก | SpoolCloud",
+            "create": "สร้างม้วนพลาสติก | SpoolCloud",
+            "list": "ม้วนพลาสติก | SpoolCloud",
+            "edit": "#{{id}} แก้ไขม้วนพลาสติก | SpoolCloud"
         },
         "vendor": {
-            "list": "ผู้ผลิต | Spoolman",
-            "show": "#{{id}} แสดงผู้ผลิต | Spoolman",
-            "edit": "#{{id}} แก้ไขผู้ผลิต | Spoolman",
-            "create": "สร้างผู้ผลิต | Spoolman",
-            "clone": "#{{id}} ทำซ้ำผู้ผลิต | Spoolman"
+            "list": "ผู้ผลิต | SpoolCloud",
+            "show": "#{{id}} แสดงผู้ผลิต | SpoolCloud",
+            "edit": "#{{id}} แก้ไขผู้ผลิต | SpoolCloud",
+            "create": "สร้างผู้ผลิต | SpoolCloud",
+            "clone": "#{{id}} ทำซ้ำผู้ผลิต | SpoolCloud"
         },
         "help": {
-            "list": "วิธีใช้ | Spoolman"
+            "list": "วิธีใช้ | SpoolCloud"
         },
-        "suffix": " | Spoolman",
+        "suffix": " | SpoolCloud",
         "locations": {
-            "list": "สถานที่เก็บ | Spoolman"
+            "list": "สถานที่เก็บ | SpoolCloud"
         },
         "default": "สปูลแมน"
     },
@@ -326,7 +326,7 @@
             "filament": "แบรนด์เส้นพลาสติก มีคุณสมบัติต่างๆ เช่น ชื่อ วัสดุ สี เส้นผ่านศูนย์กลาง และอื่นๆ"
         },
         "help": "วิธีใช้",
-        "description": "<title>วิธีใช้</title><p>นี่คือเคล็ดลับบางส่วนเพื่อเริ่มต้น</p><p>Spoolman เก็บข้อมูลหลัก 3 ประเภท:</p><itemsHelp/><p>ในการเพิ่มม้วนพลาสติกใหม่ลงในฐานข้อมูล ให้เริ่มด้วยการสร้างอ็อบเจ็กต์ <filamentCreateLink>เส้นพลาสติก</filamentCreateLink> เมื่อเสร็จแล้วจึงสร้างอ็อบเจ็กต์ <spoolCreateLink>ม้วนพลาสติก</spoolCreateLink> สำหรับม้วนพลาสติกนั้น หากคุณได้ม้วนพลาสติกเพิ่มในภายหลัง ก็เพียงสร้างอ็อบเจ็กต์ม้วนพลาสติกใหม่และใช้วัตถุ เส้นพลาสติก เดิมได้</p><p>คุณสามารถสร้างอ็อบเจ็กต์ <vendorCreateLink>Manufacturer</vendorCreateLink> เพื่อเก็บข้อมูลบริษัทผู้ผลิตเส้นพลาสติกหากคุณต้องการติดตามข้อมูลนั้น</p><p>คุณสามารถเชื่อมต่อบริการ 3D printer อื่นๆ เข้ากับ Spoolman เช่น Moonraker เพื่อบันทึกปริมาณการใช้เส้นพลาสติกโดยอัตโนมัติและอัปเดตอ็อบเจ็กต์ม้วนพลาสติกของคุณ ดูเพิ่มเติมได้ที่ <readmeLink>Spoolman README</readmeLink></p>"
+        "description": "<title>วิธีใช้</title><p>นี่คือเคล็ดลับบางส่วนเพื่อเริ่มต้น</p><p>SpoolCloud เก็บข้อมูลหลัก 3 ประเภท:</p><itemsHelp/><p>ในการเพิ่มม้วนพลาสติกใหม่ลงในฐานข้อมูล ให้เริ่มด้วยการสร้างอ็อบเจ็กต์ <filamentCreateLink>เส้นพลาสติก</filamentCreateLink> เมื่อเสร็จแล้วจึงสร้างอ็อบเจ็กต์ <spoolCreateLink>ม้วนพลาสติก</spoolCreateLink> สำหรับม้วนพลาสติกนั้น หากคุณได้ม้วนพลาสติกเพิ่มในภายหลัง ก็เพียงสร้างอ็อบเจ็กต์ม้วนพลาสติกใหม่และใช้วัตถุ เส้นพลาสติก เดิมได้</p><p>คุณสามารถสร้างอ็อบเจ็กต์ <vendorCreateLink>Manufacturer</vendorCreateLink> เพื่อเก็บข้อมูลบริษัทผู้ผลิตเส้นพลาสติกหากคุณต้องการติดตามข้อมูลนั้น</p><p>คุณสามารถเชื่อมต่อบริการ 3D printer อื่นๆ เข้ากับ SpoolCloud เช่น Moonraker เพื่อบันทึกปริมาณการใช้เส้นพลาสติกโดยอัตโนมัติและอัปเดตอ็อบเจ็กต์ม้วนพลาสติกของคุณ ดูเพิ่มเติมได้ที่ <readmeLink>SpoolCloud README</readmeLink></p>"
     },
     "dashboard": {
         "title": "แดชบอร์ด"

@@ -44,7 +44,7 @@ source .env
 set +o allexport
 
 #
-# Start Spoolman using pdm run
+# Start SpoolCloud using pdm run
 #
-echo -e "${GREEN}Starting Spoolman...${NC}"
-uvicorn spoolman.main:app --host $SPOOLMAN_HOST --port $SPOOLMAN_PORT
+echo -e "${GREEN}Starting SpoolCloud...${NC}"
+uvicorn spoolcloud.main:app --host $SPOOLCLOUD_HOST --port $SPOOLCLOUD_PORT

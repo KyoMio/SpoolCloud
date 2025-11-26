@@ -12,6 +12,7 @@ import { formatNumberOnUserInput, numberParser, numberParserAllowEmpty } from ".
 import { ExternalFilament } from "../../utils/queryExternalDB";
 import { EntityType, useGetFields } from "../../utils/queryFields";
 import { getCurrencySymbol, useCurrency } from "../../utils/settings";
+import { useGetFilamentPresets } from "../../utils/queryFilamentPresets";
 import { getOrCreateVendorFromExternal } from "../vendors/functions";
 import { IVendor } from "../vendors/model";
 import { IFilament, IFilamentParsedExtras } from "./model";
@@ -65,6 +66,8 @@ export const FilamentCreate: React.FC<IResourceComponentsProps & CreateOrClonePr
     resource: "vendor",
     optionLabel: "name",
   });
+
+  const presetsQuery = useGetFilamentPresets();
 
   const importFilament = async (filament: ExternalFilament) => {
     const vendor = await getOrCreateVendorFromExternal(filament.manufacturer);
@@ -165,6 +168,29 @@ export const FilamentCreate: React.FC<IResourceComponentsProps & CreateOrClonePr
             filterOption={(input, option) =>
               typeof option?.label === "string" && option?.label.toLowerCase().includes(input.toLowerCase())
             }
+          />
+        </Form.Item>
+        <Form.Item
+          label={t("filament.fields.preset", "Bambu Lab Preset")}
+          help={t("filament.fields_help.preset", "Select a Bambu Lab filament preset (optional)")}
+          name={["preset_id"]}
+          rules={[
+            {
+              required: false,
+            },
+          ]}
+        >
+          <Select
+            allowClear
+            loading={presetsQuery.isLoading}
+            options={presetsQuery.data?.map((preset) => ({
+              label: preset.name,
+              value: preset.id,
+            }))}
+            filterOption={(input, option) =>
+              typeof option?.label === "string" && option?.label.toLowerCase().includes(input.toLowerCase())
+            }
+            placeholder={t("filament.form.select_preset", "Select a preset")}
           />
         </Form.Item>
         <Form.Item label={t("filament.fields.color_hex")}>

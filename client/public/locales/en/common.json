@@ -111,7 +111,7 @@
             "showContent": "Print Label",
             "useHTTPUrl": {
                 "label": "QR code link",
-                "tooltip": "Will use proprietary link that will work only if scanned from Spoolman's scanning feature (default). URL uses either the base URL specified in settings, or the current page URL if not set.",
+                "tooltip": "Will use proprietary link that will work only if scanned from SpoolCloud's scanning feature (default). URL uses either the base URL specified in settings, or the current page URL if not set.",
                 "options": {
                     "default": "Default",
                     "url": "URL"
@@ -137,7 +137,7 @@
     },
     "scanner": {
         "title": "QR Code Scanner",
-        "description": "Scan a Spoolman QR code to view details about the spool.",
+        "description": "Scan a SpoolCloud QR code to view details about the spool.",
         "error": {
             "notAllowed": "You have not allowed access to the camera.",
             "insecureContext": "The page is not served over HTTPS.",
@@ -292,7 +292,7 @@
     },
     "home": {
         "home": "Home",
-        "welcome": "Welcome to your Spoolman instance!",
+        "welcome": "Welcome to your SpoolCloud instance!",
         "description": "It looks like you haven't added any spools yet. See the <helpPageLink>Help page</helpPageLink> for help getting started."
     },
     "help": {
@@ -302,7 +302,7 @@
             "spool": "Individual physical spools of a specific filament.",
             "vendor": "The companies that make the filament."
         },
-        "description": "<title>Help</title><p>Here are some tips to get you started.</p><p>Spoolman holds 3 different types of data:</p><itemsHelp/><p>To add a new spool to the database, start by creating a <filamentCreateLink>Filament</filamentCreateLink> object. Once that's done, proceed to create a <spoolCreateLink>Spool</spoolCreateLink> object for that specific spool. If you acquire additional spools of the same filament later on, simply generate additional Spool objects and reuse the same Filament object.</p><p>Optionally, you can also generate a <vendorCreateLink>Manufacturer</vendorCreateLink> object for the company manufacturing the filament if you wish to track that information.</p><p>You have the option to link other 3D printer services to Spoolman, like Moonraker, which can automatically monitor filament usage and update the Spool objects for you. Refer to the <readmeLink>Spoolman README</readmeLink> for guidance on how to set that up.</p>"
+        "description": "<title>Help</title><p>Here are some tips to get you started.</p><p>SpoolCloud holds 3 different types of data:</p><itemsHelp/><p>To add a new spool to the database, start by creating a <filamentCreateLink>Filament</filamentCreateLink> object. Once that's done, proceed to create a <spoolCreateLink>Spool</spoolCreateLink> object for that specific spool. If you acquire additional spools of the same filament later on, simply generate additional Spool objects and reuse the same Filament object.</p><p>Optionally, you can also generate a <vendorCreateLink>Manufacturer</vendorCreateLink> object for the company manufacturing the filament if you wish to track that information.</p><p>You have the option to link other 3D printer services to SpoolCloud, like Moonraker, which can automatically monitor filament usage and update the Spool objects for you. Refer to the <readmeLink>SpoolCloud README</readmeLink> for guidance on how to set that up.</p>"
     },
     "table": {
         "actions": "Actions"
@@ -357,37 +357,37 @@
         }
     },
     "documentTitle": {
-        "default": "Spoolman",
-        "suffix": " | Spoolman",
+        "default": "SpoolCloud",
+        "suffix": " | SpoolCloud",
         "home": {
-            "list": "Home | Spoolman"
+            "list": "Home | SpoolCloud"
         },
         "help": {
-            "list": "Help | Spoolman"
+            "list": "Help | SpoolCloud"
         },
         "locations": {
-            "list": "Locations | Spoolman"
+            "list": "Locations | SpoolCloud"
         },
         "filament": {
-            "list": "Filaments | Spoolman",
-            "show": "#{{id}} Show Filament | Spoolman",
-            "edit": "#{{id}} Edit Filament | Spoolman",
-            "create": "Create Filament | Spoolman",
-            "clone": "#{{id}} Clone Filament | Spoolman"
+            "list": "Filaments | SpoolCloud",
+            "show": "#{{id}} Show Filament | SpoolCloud",
+            "edit": "#{{id}} Edit Filament | SpoolCloud",
+            "create": "Create Filament | SpoolCloud",
+            "clone": "#{{id}} Clone Filament | SpoolCloud"
         },
         "spool": {
-            "list": "Spools | Spoolman",
-            "show": "#{{id}} Show Spool | Spoolman",
-            "edit": "#{{id}} Edit Spool | Spoolman",
-            "create": "Create Spool | Spoolman",
-            "clone": "#{{id}} Clone Spool | Spoolman"
+            "list": "Spools | SpoolCloud",
+            "show": "#{{id}} Show Spool | SpoolCloud",
+            "edit": "#{{id}} Edit Spool | SpoolCloud",
+            "create": "Create Spool | SpoolCloud",
+            "clone": "#{{id}} Clone Spool | SpoolCloud"
         },
         "vendor": {
-            "list": "Manufacturers | Spoolman",
-            "show": "#{{id}} Show Manufacturer | Spoolman",
-            "edit": "#{{id}} Edit Manufacturer | Spoolman",
-            "create": "Create Manufacturer | Spoolman",
-            "clone": "#{{id}} Clone Manufacturer | Spoolman"
+            "list": "Manufacturers | SpoolCloud",
+            "show": "#{{id}} Show Manufacturer | SpoolCloud",
+            "edit": "#{{id}} Edit Manufacturer | SpoolCloud",
+            "create": "Create Manufacturer | SpoolCloud",
+            "clone": "#{{id}} Clone Manufacturer | SpoolCloud"
         }
     },
     "locations": {
@@ -395,5 +395,138 @@
         "new_location": "New Location",
         "no_location": "No Location",
         "no_locations_help": "This page lets you organize your spools in locations, add some spools to get started!"
+    },
+    "profile": {
+        "title": "User Profile",
+        "general": "General",
+        "apiKeys": "API Keys",
+        "oldPassword": "Old Password",
+        "newPassword": "New Password",
+        "changePassword": "Change Password",
+        "passwordChanged": "Password changed successfully.",
+        "passwordChangeFailed": "Failed to change password.",
+        "createApiKey": "Create API Key",
+        "apiKeyLabel": "Label",
+        "apiKeyCreateFailed": "Failed to create API key.",
+        "apiKeyDeleted": "API key deleted.",
+        "apiKeyDeleteFailed": "Failed to delete API key.",
+        "apiKeyWarning": "This is your API key. Copy it now, you won't be able to see it again!"
+    },
+    "notificationsPage": {
+        "title": "Notifications",
+        "tabs": {
+            "list": "Notifications",
+            "config": "Configuration"
+        },
+        "list": {
+            "empty": "No notifications",
+            "markAllRead": "Mark all as read",
+            "markRead": "Mark as read",
+            "delete": "Delete",
+            "read": "Read",
+            "unread": "Unread"
+        },
+        "config": {
+            "channel": "Channel",
+            "webhookUrl": "Webhook URL",
+            "webhookUrlRequired": "Please enter webhook URL",
+            "apiKey": "API Key (Send Key)",
+            "apiKeyRequired": "Please enter API Key",
+            "baseUrl": "Base URL",
+            "baseUrlRequired": "Please enter base URL",
+            "deviceKey": "Device Key",
+            "deviceKeyRequired": "Please enter device key",
+            "isEnabled": "Enabled",
+            "save": "Save Configuration",
+            "saveSuccess": "Configuration saved successfully.",
+            "saveError": "Failed to save configuration.",
+            "testNotification": "Test Notification",
+            "testSuccess": "Test notification sent successfully!",
+            "testError": "Failed to send test notification. Please check your configuration."
+        }
+    },
+    "pages": {
+        "login": {
+            "title": "Sign in to SpoolCloud",
+            "fields": {
+                "username": "Username",
+                "password": "Password"
+            },
+            "errors": {
+                "requiredUsername": "Please enter your username",
+                "requiredPassword": "Please enter your password"
+            },
+            "buttons": {
+                "submit": "Sign in"
+            },
+            "noAccount": "Don't have an account?",
+            "register": "Sign up"
+        },
+        "register": {
+            "title": "Sign up for SpoolCloud",
+            "fields": {
+                "username": "Username",
+                "password": "Password",
+                "inviteCode": "Invite Code",
+                "inviteCodePlaceholder": "Enter invite code"
+            },
+            "errors": {
+                "requiredUsername": "Please enter your username",
+                "usernameMinLength": "Username must be at least 3 characters",
+                "requiredPassword": "Please enter your password",
+                "passwordMinLength": "Password must be at least 8 characters",
+                "requiredInviteCode": "Please enter your invite code"
+            },
+            "buttons": {
+                "submit": "Sign up"
+            },
+            "haveAccount": "Already have an account?",
+            "login": "Sign in"
+        }
+    },
+    "profile": {
+        "title": "User Profile",
+        "general": "General",
+        "apiKeys": "API Keys",
+        "oldPassword": "Old Password",
+        "newPassword": "New Password",
+        "changePassword": "Change Password",
+        "passwordChanged": "Password changed successfully",
+        "passwordChangeFailed": "Failed to change password",
+        "createApiKey": "Create API Key",
+        "apiKeyLabel": "Label",
+        "apiKeyWarning": "Save this key in a safe place. You won't be able to see it again!",
+        "apiKeyCreated": "API Key created successfully",
+        "apiKeyCreateFailed": "Failed to create API Key",
+        "apiKeyDeleted": "API Key deleted successfully",
+        "apiKeyDeleteFailed": "Failed to delete API Key"
+    },
+    "userManagement": {
+        "title": "User Management",
+        "inviteCodeGenerator": "Invite Code Generator",
+        "generateInviteCode": "Generate Invite Code",
+        "newInviteCode": "New invite code generated:",
+        "inviteCodeGenerated": "Invite code generated successfully",
+        "inviteCodeGenerateFailed": "Failed to generate invite code",
+        "inviteCodes": "Invite Codes",
+        "inviteCode": "Invite Code",
+        "status": "Status",
+        "used": "Used",
+        "unused": "Unused",
+        "usedBy": "Used By",
+        "createdAt": "Created At",
+        "inviteCodeCopied": "Invite code copied to clipboard",
+        "deleteInviteCodeConfirm": "Are you sure you want to delete this invite code?",
+        "inviteCodeDeleted": "Invite code deleted successfully",
+        "inviteCodeDeleteFailed": "Failed to delete invite code",
+        "users": "Users",
+        "username": "Username",
+        "role": "Role",
+        "admin": "Admin",
+        "user": "User",
+        "inviteCodeUsed": "Invite Code Used",
+        "deleteUserConfirm": "Are you sure you want to delete this user?",
+        "userDeleted": "User deleted successfully",
+        "userDeleteFailed": "Failed to delete user"
     }
 }

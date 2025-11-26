@@ -18,10 +18,10 @@ import {
 } from "../../components/column";
 import { useLiveify } from "../../components/liveify";
 import {
-    useSpoolmanArticleNumbers,
-    useSpoolmanFilamentNames,
-    useSpoolmanMaterials,
-    useSpoolmanVendors,
+    useSpoolCloudArticleNumbers,
+    useSpoolCloudFilamentNames,
+    useSpoolCloudMaterials,
+    useSpoolCloudVendors,
 } from "../../components/otherModels";
 import { removeUndefined } from "../../utils/filtering";
 import { EntityType, useGetFields } from "../../utils/queryFields";
@@ -234,7 +234,7 @@ export const FilamentList: React.FC<IResourceComponentsProps> = () => {
             ...commonProps,
             id: "vendor.name",
             i18nkey: "filament.fields.vendor_name",
-            filterValueQuery: useSpoolmanVendors(),
+            filterValueQuery: useSpoolCloudVendors(),
           }),
           SpoolIconColumn({
             ...commonProps,
@@ -247,13 +247,13 @@ export const FilamentList: React.FC<IResourceComponentsProps> = () => {
                     vertical: record.multi_color_direction === "longitudinal",
                   }
                 : record.color_hex,
-            filterValueQuery: useSpoolmanFilamentNames(),
+            filterValueQuery: useSpoolCloudFilamentNames(),
           }),
           FilteredQueryColumn({
             ...commonProps,
             id: "material",
             i18ncat: "filament",
-            filterValueQuery: useSpoolmanMaterials(),
+            filterValueQuery: useSpoolCloudMaterials(),
             width: 110,
           }),
           SortedColumn({
@@ -305,7 +305,7 @@ export const FilamentList: React.FC<IResourceComponentsProps> = () => {
             ...commonProps,
             id: "article_number",
             i18ncat: "filament",
-            filterValueQuery: useSpoolmanArticleNumbers(),
+            filterValueQuery: useSpoolCloudArticleNumbers(),
             width: 130,
           }),
           NumberColumn({

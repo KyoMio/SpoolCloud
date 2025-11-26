@@ -13,7 +13,7 @@ import pytest
 
 TIMEOUT = 30
 
-URL = "http://spoolman:" + os.environ.get("SPOOLMAN_PORT", "8000")
+URL = f"http://{os.environ.get('SPOOLCLOUD_HOST', 'spoolcloud')}:{os.environ.get('SPOOLCLOUD_PORT', '8000')}"
 
 
 class DbType(StrEnum):
@@ -42,10 +42,10 @@ def pytest_sessionstart(session):  # noqa: ARG001, ANN001
     start_time = time.time()
     while True:
         try:
-            print("pytest: Waiting for spoolman to be available...")  # noqa: T201
+            print("pytest: Waiting for spoolcloud to be available...")  # noqa: T201
             response = httpx.get(URL, timeout=1)
             response.raise_for_status()
-            print("pytest: Spoolman now seems to be up!")  # noqa: T201
+            print("pytest: SpoolCloud now seems to be up!")  # noqa: T201
         except httpx.HTTPError:  # noqa: PERF203
             if time.time() - start_time > TIMEOUT:
                 raise
@@ -54,8 +54,29 @@ def pytest_sessionstart(session):  # noqa: ARG001, ANN001
             break
 
 
+@pytest.fixture(scope="session")
+def auth_headers():
+    """Register a user and return auth headers."""
+    # Register
+    username = f"testuser_{int(time.time())}"
+    password = "password123"
+    # Try to register, ignore if already exists (for repeated runs)
+    httpx.post(f"{URL}/api/v1/auth/register", json={"username": username, "password": password})
+    
+    # Login
+    response = httpx.post(f"{URL}/api/v1/auth/token", data={"username": username, "password": password})
+    if response.status_code != 200:
+        # Fallback for existing user if registration failed/skipped
+        response = httpx.post(f"{URL}/api/v1/auth/token", data={"username": username, "password": password})
+    
+    response.raise_for_status()
+    token = response.json()["access_token"]
+    
+    return {"Authorization": f"Bearer {token}"}
+
+
 @contextmanager
-def random_vendor_impl():
+def random_vendor_impl(headers: dict[str, str]):
     """Return a random vendor."""
     # Add vendor
     result = httpx.post(
@@ -64,6 +85,7 @@ def random_vendor_impl():
             "name": "John",
             "empty_spool_weight": 246,
         },
+        headers=headers,
     )
     result.raise_for_status()
 
@@ -71,16 +93,17 @@ def random_vendor_impl():
     yield vendor
 
     # Delete vendor
-    httpx.delete(f"{URL}/api/v1/vendor/{vendor['id']}").raise_for_status()
+    httpx.delete(f"{URL}/api/v1/vendor/{vendor['id']}", headers=headers).raise_for_status()
 
 
 @contextmanager
-def random_empty_vendor_impl():
+def random_empty_vendor_impl(headers: dict[str, str]):
     """Return a random vendor with only required fields specified."""
     # Add vendor
     result = httpx.post(
         f"{URL}/api/v1/vendor",
         json={"name": ""},
+        headers=headers,
     )
     result.raise_for_status()
 
@@ -88,13 +111,13 @@ def random_empty_vendor_impl():
     yield vendor
 
     # Delete vendor
-    httpx.delete(f"{URL}/api/v1/vendor/{vendor['id']}").raise_for_status()
+    httpx.delete(f"{URL}/api/v1/vendor/{vendor['id']}", headers=headers).raise_for_status()
 
 
 @contextmanager
-def random_filament_impl():
+def random_filament_impl(headers: dict[str, str]):
     """Return a random filament."""
-    with random_vendor_impl() as random_vendor:
+    with random_vendor_impl(headers) as random_vendor:
         # Add filament
         result = httpx.post(
             f"{URL}/api/v1/filament",
@@ -110,6 +133,7 @@ def random_filament_impl():
                 "article_number": "123456789",
                 "comment": "abcdefghåäö",
             },
+            headers=headers,
         )
         result.raise_for_status()
 
@@ -117,11 +141,11 @@ def random_filament_impl():
         yield filament
 
         # Delete filament
-        httpx.delete(f"{URL}/api/v1/filament/{filament['id']}").raise_for_status()
+        httpx.delete(f"{URL}/api/v1/filament/{filament['id']}", headers=headers).raise_for_status()
 
 
 @contextmanager
-def random_empty_filament_impl():
+def random_empty_filament_impl(headers: dict[str, str]):
     """Return a random filament with only required fields specified."""
     # Add filament
     result = httpx.post(
@@ -130,6 +154,7 @@ def random_empty_filament_impl():
             "density": 1.25,
             "diameter": 1.75,
         },
+        headers=headers,
     )
     result.raise_for_status()
 
@@ -137,13 +162,13 @@ def random_empty_filament_impl():
     yield filament
 
     # Delete filament
-    httpx.delete(f"{URL}/api/v1/filament/{filament['id']}").raise_for_status()
+    httpx.delete(f"{URL}/api/v1/filament/{filament['id']}", headers=headers).raise_for_status()
 
 
 @contextmanager
-def random_empty_filament_empty_vendor_impl():
+def random_empty_filament_empty_vendor_impl(headers: dict[str, str]):
     """Return a random filament with only required fields specified and a vendor with only required fields specified."""
-    with random_empty_vendor_impl() as random_empty_vendor:
+    with random_empty_vendor_impl(headers) as random_empty_vendor:
         # Add filament
         result = httpx.post(
             f"{URL}/api/v1/filament",
@@ -152,6 +177,7 @@ def random_empty_filament_empty_vendor_impl():
                 "density": 1.25,
                 "diameter": 1.75,
             },
+            headers=headers,
         )
         result.raise_for_status()
 
@@ -159,77 +185,152 @@ def random_empty_filament_empty_vendor_impl():
         yield filament
 
         # Delete filament
-        httpx.delete(f"{URL}/api/v1/filament/{filament['id']}").raise_for_status()
+        httpx.delete(f"{URL}/api/v1/filament/{filament['id']}", headers=headers).raise_for_status()
 
 
 @pytest.fixture
-def random_vendor():
+def random_vendor(auth_headers):
     """Return a random vendor."""
-    with random_vendor_impl() as random_vendor:
+    with random_vendor_impl(auth_headers) as random_vendor:
         yield random_vendor
 
 
 @pytest.fixture
-def random_empty_vendor():
+def random_empty_vendor(auth_headers):
     """Return a random vendor with only required fields specified."""
-    with random_empty_vendor_impl() as random_empty_vendor:
+    with random_empty_vendor_impl(auth_headers) as random_empty_vendor:
         yield random_empty_vendor
 
 
 @pytest.fixture
-def random_filament():
+def random_filament(auth_headers):
     """Return a random filament."""
-    with random_filament_impl() as random_filament:
+    with random_filament_impl(auth_headers) as random_filament:
         yield random_filament
 
 
 @pytest.fixture
-def random_empty_filament():
+def random_empty_filament(auth_headers):
     """Return a random filament with only required fields specified."""
-    with random_empty_filament_impl() as random_empty_filament:
+    with random_empty_filament_impl(auth_headers) as random_empty_filament:
         yield random_empty_filament
 
 
 @pytest.fixture
-def random_empty_filament_empty_vendor():
+def random_empty_filament_empty_vendor(auth_headers):
     """Return a random filament with only required fields specified and a vendor with only required fields specified."""
-    with random_empty_filament_empty_vendor_impl() as random_empty_filament_empty_vendor:
+    with random_empty_filament_empty_vendor_impl(auth_headers) as random_empty_filament_empty_vendor:
         yield random_empty_filament_empty_vendor
 
 
 @pytest.fixture(scope="module")
-def random_vendor_mod():
+def random_vendor_mod(auth_headers):
     """Return a random vendor."""
-    with random_vendor_impl() as random_vendor:
+    with random_vendor_impl(auth_headers) as random_vendor:
         yield random_vendor
 
 
 @pytest.fixture(scope="module")
-def random_empty_vendor_mod():
+def random_empty_vendor_mod(auth_headers):
     """Return a random vendor with only required fields specified."""
-    with random_empty_vendor_impl() as random_empty_vendor:
+    with random_empty_vendor_impl(auth_headers) as random_empty_vendor:
         yield random_empty_vendor
 
 
 @pytest.fixture(scope="module")
-def random_filament_mod():
+def random_filament_mod(auth_headers):
     """Return a random filament."""
-    with random_filament_impl() as random_filament:
+    with random_filament_impl(auth_headers) as random_filament:
         yield random_filament
 
 
 @pytest.fixture(scope="module")
-def random_empty_filament_mod():
+def random_empty_filament_mod(auth_headers):
     """Return a random filament with only required fields specified."""
-    with random_empty_filament_impl() as random_empty_filament:
+    with random_empty_filament_impl(auth_headers) as random_empty_filament:
         yield random_empty_filament
 
 
 @pytest.fixture(scope="module")
-def random_empty_filament_empty_vendor_mod():
+def random_empty_filament_empty_vendor_mod(auth_headers):
     """Return a random filament with only required fields specified and a vendor with only required fields specified."""
-    with random_empty_filament_empty_vendor_impl() as random_empty_filament_empty_vendor:
+    with random_empty_filament_empty_vendor_impl(auth_headers) as random_empty_filament_empty_vendor:
         yield random_empty_filament_empty_vendor
+
+
+def length_from_weight(*, weight: float, diameter: float, density: float) -> float:
+    """Calculate the length of a piece of filament.
+
+    Args:
+        weight (float): Filament weight in g
+        diameter (float): Filament diameter in mm
+        density (float): Density of filament material in g/cm3
+
+    Returns:
+        float: Length in mm
+
+    """
+    volume_cm3 = weight / density
+    volume_mm3 = volume_cm3 * 1000
+    return volume_mm3 / (math.pi * (diameter / 2) ** 2)
+
+
+def assert_dicts_compatible(actual: Any, expected: Any, path: str = "") -> None:  # noqa: ANN401
+    """Assert that two dictionaries are compatible for unit testing a REST API.
+
+    Args:
+        actual (dict): The actual dictionary.
+        expected (dict): The expected dictionary.
+        path (str): The path to the current level in the dictionary (used for error messages).
+
+    Raises:
+        AssertionError: If dictionaries are not compatible.
+
+    """
+    # Check if both inputs are dictionaries
+    if not (isinstance(actual, dict) and isinstance(expected, dict)):
+        raise TypeError(f"At {path}: Actual and expected values must be dictionaries.")
+
+    # Check if actual dictionary contains all keys of the expected dictionary
+    missing_keys = [key for key in expected if key not in actual]
+    if missing_keys:
+        raise AssertionError(f"At {path}: Missing keys in actual dictionary: {missing_keys}")
+
+    # Recursively check values if the corresponding keys exist
+    for key, expected_value in expected.items():
+        actual_value = actual[key]
+        subpath = f"{path}.{key}" if path else key  # Update the path for the current level
+
+        # If the value is another dictionary, recurse into it
+        if isinstance(expected_value, dict):
+            assert_dicts_compatible(actual_value, expected_value, path=subpath)
+        elif actual_value != expected_value:  # Check if values are equal
+            raise AssertionError(
+                f"At {subpath}: Values do not match. Expected: {expected_value}, Actual: {actual_value}",
+            )
+
+
+def assert_lists_compatible(a: Iterable[dict[str, Any]], b: Iterable[dict[str, Any]], sort_key: str = "id") -> None:
+    """Compare two lists of items where the order of the items is not guaranteed."""
+    a_sorted = sorted(a, key=lambda x: x[sort_key])
+    b_sorted = sorted(b, key=lambda x: x[sort_key])
+    if len(a_sorted) != len(b_sorted):
+        pytest.fail(f"Lists have different lengths: {len(a_sorted)} != {len(b_sorted)}")
+
+    for a_filament, b_filament in zip(a_sorted, b_sorted):
+        assert_dicts_compatible(a_filament, b_filament)
+
+
+def assert_httpx_success(response: httpx.Response) -> None:
+    """Assert that a response is successful."""
+    if not response.is_success:
+        pytest.fail(f"Request failed: {response.status_code} {response.text}")
+
+
+def assert_httpx_code(response: httpx.Response, code: int) -> None:
+    """Assert that a response has the expected status code."""
+    if response.status_code != code:
+        pytest.fail(f"Request failed: {response.status_code} {response.text}")
 
 
 def length_from_weight(*, weight: float, diameter: float, density: float) -> float:

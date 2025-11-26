@@ -7,13 +7,13 @@ import sys
 
 if __name__ == "__main__":
     print("Building and running integration tests...")
-    print("Building Spoolman...")
-    if os.system("docker build -t donkie/spoolman:test .") > 0:
-        print("Failed to build Spoolman!")
+    print("Building SpoolCloud...")
+    if os.system("docker build -t donkie/spoolcloud:test .") > 0:
+        print("Failed to build SpoolCloud!")
         sys.exit(1)
-    print("Building Spoolman tester...")
-    if os.system("docker build -t donkie/spoolman-tester:latest tests_integration") > 0:
-        print("Failed to build Spoolman tester!")
+    print("Building SpoolCloud tester...")
+    if os.system("docker build -t donkie/spoolcloud-tester:latest tests_integration") > 0:
+        print("Failed to build SpoolCloud tester!")
         sys.exit(1)
 
     # Support input arguments for running only specific tests

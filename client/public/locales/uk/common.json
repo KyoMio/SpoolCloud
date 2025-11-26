@@ -155,7 +155,7 @@
             "showSpoolComment": "Примітка про котушку",
             "textSize": "Розмір тексту етикетки",
             "title": "Друк етикеток",
-            "showSpoolmanIcon": "Відобразити іконку Spoolman",
+            "showSpoolCloudIcon": "Відобразити іконку SpoolCloud",
             "showLotNr": "Номер партії",
             "bedTemp": "ТС: {{temp}}",
             "lotNr": "Партія номер: {{lot}}",
@@ -206,7 +206,7 @@
             "streamApiNotSupported": "Браузер не підтримує MediaStream API."
         },
         "title": "Сканер QR-кодів",
-        "description": "Відскануй QR-код Spoolman щоб переглянути подробиці про котушку."
+        "description": "Відскануй QR-код SpoolCloud щоб переглянути подробиці про котушку."
     },
     "loading": "Завантаження",
     "filament": {
@@ -289,41 +289,41 @@
         }
     },
     "documentTitle": {
-        "default": "Spoolman",
+        "default": "SpoolCloud",
         "spool": {
-            "list": "Котушки | Spoolman",
-            "edit": "#{{id}} Редагувати Котушку | Spoolman",
-            "create": "Створити Котушку | Spoolman",
-            "show": "#{{id}} Показати Котушку | Spoolman",
-            "clone": "#{{id}} Клонувати Котушку | Spoolman"
+            "list": "Котушки | SpoolCloud",
+            "edit": "#{{id}} Редагувати Котушку | SpoolCloud",
+            "create": "Створити Котушку | SpoolCloud",
+            "show": "#{{id}} Показати Котушку | SpoolCloud",
+            "clone": "#{{id}} Клонувати Котушку | SpoolCloud"
         },
         "filament": {
-            "list": "Філаменти | Spoolman",
-            "show": "#{{id}} Показати Філамент | Spoolman",
-            "clone": "#{{id}} Клонувати Філамент | Spoolman",
-            "create": "Створити Філамент | Spoolman",
-            "edit": "#{{id}} Редагувати Філамент | Spoolman"
+            "list": "Філаменти | SpoolCloud",
+            "show": "#{{id}} Показати Філамент | SpoolCloud",
+            "clone": "#{{id}} Клонувати Філамент | SpoolCloud",
+            "create": "Створити Філамент | SpoolCloud",
+            "edit": "#{{id}} Редагувати Філамент | SpoolCloud"
         },
-        "suffix": " | Spoolman",
+        "suffix": " | SpoolCloud",
         "vendor": {
-            "list": "Виробники | Spoolman",
-            "create": "Створити Виробника | Spoolman",
-            "clone": "#{{id}} Клонувати Виробника | Spoolman",
-            "edit": "#{{id}} Редагувати Виробника | Spoolman",
-            "show": "#{{id}} Показати Виробника | Spoolman"
+            "list": "Виробники | SpoolCloud",
+            "create": "Створити Виробника | SpoolCloud",
+            "clone": "#{{id}} Клонувати Виробника | SpoolCloud",
+            "edit": "#{{id}} Редагувати Виробника | SpoolCloud",
+            "show": "#{{id}} Показати Виробника | SpoolCloud"
         },
         "home": {
-            "list": "Домашня | Spoolman"
+            "list": "Домашня | SpoolCloud"
         },
         "help": {
-            "list": "Довідка | Spoolman"
+            "list": "Довідка | SpoolCloud"
         }
     },
     "table": {
         "actions": "Дії"
     },
     "help": {
-        "description": "<title>Довідка</title><p>Підказки для початку роботи.</p><p>Spoolman зберігає 3 різних типи даних:</p><itemsHelp/><p>Щоб додати нову котушку до бази даних, почніть зі створення об'єкта <filamentCreateLink>Filament</filamentCreateLink>. Після цього перейдіть до створення об'єкта <spoolCreateLink>Spool</spoolCreateLink> для цієї конкретної котушки. Якщо пізніше ви придбаєте додаткові котушки того самого матеріалу, просто створіть додаткові об'єкти Spool і повторно використовуйте той самий об'єкт Filament.</p><p>За бажанням ви також можете створити об'єкт <vendorCreateLink>Vendor</vendorCreateLink> для компанії-виробника матеріалу, якщо хочете відстежувати цю інформацію.</p><p>У вас є можливість зв'язати зі Spoolman інші сервіси для 3D-принтерів, наприклад Moonraker, які можуть автоматично відстежувати використання матеріалу й оновлювати об'єкти Spool для вас. Щоб дізнатися, як це налаштувати, зверніться до <readmeLink>Spoolman README</readmeLink></p>",
+        "description": "<title>Довідка</title><p>Підказки для початку роботи.</p><p>SpoolCloud зберігає 3 різних типи даних:</p><itemsHelp/><p>Щоб додати нову котушку до бази даних, почніть зі створення об'єкта <filamentCreateLink>Filament</filamentCreateLink>. Після цього перейдіть до створення об'єкта <spoolCreateLink>Spool</spoolCreateLink> для цієї конкретної котушки. Якщо пізніше ви придбаєте додаткові котушки того самого матеріалу, просто створіть додаткові об'єкти Spool і повторно використовуйте той самий об'єкт Filament.</p><p>За бажанням ви також можете створити об'єкт <vendorCreateLink>Vendor</vendorCreateLink> для компанії-виробника матеріалу, якщо хочете відстежувати цю інформацію.</p><p>У вас є можливість зв'язати зі SpoolCloud інші сервіси для 3D-принтерів, наприклад Moonraker, які можуть автоматично відстежувати використання матеріалу й оновлювати об'єкти Spool для вас. Щоб дізнатися, як це налаштувати, зверніться до <readmeLink>SpoolCloud README</readmeLink></p>",
         "help": "Довідка",
         "resources": {
             "filament": "Бренди філаменту. Вони мають властивості такі як ім'я, матеріал, колір, діаметр та інше.",

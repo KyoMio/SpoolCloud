@@ -3,18 +3,15 @@ import { Tooltip } from "antd";
 import { ColumnFilterItem } from "antd/es/table/interface";
 import { IFilament } from "../pages/filaments/model";
 import { IVendor } from "../pages/vendors/model";
-import { getAPIURL } from "../utils/url";
+import { httpClient } from "../utils/httpClient";
 
-export function useSpoolmanFilamentFilter(enabled: boolean = false) {
+export function useSpoolCloudFilamentFilter(enabled: boolean = false) {
   return useQuery<IFilament[], unknown, ColumnFilterItem[]>({
     enabled: enabled,
     queryKey: ["filaments"],
     queryFn: async () => {
-      const response = await fetch(getAPIURL() + "/filament");
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return response.json();
+      const response = await httpClient.get("/filament");
+      return response.data;
     },
     select: (data) => {
       // Concatenate vendor name and filament name
@@ -85,16 +82,13 @@ export function useSpoolmanFilamentFilter(enabled: boolean = false) {
   });
 }
 
-export function useSpoolmanFilamentNames(enabled: boolean = false) {
+export function useSpoolCloudFilamentNames(enabled: boolean = false) {
   return useQuery<IFilament[], unknown, string[]>({
     enabled: enabled,
     queryKey: ["filaments"],
     queryFn: async () => {
-      const response = await fetch(getAPIURL() + "/filament");
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return response.json();
+      const response = await httpClient.get("/filament");
+      return response.data;
     },
     select: (data) => {
       // Concatenate vendor name and filament name
@@ -113,16 +107,13 @@ export function useSpoolmanFilamentNames(enabled: boolean = false) {
   });
 }
 
-export function useSpoolmanVendors(enabled: boolean = false) {
+export function useSpoolCloudVendors(enabled: boolean = false) {
   return useQuery<IVendor[], unknown, string[]>({
     enabled: enabled,
     queryKey: ["vendors"],
     queryFn: async () => {
-      const response = await fetch(getAPIURL() + "/vendor");
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return response.json();
+      const response = await httpClient.get("/vendor");
+      return response.data;
     },
     select: (data) => {
       return data
@@ -134,16 +125,13 @@ export function useSpoolmanVendors(enabled: boolean = false) {
   });
 }
 
-export function useSpoolmanMaterials(enabled: boolean = false) {
+export function useSpoolCloudMaterials(enabled: boolean = false) {
   return useQuery<string[]>({
     enabled: enabled,
     queryKey: ["materials"],
     queryFn: async () => {
-      const response = await fetch(getAPIURL() + "/material");
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return response.json();
+      const response = await httpClient.get("/material");
+      return response.data;
     },
     select: (data) => {
       return data.sort();
@@ -151,16 +139,13 @@ export function useSpoolmanMaterials(enabled: boolean = false) {
   });
 }
 
-export function useSpoolmanArticleNumbers(enabled: boolean = false) {
+export function useSpoolCloudArticleNumbers(enabled: boolean = false) {
   return useQuery<string[]>({
     enabled: enabled,
     queryKey: ["articleNumbers"],
     queryFn: async () => {
-      const response = await fetch(getAPIURL() + "/article-number");
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return response.json();
+      const response = await httpClient.get("/article-number");
+      return response.data;
     },
     select: (data) => {
       return data.sort();
@@ -168,16 +153,13 @@ export function useSpoolmanArticleNumbers(enabled: boolean = false) {
   });
 }
 
-export function useSpoolmanLotNumbers(enabled: boolean = false) {
+export function useSpoolCloudLotNumbers(enabled: boolean = false) {
   return useQuery<string[]>({
     enabled: enabled,
     queryKey: ["lotNumbers"],
     queryFn: async () => {
-      const response = await fetch(getAPIURL() + "/lot-number");
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return response.json();
+      const response = await httpClient.get("/lot-number");
+      return response.data;
     },
     select: (data) => {
       return data.sort();
@@ -185,16 +167,13 @@ export function useSpoolmanLotNumbers(enabled: boolean = false) {
   });
 }
 
-export function useSpoolmanLocations(enabled: boolean = false) {
+export function useSpoolCloudLocations(enabled: boolean = false) {
   return useQuery<string[]>({
     enabled: enabled,
     queryKey: ["locations"],
     queryFn: async () => {
-      const response = await fetch(getAPIURL() + "/location");
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return response.json();
+      const response = await httpClient.get("/location");
+      return response.data;
     },
     select: (data) => {
       return data.sort();

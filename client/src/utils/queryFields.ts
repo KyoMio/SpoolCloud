@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import dayjs from "dayjs";
-import { getAPIURL } from "./url";
+import { httpClient } from "./httpClient";
 
 export enum FieldType {
   text = "text",
@@ -38,8 +38,8 @@ export function useGetFields(entity_type: EntityType) {
   return useQuery<Field[]>({
     queryKey: ["fields", entity_type],
     queryFn: async () => {
-      const response = await fetch(`${getAPIURL()}/field/${entity_type}`);
-      return response.json();
+      const response = await httpClient.get(`/field/${entity_type}`);
+      return response.data;
     },
   });
 }
@@ -49,20 +49,8 @@ export function useSetField(entity_type: EntityType) {
 
   return useMutation<Field[], unknown, { key: string; params: FieldParameters }, { previousFields?: Field[] }>({
     mutationFn: async ({ key, params }) => {
-      const response = await fetch(`${getAPIURL()}/field/${entity_type}/${key}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(params),
-      });
-
-      // Throw error if response is not ok
-      if (!response.ok) {
-        throw new Error((await response.json()).message);
-      }
-
-      return response.json();
+      const response = await httpClient.post(`/field/${entity_type}/${key}`, params);
+      return response.data;
     },
     onMutate: async ({ key, params }) => {
       // Cancel any outgoing refetches (so they don't overwrite our optimistic update)
@@ -111,16 +99,8 @@ export function useDeleteField(entity_type: EntityType) {
 
   return useMutation<Field[], unknown, string>({
     mutationFn: async (key) => {
-      const response = await fetch(`${getAPIURL()}/field/${entity_type}/${key}`, {
-        method: "DELETE",
-      });
-
-      // Throw error if response is not ok
-      if (!response.ok) {
-        throw new Error((await response.json()).message);
-      }
-
-      return response.json();
+      const response = await httpClient.delete(`/field/${entity_type}/${key}`);
+      return response.data;
     },
     onSuccess: () => {
       // Invalidate and refetch

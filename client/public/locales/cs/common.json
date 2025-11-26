@@ -109,7 +109,7 @@
             "bedTemp": "BT: {{temp}}",
             "extruderTemp": "ET: {{temp}}",
             "textSize": "Velikost textu štítku",
-            "showSpoolmanIcon": "Zobrazit ikonu Spoolman",
+            "showSpoolCloudIcon": "Zobrazit ikonu SpoolCloud",
             "showVendor": "Výrobce",
             "showContent": "Tisk štítku",
             "showLotNr": "Číslo šarže",
@@ -120,7 +120,7 @@
             "showVendorComment": "Poznámka k výrobci",
             "useHTTPUrl": {
                 "label": "Odkaz na QR kód",
-                "tooltip": "Použije proprietární odkaz, který bude fungovat pouze v případě, že bude skenován pomocí funkce skenování Spoolman (výchozí). Adresa URL používá buď základní adresu URL zadanou v nastavení, nebo adresu URL aktuální stránky, pokud není nastavena.",
+                "tooltip": "Použije proprietární odkaz, který bude fungovat pouze v případě, že bude skenován pomocí funkce skenování SpoolCloud (výchozí). Adresa URL používá buď základní adresu URL zadanou v nastavení, nebo adresu URL aktuální stránky, pokud není nastavena.",
                 "options": {
                     "default": "Výchozí",
                     "url": "URL"
@@ -149,7 +149,7 @@
     },
     "scanner": {
         "title": "Skener QR kódu",
-        "description": "Naskenováním QR kódu Spoolman zobrazíte podrobnosti o cívce.",
+        "description": "Naskenováním QR kódu SpoolCloud zobrazíte podrobnosti o cívce.",
         "error": {
             "notAllowed": "Nemáte povolen přístup ke kameře.",
             "insecureContext": "Stránka se nezobrazuje přes protokol HTTPS.",
@@ -306,37 +306,37 @@
         "actions": "Akce"
     },
     "documentTitle": {
-        "default": "Spoolman",
-        "suffix": " | Spoolman",
+        "default": "SpoolCloud",
+        "suffix": " | SpoolCloud",
         "filament": {
-            "list": "Filamenty | Spoolman",
-            "show": "#{{id}} Zobrazit Filament | Spoolman",
-            "edit": "#{{id}} Upravit Filament | Spoolman",
-            "create": "Vytvořit Filament | Spoolman",
-            "clone": "#{{id}} Duplikovat Filament | Spoolman"
+            "list": "Filamenty | SpoolCloud",
+            "show": "#{{id}} Zobrazit Filament | SpoolCloud",
+            "edit": "#{{id}} Upravit Filament | SpoolCloud",
+            "create": "Vytvořit Filament | SpoolCloud",
+            "clone": "#{{id}} Duplikovat Filament | SpoolCloud"
         },
         "spool": {
-            "list": "Cívky | Spoolman",
-            "show": "#{{id}} Zobrazit cívku | Spoolman",
-            "edit": "#{{id}} Upravit cívku | Spoolman",
-            "create": "Vytvořit cívku | Spoolman",
-            "clone": "#{{id}} Duplikovat cívku | Spoolman"
+            "list": "Cívky | SpoolCloud",
+            "show": "#{{id}} Zobrazit cívku | SpoolCloud",
+            "edit": "#{{id}} Upravit cívku | SpoolCloud",
+            "create": "Vytvořit cívku | SpoolCloud",
+            "clone": "#{{id}} Duplikovat cívku | SpoolCloud"
         },
         "vendor": {
-            "list": "Výrobci | Spoolman",
-            "show": "#{{id}} Zobrazit výrobce | Spoolman",
-            "edit": "#{{id}} Upravit výrobce | Spoolman",
-            "create": "Vytvořit výrobce | Spoolman",
-            "clone": "#{{id}} Duplikovat výrobce | Spoolman"
+            "list": "Výrobci | SpoolCloud",
+            "show": "#{{id}} Zobrazit výrobce | SpoolCloud",
+            "edit": "#{{id}} Upravit výrobce | SpoolCloud",
+            "create": "Vytvořit výrobce | SpoolCloud",
+            "clone": "#{{id}} Duplikovat výrobce | SpoolCloud"
         },
         "home": {
-            "list": "Domů | Spoolman"
+            "list": "Domů | SpoolCloud"
         },
         "help": {
-            "list": "Nápověda | Spoolman"
+            "list": "Nápověda | SpoolCloud"
         },
         "locations": {
-            "list": "Umístění | Spoolman"
+            "list": "Umístění | SpoolCloud"
         }
     },
     "help": {
@@ -345,14 +345,14 @@
             "filament": "Značky vláken. Mají vlastnosti, jako je název, materiál, barva, průměr a další.",
             "spool": "Jednotlivé fyzické cívky určitého vlákna."
         },
-        "description": "<title>Nápověda</title><p>Zde je několik tipů, které vám pomohou začít.</p><p>Spoolman ukládá 3 různé typy dat:</p><itemsHelp/><p>Chcete-li do databáze přidat novou cívku, začněte vytvořením položky <filamentCreateLink>Filament</filamentCreateLink> . Jakmile to uděláte, vytvořte položku <spoolCreateLink>Cívka</spoolCreateLink> s popisem pro danou cívku. Pokud později získáte další cívky stejného filamentu, jednoduše vygenerujte další Cívku a použijte opět stejný Filament.</p><p>Volitelně můžete také vygenerovat <vendorCreateLink>Výrobce</vendorCreateLink> název společnosti vyrábějící filamenty, pokud si přejete tyto informace sledovat.</p><p>Máte možnost propojit se Spoolmanem další služby 3D tiskárny, například Moonraker, který může automaticky sledovat využití filamentu a aktualizovat dané Cívky za vás. Pokyny k nastavení najdete v <readmeLink>Spoolman README</readmeLink>.</p>",
+        "description": "<title>Nápověda</title><p>Zde je několik tipů, které vám pomohou začít.</p><p>SpoolCloud ukládá 3 různé typy dat:</p><itemsHelp/><p>Chcete-li do databáze přidat novou cívku, začněte vytvořením položky <filamentCreateLink>Filament</filamentCreateLink> . Jakmile to uděláte, vytvořte položku <spoolCreateLink>Cívka</spoolCreateLink> s popisem pro danou cívku. Pokud později získáte další cívky stejného filamentu, jednoduše vygenerujte další Cívku a použijte opět stejný Filament.</p><p>Volitelně můžete také vygenerovat <vendorCreateLink>Výrobce</vendorCreateLink> název společnosti vyrábějící filamenty, pokud si přejete tyto informace sledovat.</p><p>Máte možnost propojit se SpoolCloudem další služby 3D tiskárny, například Moonraker, který může automaticky sledovat využití filamentu a aktualizovat dané Cívky za vás. Pokyny k nastavení najdete v <readmeLink>SpoolCloud README</readmeLink>.</p>",
         "help": "Nápověda"
     },
     "kofi": "Příspěvek autorovi na Ko-fi",
     "home": {
         "home": "Domů",
         "description": "Vypadá to, že jste ještě nepřidali žádné cívky. Úvodní nápovědu najdete na stránce <helpPageLink>Help page</helpPageLink> .",
-        "welcome": "Vítejte ve vaší instanci Spoolman!"
+        "welcome": "Vítejte ve vaší instanci SpoolCloud!"
     },
     "settings": {
         "extra_fields": {

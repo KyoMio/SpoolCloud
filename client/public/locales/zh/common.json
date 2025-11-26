@@ -109,7 +109,7 @@
             "bedTemp": "热床温度：{{temp}}",
             "extruderTemp": "挤出温度：{{temp}}",
             "textSize": "标签文本大小",
-            "showSpoolmanIcon": "显示Spoolman图标",
+            "showSpoolCloudIcon": "显示SpoolCloud图标",
             "showVendor": "制造商",
             "showContent": "打印标签",
             "showLotNr": "批号",
@@ -127,7 +127,7 @@
             },
             "templateHelp": "使用 {} 将料盘的值插入为文本。例如，{id} 将被替换为料盘的ID，或者 {filament.material} 将被替换为料盘的材质。如果某个值缺失，将用 \"?\" 替代。可以使用第二组 {} 来删除缺失值相关的内容。此外，任意位于两组 {} 之间的文本，如果值缺失，将被一同删除。例如，{Lot Nr: {lot_nr}} 只有在料盘存在批号时才会显示标签内容。用双星号 ** 包裹文本可以将其加粗。点击按钮查看所有可用的标签列表。",
             "useHTTPUrl": {
-                "tooltip": "将使用专有链接（默认情况下，仅能通过 **Spoolman** 的扫描功能访问）。URL 将使用设置中指定的基础 URL；如果未设置基础 URL，则使用当前页面的 URL。",
+                "tooltip": "将使用专有链接（默认情况下，仅能通过 **SpoolCloud** 的扫描功能访问）。URL 将使用设置中指定的基础 URL；如果未设置基础 URL，则使用当前页面的 URL。",
                 "label": "二维码链接",
                 "options": {
                     "default": "默认",
@@ -147,7 +147,7 @@
     },
     "scanner": {
         "title": "扫码二维码",
-        "description": "扫描Spoolman二维码，查看有关料盘的详细信息。",
+        "description": "扫描SpoolCloud二维码，查看有关料盘的详细信息。",
         "error": {
             "notAllowed": "您不被允许访问相机。",
             "insecureContext": "该页面不是通过HTTPS传输。",
@@ -304,37 +304,37 @@
         "actions": "操作"
     },
     "documentTitle": {
-        "default": "Spoolman",
-        "suffix": " | Spoolman",
+        "default": "SpoolCloud",
+        "suffix": " | SpoolCloud",
         "filament": {
-            "list": "耗材列表 | Spoolman",
-            "show": "#{{id}} 查看耗材 | Spoolman",
-            "edit": "#{{id}} 编辑耗材 | Spoolman",
-            "create": "创建耗材 | Spoolman",
-            "clone": "#{{id}} 克隆耗材 | Spoolman"
+            "list": "耗材列表 | SpoolCloud",
+            "show": "#{{id}} 查看耗材 | SpoolCloud",
+            "edit": "#{{id}} 编辑耗材 | SpoolCloud",
+            "create": "创建耗材 | SpoolCloud",
+            "clone": "#{{id}} 克隆耗材 | SpoolCloud"
         },
         "spool": {
-            "list": "料盘列表 | Spoolman",
-            "show": "#{{id}} 查看料盘 | Spoolman",
-            "edit": "#{{id}} 编辑料盘 | Spoolman",
-            "create": "创建料盘 | Spoolman",
-            "clone": "#{{id}} 克隆料盘 | Spoolman"
+            "list": "料盘列表 | SpoolCloud",
+            "show": "#{{id}} 查看料盘 | SpoolCloud",
+            "edit": "#{{id}} 编辑料盘 | SpoolCloud",
+            "create": "创建料盘 | SpoolCloud",
+            "clone": "#{{id}} 克隆料盘 | SpoolCloud"
         },
         "vendor": {
-            "list": "制造商 | Spoolman",
-            "show": "#{{id}} 查看制造商 | Spoolman",
-            "edit": "#{{id}} 编辑制造商 | Spoolman",
-            "create": "创建制造商 | Spoolman",
-            "clone": "#{{id}} 克隆制造商 | Spoolman"
+            "list": "制造商 | SpoolCloud",
+            "show": "#{{id}} 查看制造商 | SpoolCloud",
+            "edit": "#{{id}} 编辑制造商 | SpoolCloud",
+            "create": "创建制造商 | SpoolCloud",
+            "clone": "#{{id}} 克隆制造商 | SpoolCloud"
         },
         "home": {
-            "list": "主页 | Spoolman"
+            "list": "主页 | SpoolCloud"
         },
         "help": {
-            "list": "帮助 | Spoolman"
+            "list": "帮助 | SpoolCloud"
         },
         "locations": {
-            "list": "位置 | Spoolman"
+            "list": "位置 | SpoolCloud"
         }
     },
     "kofi": "在Ko-fi上给我打赏一点小费",
@@ -348,7 +348,7 @@
             "vendor": "制造耗材的公司。",
             "spool": "特定耗材的单个物理卷轴。"
         },
-        "description": "<title>帮助</title><p>以下是一些入门提示。</p><p>Spoolman保存了3种不同类型的数据：</p><itemsHelp/><p>要向数据库添加新的料盘，请先创建一个 <filamentCreateLink>耗材</filamentCreateLink> 对象。完成后，继续为该特定耗材创建一个 <spoolCreateLink>料盘</spoolCreateLink> 对象。如果以后获取相同耗材的其他料盘，只需生成其他的料盘对象并重复使用同一个耗材对象。</p><p>同时，如果您希望跟踪该信息，还可以为制造耗材的公司生成一个 <vendorCreateLink>制造商</vendorCreateLink> 对象。</p><p>您可以选择将其他3D打印机服务链接到 Spoolman，例如 Moonraker，它可以自动监视耗材使用情况并为您更新料盘对象。请参阅 <readmeLink>Spoolman README</readmeLink> 获取有关如何设置的指导。</p>"
+        "description": "<title>帮助</title><p>以下是一些入门提示。</p><p>SpoolCloud保存了3种不同类型的数据：</p><itemsHelp/><p>要向数据库添加新的料盘，请先创建一个 <filamentCreateLink>耗材</filamentCreateLink> 对象。完成后，继续为该特定耗材创建一个 <spoolCreateLink>料盘</spoolCreateLink> 对象。如果以后获取相同耗材的其他料盘，只需生成其他的料盘对象并重复使用同一个耗材对象。</p><p>同时，如果您希望跟踪该信息，还可以为制造耗材的公司生成一个 <vendorCreateLink>制造商</vendorCreateLink> 对象。</p><p>您可以选择将其他3D打印机服务链接到 SpoolCloud，例如 Moonraker，它可以自动监视耗材使用情况并为您更新料盘对象。请参阅 <readmeLink>SpoolCloud README</readmeLink> 获取有关如何设置的指导。</p>"
     },
     "settings": {
         "settings": "设置",
@@ -404,5 +404,121 @@
         "locations": "位置",
         "new_location": "新位置",
         "no_location": "没有位置"
+    },
+    "notificationsPage": {
+        "title": "通知中心",
+        "tabs": {
+            "list": "通知列表",
+            "config": "通知配置"
+        },
+        "list": {
+            "empty": "暂无通知",
+            "markRead": "标记为已读",
+            "markAllRead": "全部标记为已读",
+            "delete": "删除",
+            "unread": "未读"
+        },
+        "config": {
+            "isEnabled": "启用通知",
+            "channel": "通知渠道",
+            "webhookUrl": "Webhook 地址",
+            "webhookUrlRequired": "请输入 Webhook 地址",
+            "apiKey": "API Key (Send Key)",
+            "apiKeyRequired": "请输入 API Key",
+            "baseUrl": "服务器地址",
+            "baseUrlRequired": "请输入服务器地址",
+            "deviceKey": "设备密钥",
+            "deviceKeyRequired": "请输入设备密钥",
+            "save": "保存配置",
+            "saveSuccess": "配置保存成功",
+            "saveError": "配置保存失败",
+            "testNotification": "测试通知",
+            "testSuccess": "测试通知发送成功！",
+            "testError": "测试通知发送失败，请检查配置"
+        }
+    },
+    "pages": {
+        "login": {
+            "title": "登录 SpoolCloud",
+            "fields": {
+                "username": "用户名",
+                "password": "密码"
+            },
+            "errors": {
+                "requiredUsername": "请输入用户名",
+                "requiredPassword": "请输入密码"
+            },
+            "buttons": {
+                "submit": "登录"
+            },
+            "noAccount": "还没有账号？",
+            "register": "注册"
+        },
+        "register": {
+            "title": "注册 SpoolCloud",
+            "fields": {
+                "username": "用户名",
+                "password": "密码",
+                "inviteCode": "邀请码",
+                "inviteCodePlaceholder": "请输入邀请码"
+            },
+            "errors": {
+                "requiredUsername": "请输入用户名",
+                "usernameMinLength": "用户名至少需要 3 个字符",
+                "requiredPassword": "请输入密码",
+                "passwordMinLength": "密码至少需要 8 个字符",
+                "requiredInviteCode": "请输入邀请码"
+            },
+            "buttons": {
+                "submit": "注册"
+            },
+            "haveAccount": "已有账号？",
+            "login": "登录"
+        }
+    },
+    "profile": {
+        "title": "用户设置",
+        "general": "常规",
+        "apiKeys": "API 密钥",
+        "oldPassword": "旧密码",
+        "newPassword": "新密码",
+        "changePassword": "修改密码",
+        "passwordChanged": "密码修改成功",
+        "passwordChangeFailed": "密码修改失败",
+        "createApiKey": "创建 API 密钥",
+        "apiKeyLabel": "标签",
+        "apiKeyWarning": "请将此密钥保存在安全的地方，您将无法再次查看它！",
+        "apiKeyCreated": "API 密钥创建成功",
+        "apiKeyCreateFailed": "API 密钥创建失败",
+        "apiKeyDeleted": "API 密钥删除成功",
+        "apiKeyDeleteFailed": "API 密钥删除失败"
+    },
+    "userManagement": {
+        "title": "用户管理",
+        "inviteCodeGenerator": "邀请码生成器",
+        "generateInviteCode": "生成邀请码",
+        "newInviteCode": "新邀请码已生成：",
+        "inviteCodeGenerated": "邀请码生成成功",
+        "inviteCodeGenerateFailed": "邀请码生成失败",
+        "inviteCodes": "邀请码列表",
+        "inviteCode": "邀请码",
+        "status": "状态",
+        "used": "已使用",
+        "unused": "未使用",
+        "usedBy": "使用者",
+        "createdAt": "创建时间",
+        "inviteCodeCopied": "邀请码已复制到剪贴板",
+        "deleteInviteCodeConfirm": "确定要删除此邀请码吗？",
+        "inviteCodeDeleted": "邀请码删除成功",
+        "inviteCodeDeleteFailed": "邀请码删除失败",
+        "users": "用户列表",
+        "username": "用户名",
+        "role": "角色",
+        "admin": "管理员",
+        "user": "普通用户",
+        "inviteCodeUsed": "使用的邀请码",
+        "deleteUserConfirm": "确定要删除此用户吗？",
+        "userDeleted": "用户删除成功",
+        "userDeleteFailed": "用户删除失败"
     }
 }

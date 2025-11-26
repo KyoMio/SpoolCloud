@@ -172,7 +172,7 @@
             "bedTemp": "TS: {{temp}}",
             "extruderTemp": "TE: {{temp}}",
             "textSize": "Rozmiar tekstu etykiety",
-            "showSpoolmanIcon": "Pokaż ikonę Spoolman",
+            "showSpoolCloudIcon": "Pokaż ikonę SpoolCloud",
             "showVendor": "Producent",
             "showContent": "Etykieta",
             "showLotNr": "Nr. partii (LOT)",
@@ -191,7 +191,7 @@
                     "default": "Domyślne",
                     "url": "URL"
                 },
-                "tooltip": "Zostanie użyty link który będzie działał tylko gdy zostanie zeskanowany przez funkcję skanowania Spoolmana (Domyślna opcja). Link URL używa bazowego URL ustawionego w ustawieniach lub aktualnego URL strony jeżeli nie jest ustawiony w ustawieniach."
+                "tooltip": "Zostanie użyty link który będzie działał tylko gdy zostanie zeskanowany przez funkcję skanowania SpoolClouda (Domyślna opcja). Link URL używa bazowego URL ustawionego w ustawieniach lub aktualnego URL strony jeżeli nie jest ustawiony w ustawieniach."
             },
             "showQRCode": "Drukuj kod QR",
             "showQRCodeMode": {
@@ -222,7 +222,7 @@
             "notFound": "Nie znaleziono kamery.",
             "unknown": "Wystąpił nieznany błąd. ({{error}})"
         },
-        "description": "Zeskanuj kod QR Spoolman, aby wyświetlić szczegółowe informacje o szpuli."
+        "description": "Zeskanuj kod QR SpoolCloud, aby wyświetlić szczegółowe informacje o szpuli."
     },
     "filament": {
         "filament": "Filamenty",
@@ -305,37 +305,37 @@
         "actions": "Akcje"
     },
     "documentTitle": {
-        "default": "Spoolman",
-        "suffix": " | Spoolman",
+        "default": "SpoolCloud",
+        "suffix": " | SpoolCloud",
         "filament": {
-            "list": "Filamenty | Spoolman",
-            "edit": "#{{id}} Edytuj filament | Spoolman",
-            "create": "Tworzenie filamentu | Spoolman",
-            "clone": "#{{id}} Klonowanie filamentu | Spoolman",
-            "show": "#{{id}} Filament | Spoolman"
+            "list": "Filamenty | SpoolCloud",
+            "edit": "#{{id}} Edytuj filament | SpoolCloud",
+            "create": "Tworzenie filamentu | SpoolCloud",
+            "clone": "#{{id}} Klonowanie filamentu | SpoolCloud",
+            "show": "#{{id}} Filament | SpoolCloud"
         },
         "spool": {
-            "list": "Szpule | Spoolman",
-            "show": "#{{id}} Szpula | Spoolman",
-            "edit": "#{{id}} Edytuj szpulę | Spoolman",
-            "create": "Tworzenie szpuli | Spoolman",
-            "clone": "#{{id}} Klonowanie szpuli | Spoolman"
+            "list": "Szpule | SpoolCloud",
+            "show": "#{{id}} Szpula | SpoolCloud",
+            "edit": "#{{id}} Edytuj szpulę | SpoolCloud",
+            "create": "Tworzenie szpuli | SpoolCloud",
+            "clone": "#{{id}} Klonowanie szpuli | SpoolCloud"
         },
         "vendor": {
-            "show": "#{{id}} Pokaż producenta | Spoolman",
-            "list": "Producenci | Spoolman",
-            "edit": "#{{id}} Edytuj producenta | Spoolman",
-            "create": "Stwórz producenta | Spoolman",
-            "clone": "#{{id}} Sklonuj producenta | Spoolman"
+            "show": "#{{id}} Pokaż producenta | SpoolCloud",
+            "list": "Producenci | SpoolCloud",
+            "edit": "#{{id}} Edytuj producenta | SpoolCloud",
+            "create": "Stwórz producenta | SpoolCloud",
+            "clone": "#{{id}} Sklonuj producenta | SpoolCloud"
         },
         "home": {
-            "list": "Strona główna | Spoolman"
+            "list": "Strona główna | SpoolCloud"
         },
         "help": {
-            "list": "Pomoc | Spoolman"
+            "list": "Pomoc | SpoolCloud"
         },
         "locations": {
-            "list": "Lokalizacje | Spoolman"
+            "list": "Lokalizacje | SpoolCloud"
         }
     },
     "warnWhenUnsavedChanges": "Czy na pewno chcesz wyjść? Masz niezapisane zmiany.",
@@ -346,12 +346,12 @@
             "spool": "Indywidualne fizyczne szpule określonego filamentu."
         },
         "help": "Pomoc",
-        "description": "<title>Pomoc</title><p>Oto kilka wskazówek na początek.</p><p>Spoolman przechowuje 3 różne typy danych:</p><itemsHelp/><p>Aby dodać nową szpulę do bazy danych, zacznij od utworzenia obiektu <filamentCreateLink>Filament</filamentCreateLink>. Gdy już to zrobisz, przejdź do utworzenia obiektu <spoolCreateLink>Szpula</spoolCreateLink> dla tej konkretnej szpuli. Jeśli później zdobędziesz dodatkowe szpule tego samego filamentu, po prostu wygeneruj dodatkowe obiekty Szpula i ponownie użyj tego samego obiektu Filament.</p><p>Opcjonalnie możesz także wygenerować obiekt <vendorCreateLink>Producent</vendorCreateLink> dla firmy produkującej filament, jeśli chcesz śledzić te informacje.</p><p>Masz możliwość połączenia innych usług drukarek 3D ze Spoolmanem, takich jak Moonraker, który może automatycznie monitorować zużycie filamentu i aktualizować obiekty Szpula. Wskazówki dotyczące konfiguracji można znaleźć w <readmeLink>Spoolman README</readmeLink>.</p>"
+        "description": "<title>Pomoc</title><p>Oto kilka wskazówek na początek.</p><p>SpoolCloud przechowuje 3 różne typy danych:</p><itemsHelp/><p>Aby dodać nową szpulę do bazy danych, zacznij od utworzenia obiektu <filamentCreateLink>Filament</filamentCreateLink>. Gdy już to zrobisz, przejdź do utworzenia obiektu <spoolCreateLink>Szpula</spoolCreateLink> dla tej konkretnej szpuli. Jeśli później zdobędziesz dodatkowe szpule tego samego filamentu, po prostu wygeneruj dodatkowe obiekty Szpula i ponownie użyj tego samego obiektu Filament.</p><p>Opcjonalnie możesz także wygenerować obiekt <vendorCreateLink>Producent</vendorCreateLink> dla firmy produkującej filament, jeśli chcesz śledzić te informacje.</p><p>Masz możliwość połączenia innych usług drukarek 3D ze SpoolCloudem, takich jak Moonraker, który może automatycznie monitorować zużycie filamentu i aktualizować obiekty Szpula. Wskazówki dotyczące konfiguracji można znaleźć w <readmeLink>SpoolCloud README</readmeLink>.</p>"
     },
     "kofi": "Daj napiwek na Ko-fi",
     "home": {
         "home": "Strona główna",
-        "welcome": "Witaj w instancji Spoolman!",
+        "welcome": "Witaj w instancji SpoolCloud!",
         "description": "Wygląda na to, że nie dodano jeszcze żadnych szpul. Zobacz <helpPageLink>stronę pomocy</helpPageLink>, aby dowiedzieć się jak rozpocząć."
     },
     "settings": {

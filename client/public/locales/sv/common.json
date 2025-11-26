@@ -109,7 +109,7 @@
             "bedTemp": "BT: {{temp}}",
             "extruderTemp": "ET: {{temp}}",
             "textSize": "Textstorlek",
-            "showSpoolmanIcon": "Visa Spoolman-ikon",
+            "showSpoolCloudIcon": "Visa SpoolCloud-ikon",
             "showContent": "Visa text",
             "showVendor": "Tillverkare",
             "showLotNr": "Batchnummer",
@@ -340,34 +340,34 @@
         }
     },
     "documentTitle": {
-        "default": "Spoolman",
-        "suffix": " | Spoolman",
+        "default": "SpoolCloud",
+        "suffix": " | SpoolCloud",
         "home": {
-            "list": "Hem | Spoolman"
+            "list": "Hem | SpoolCloud"
         },
         "filament": {
-            "list": "Filament | Spoolman",
-            "show": "#{{id}} Visa filament | Spoolman",
-            "edit": "#{{id}} Redigera filament | Spoolman",
-            "create": "Skapa filament | Spoolman",
-            "clone": "#{{id}} Klona filament | Spoolman"
+            "list": "Filament | SpoolCloud",
+            "show": "#{{id}} Visa filament | SpoolCloud",
+            "edit": "#{{id}} Redigera filament | SpoolCloud",
+            "create": "Skapa filament | SpoolCloud",
+            "clone": "#{{id}} Klona filament | SpoolCloud"
         },
         "spool": {
-            "list": "Spolar | Spoolman",
-            "show": "#{{id}} Visa spole | Spoolman",
-            "edit": "#{{id}} Redigera spole | Spoolman",
-            "create": "Skapa spole | Spoolman",
-            "clone": "#{{id}} Klona spole | Spoolman"
+            "list": "Spolar | SpoolCloud",
+            "show": "#{{id}} Visa spole | SpoolCloud",
+            "edit": "#{{id}} Redigera spole | SpoolCloud",
+            "create": "Skapa spole | SpoolCloud",
+            "clone": "#{{id}} Klona spole | SpoolCloud"
         },
         "vendor": {
-            "list": "Tillverkare | Spoolman",
-            "show": "#{{id}} Visa tillverkare | Spoolman",
-            "edit": "#{{id}} Redigera tillverkare | Spoolman",
-            "create": "Skapa tillverkare | Spoolman",
-            "clone": "#{{id}} Klona tillverkare | Spoolman"
+            "list": "Tillverkare | SpoolCloud",
+            "show": "#{{id}} Visa tillverkare | SpoolCloud",
+            "edit": "#{{id}} Redigera tillverkare | SpoolCloud",
+            "create": "Skapa tillverkare | SpoolCloud",
+            "clone": "#{{id}} Klona tillverkare | SpoolCloud"
         },
         "help": {
-            "list": "Hjälp | Spoolman"
+            "list": "Hjälp | SpoolCloud"
         }
     },
     "help": {
@@ -376,7 +376,7 @@
             "filament": "Märken av filament. De har egenskaper som namn, material, färg, diameter och mer.",
             "spool": "Individuella fysiska spolar av ett specifikt filament."
         },
-        "description": "<title>Hjälp</title><p>Här är några tips för att komma igång.</p><p>Spoolman innehåller 3 olika typer av data:</p><itemsHelp/><p>För att lägga till en ny spole i databasen måste du först skapa ett <filamentCreateLink>Filament</filamentCreateLink>-objekt för den. När det är klart kan du sedan skapa ett <spoolCreateLink>Spol</spoolCreateLink>-objekt för den individuella spolen. Om du sedan köper ytterligare spolar av samma filament kan du bara skapa ytterligare Spol-objekt och återanvända samma Filament-objekt.</p><p>Du kan valfritt också skapa ett <vendorCreateLink>Tillverkar</vendorCreateLink>-objekt för företaget som tillverkar filamentet om du vill spåra den informationen.</p><p>Du kan koppla andra 3D-skrivartjänster till Spoolman, som Moonraker, som sedan automatiskt kan spåra filamentanvändning och uppdatera Spol-objekten åt dig. Se <readmeLink>Spoolman README</readmeLink> för hur du gör det.</p>",
+        "description": "<title>Hjälp</title><p>Här är några tips för att komma igång.</p><p>SpoolCloud innehåller 3 olika typer av data:</p><itemsHelp/><p>För att lägga till en ny spole i databasen måste du först skapa ett <filamentCreateLink>Filament</filamentCreateLink>-objekt för den. När det är klart kan du sedan skapa ett <spoolCreateLink>Spol</spoolCreateLink>-objekt för den individuella spolen. Om du sedan köper ytterligare spolar av samma filament kan du bara skapa ytterligare Spol-objekt och återanvända samma Filament-objekt.</p><p>Du kan valfritt också skapa ett <vendorCreateLink>Tillverkar</vendorCreateLink>-objekt för företaget som tillverkar filamentet om du vill spåra den informationen.</p><p>Du kan koppla andra 3D-skrivartjänster till SpoolCloud, som Moonraker, som sedan automatiskt kan spåra filamentanvändning och uppdatera Spol-objekten åt dig. Se <readmeLink>SpoolCloud README</readmeLink> för hur du gör det.</p>",
         "help": "Hjälp"
     },
     "kofi": "Dricksa mig på Ko-fi",

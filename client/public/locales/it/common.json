@@ -11,7 +11,7 @@
             "showSpoolComment": "Note aggiuntive Bobina",
             "textSize": "Dimensioni testo dell'etichetta",
             "title": "Stampando etichetta",
-            "showSpoolmanIcon": "Mostra Icona Spoolman",
+            "showSpoolCloudIcon": "Mostra Icona SpoolCloud",
             "showLotNr": "Lotto Nr",
             "bedTemp": "BT: {{temp}}",
             "lotNr": "Lotto Nr: {{lot}}",
@@ -27,7 +27,7 @@
             "showQRCode": "Stampa QR Code",
             "useHTTPUrl": {
                 "label": "Link codice QR",
-                "tooltip": "Verrà utilizzato un link che funzionerà solo se scansionato dalla funzione di scansione di Spoolman (impostazione predefinita). L'URL utilizza l'URL di base specificato nelle impostazioni o l'URL della pagina corrente, se non impostato.",
+                "tooltip": "Verrà utilizzato un link che funzionerà solo se scansionato dalla funzione di scansione di SpoolCloud (impostazione predefinita). L'URL utilizza l'URL di base specificato nelle impostazioni o l'URL della pagina corrente, se non impostato.",
                 "options": {
                     "default": "Preimpostato",
                     "url": "URL"
@@ -91,33 +91,33 @@
     },
     "documentTitle": {
         "vendor": {
-            "create": "Crea Produttore | Spoolman",
-            "clone": "#{{id}} Duplica Produttore | Spoolman",
-            "edit": "#{{id}} Modifica Produttore | Spoolman",
-            "list": "Produttori | Spoolman",
-            "show": "#{{id}} Mostra Produttore | Spoolman"
+            "create": "Crea Produttore | SpoolCloud",
+            "clone": "#{{id}} Duplica Produttore | SpoolCloud",
+            "edit": "#{{id}} Modifica Produttore | SpoolCloud",
+            "list": "Produttori | SpoolCloud",
+            "show": "#{{id}} Mostra Produttore | SpoolCloud"
         },
-        "default": "Spoolman",
+        "default": "SpoolCloud",
         "spool": {
-            "edit": "#{{id}} Modifica Bobina | Spoolman",
-            "list": "Bobine | Spoolman",
-            "create": "Crea Bobina | Spoolman",
-            "show": "#{{id}} Mostra Bobina | Spoolman",
-            "clone": "#{{id}} Clona Bobina | Spoolman"
+            "edit": "#{{id}} Modifica Bobina | SpoolCloud",
+            "list": "Bobine | SpoolCloud",
+            "create": "Crea Bobina | SpoolCloud",
+            "show": "#{{id}} Mostra Bobina | SpoolCloud",
+            "clone": "#{{id}} Clona Bobina | SpoolCloud"
         },
         "filament": {
-            "list": "Filamenti | Spoolman",
-            "show": "#{{id}} Mostra Filamento | Spoolman",
-            "clone": "#{{id}} Clona Filamento | Spoolman",
-            "create": "Crea Filamento | Spoolman",
-            "edit": "#{{id}} Modifica Filamento | Spoolman"
+            "list": "Filamenti | SpoolCloud",
+            "show": "#{{id}} Mostra Filamento | SpoolCloud",
+            "clone": "#{{id}} Clona Filamento | SpoolCloud",
+            "create": "Crea Filamento | SpoolCloud",
+            "edit": "#{{id}} Modifica Filamento | SpoolCloud"
         },
-        "suffix": " | Spoolman",
+        "suffix": " | SpoolCloud",
         "home": {
-            "list": "Home | Spoolman"
+            "list": "Home | SpoolCloud"
         },
         "help": {
-            "list": "Aiuto | Spoolman"
+            "list": "Aiuto | SpoolCloud"
         }
     },
     "spool": {
@@ -302,7 +302,7 @@
             "notFound": "Nessuna fotocamera rilevata.",
             "streamApiNotSupported": "il browser non supporta le API MediaStream."
         },
-        "description": "Scansiona uno Spoolman QR-Code per visualizzare i dettagli della bobina."
+        "description": "Scansiona uno SpoolCloud QR-Code per visualizzare i dettagli della bobina."
     },
     "notifications": {
         "deleteSuccess": "{{resource}} cancellato con successo",
@@ -334,7 +334,7 @@
         "clone": "Clona"
     },
     "help": {
-        "description": "<title>Aiuto</title><p>Ecco alcuni suggerimenti per iniziare.</p><p>Spoolman può contenere 3 diversi tipi di dati:</p><itemsHelp/><p>Per aggiungere una nuova bobina al database, inizia creando una sezione <filamentCreateLink>filamento</filamentCreateLink>. Fatto ciò, procedi con la creazione di una sezione <spoolCreateLink>bobina</spoolCreateLink> per la questa specifica bobina. Se in seguito si acquisiscono altre bobine dello stesso filamento, sarà sufficiente generare altre sezioni bobina e riutilizzare la stessa sezione filamento.</p><p>Opzionalmente, si può anche creare una sezione <vendorCreateLink>produttore</vendorCreateLink> per l'azienda produttrice del filamento, se si desidera tenere traccia di tali informazioni.</p><p>È possibile collegare a Spoolman altri servizi per stampanti 3D, come Moonraker, che può monitorare l'utilizzo del filamento e aggiornare le sezioni Spool automaticamente. Fare riferimento al <readmeLink>README di Spoolman</readmeLink> per maggiori informazioni sulla configurazione.</p>",
+        "description": "<title>Aiuto</title><p>Ecco alcuni suggerimenti per iniziare.</p><p>SpoolCloud può contenere 3 diversi tipi di dati:</p><itemsHelp/><p>Per aggiungere una nuova bobina al database, inizia creando una sezione <filamentCreateLink>filamento</filamentCreateLink>. Fatto ciò, procedi con la creazione di una sezione <spoolCreateLink>bobina</spoolCreateLink> per la questa specifica bobina. Se in seguito si acquisiscono altre bobine dello stesso filamento, sarà sufficiente generare altre sezioni bobina e riutilizzare la stessa sezione filamento.</p><p>Opzionalmente, si può anche creare una sezione <vendorCreateLink>produttore</vendorCreateLink> per l'azienda produttrice del filamento, se si desidera tenere traccia di tali informazioni.</p><p>È possibile collegare a SpoolCloud altri servizi per stampanti 3D, come Moonraker, che può monitorare l'utilizzo del filamento e aggiornare le sezioni Spool automaticamente. Fare riferimento al <readmeLink>README di SpoolCloud</readmeLink> per maggiori informazioni sulla configurazione.</p>",
         "resources": {
             "spool": "Bobine fisiche individuali di uno specifico filamento.",
             "filament": "Marche di filamento. Hanno proprietà come nome, materiale, colore, diametro e altro.",

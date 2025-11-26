@@ -1,7 +1,7 @@
-import { DownOutlined } from "@ant-design/icons";
+import { DownOutlined, UserOutlined, BellOutlined } from "@ant-design/icons";
 import type { RefineThemedLayoutV2HeaderProps } from "@refinedev/antd";
-import { useGetLocale, useSetLocale } from "@refinedev/core";
-import { Layout as AntdLayout, Button, Dropdown, MenuProps, Space, Switch, theme } from "antd";
+import { useGetLocale, useGo, useSetLocale, useList } from "@refinedev/core";
+import { Layout as AntdLayout, Button, Dropdown, MenuProps, Space, Switch, theme, Badge } from "antd";
 import React, { useContext } from "react";
 import { ColorModeContext } from "../../contexts/color-mode";
 
@@ -14,9 +14,27 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({ sticky }) =>
   const { token } = useToken();
   const locale = useGetLocale();
   const changeLanguage = useSetLocale();
+  const go = useGo();
   const { mode, setMode } = useContext(ColorModeContext);
 
   const currentLocale = locale();
+
+  const { data: notificationData } = useList({
+    resource: "notification",
+    pagination: {
+      mode: "off",
+    },
+    filters: [
+      {
+        field: "unread_only",
+        operator: "eq",
+        value: true,
+      },
+    ],
+    liveMode: "off", // Polling could be enabled here if needed
+  });
+
+  const unreadCount = notificationData?.data?.length || 0;
 
   const menuItems: MenuProps["items"] = [...(Object.keys(languages) || [])].sort().map((lang: string) => ({
     key: lang,
@@ -62,6 +80,18 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({ sticky }) =>
           defaultChecked={mode === "dark"}
         />
         <QRCodeScannerModal />
+        <Button
+          icon={
+            <Badge count={unreadCount} size="small">
+              <BellOutlined />
+            </Badge>
+          }
+          onClick={() => go({ to: "/notifications" })}
+        />
+        <Button
+          icon={<UserOutlined />}
+          onClick={() => go({ to: "/profile" })}
+        />
       </Space>
     </AntdLayout.Header>
   );

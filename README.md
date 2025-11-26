@@ -1,40 +1,101 @@
+# SpoolCloud
+
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/Donkie/Spoolman/assets/2332094/4e6e80ac-c7be-4ad2-9a33-dedc1b5ba30e">
-  <source media="(prefers-color-scheme: light)" srcset="https://github.com/Donkie/Spoolman/assets/2332094/3c120b3a-1422-42f6-a16b-8d5a07c33000">
-  <img alt="Icon of a filament spool" src="https://github.com/Donkie/Spoolman/assets/2332094/3c120b3a-1422-42f6-a16b-8d5a07c33000">
+  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/Donkie/SpoolCloud/assets/2332094/4e6e80ac-c7be-4ad2-9a33-dedc1b5ba30e">
+  <source media="(prefers-color-scheme: light)" srcset="https://github.com/Donkie/SpoolCloud/assets/2332094/3c120b3a-1422-42f6-a16b-8d5a07c33000">
+  <img alt="Icon of a filament spool" src="https://github.com/Donkie/SpoolCloud/assets/2332094/3c120b3a-1422-42f6-a16b-8d5a07c33000">
 </picture>
 
 <br/>
 
-_Keep track of your inventory of 3D-printer filament spools._
+_高效管理您的 3D 打印耗材库存_
 
-Spoolman is a self-hosted web service designed to help you efficiently manage your 3D printer filament spools and monitor their usage. It acts as a centralized database that seamlessly integrates with popular 3D printing software like [OctoPrint](https://octoprint.org/) and [Klipper](https://www.klipper3d.org/)/[Moonraker](https://moonraker.readthedocs.io/en/latest/). When connected, it automatically updates spool weights as printing progresses, giving you real-time insights into filament usage.
+SpoolCloud 是一个基于 [Spoolman](https://github.com/Donkie/Spoolman) 开发的自托管 3D 打印耗材管理服务。在保留原版强大功能的基础上，我们增加了多用户支持、邀请码注册系统以及增强的通知功能，旨在为团队和个人用户提供更安全、更便捷的耗材管理体验。
 
-[![Static Badge](https://img.shields.io/badge/Spoolman%20Wiki-blue?link=https%3A%2F%2Fgithub.com%2FDonkie%2FSpoolman%2Fwiki)](https://github.com/Donkie/Spoolman/wiki)
-[![GitHub Release](https://img.shields.io/github/v/release/Donkie/Spoolman)](https://github.com/Donkie/Spoolman/releases)
+它作为一个中心化的数据库，可以无缝集成 [OctoPrint](https://octoprint.org/) 和 [Klipper](https://www.klipper3d.org/)/[Moonraker](https://moonraker.readthedocs.io/en/latest/) 等主流 3D 打印软件。连接后，它会随着打印进度自动更新线盘重量，让您实时掌握耗材使用情况。
 
-### Features
-* **Filament Management**: Keep comprehensive records of filament types, manufacturers, and individual spools.
-* **API Integration**: The [REST API](https://donkie.github.io/Spoolman/) allows easy integration with other software, facilitating automated workflows and data exchange.
-* **Real-Time Updates**: Stay informed with live spool updates through Websockets, providing immediate feedback during printing operations.
-* **Central Filament Database**: A community-supported database of manufacturers and filaments simplify adding new spools to your inventory. Contribute by heading to [SpoolmanDB](https://github.com/Donkie/SpoolmanDB).
-* **Web-Based Client**: Spoolman includes a built-in web client that lets you manage data effortlessly:
-  * View, create, edit, and delete filament data.
-  * Add custom fields to tailor information to your specific needs.
-  * Print labels with QR codes for easy spool identification and tracking.
-  * Contribute to its translation into 18 languages via [Weblate](https://hosted.weblate.org/projects/spoolman/).
-* **Database Support**: SQLite, PostgreSQL, MySQL, and CockroachDB.
-* **Multi-Printer Management**: Handles spool updates from several printers simultaneously.
-* **Advanced Monitoring**: Integrate with [Prometheus](https://prometheus.io/) for detailed historical analysis of filament usage, helping you track and optimize your printing processes. See the [Wiki](https://github.com/Donkie/Spoolman/wiki/Filament-Usage-History) for instructions on how to set it up.
+## ✨ 新增特性
 
-**Spoolman integrates with:**
-  * [Moonraker](https://moonraker.readthedocs.io/en/latest/configuration/#spoolman) and most front-ends (Fluidd, KlipperScreen, Mainsail, ...)
-  * [OctoPrint](https://github.com/mdziekon/octoprint-spoolman)
-  * [OctoEverywhere](https://octoeverywhere.com/spoolman?source=github_spoolman)
-  * [Homeassistant](https://github.com/Disane87/spoolman-homeassistant)
+SpoolCloud 在原版基础上增加了以下核心功能：
 
-**Web client preview:**
-![image](https://github.com/Donkie/Spoolman/assets/2332094/33928d5e-440f-4445-aca9-456c4370ad0d)
+*   **👥 多用户系统**：完整的用户认证体系，支持用户注册、登录。
+*   **🔑 邀请码注册**：内置邀请码系统，管理员可生成邀请码以控制用户注册，适合私有化部署。
+*   **📢 增强通知系统**：
+    *   支持多种通知渠道：**Server酱**、**Bark**、**Synology Chat**。
+    *   **动态配置**：针对不同渠道提供专属配置界面（如 API Key, Device Key 等）。
+    *   **一键测试**：配置页面内置测试按钮，确保通知服务正常工作。
+*   **🛡️ 权限管理**：区分管理员和普通用户权限。
 
-## Installation
-Please see the [Installation page on the Wiki](https://github.com/Donkie/Spoolman/wiki/Installation) for details how to install Spoolman.
+## 🚀 核心功能
+
+*   **耗材管理**：全面记录耗材类型、制造商和单个线盘的信息。
+*   **Bambu Lab 集成**：支持 Bambu Lab 耗材预设。
+*   **API 集成**：提供完整的 REST API。
+*   **实时更新**：通过 WebSocket 实时推送线盘更新。
+*   **中央数据库**：自动同步 SpoolmanDB 的制造商和耗材数据。
+*   **多数据库支持**：支持 SQLite, PostgreSQL, MySQL 和 CockroachDB。
+*   **多打印机管理**：同时处理来自多台打印机的线盘更新。
+
+## 📸 截图
+
+**Web 客户端预览：**
+![image](https://github.com/xxx/SpoolCloud/assets/xxx/xxx)
+
+## �️ 快速开始
+
+### 开发环境设置
+
+#### 前置要求
+- Python 3.11+
+- Node.js 18+
+- npm
+
+#### 后端开发
+
+```bash
+# 安装依赖
+pip install -e .
+
+# 运行数据库迁移
+alembic upgrade head
+
+# 启动开发服务器
+SPOOLCLOUD_ALLOW_REGISTRATION=true \
+SPOOLCLOUD_DB_TYPE=sqlite \
+SPOOLCLOUD_DB_URL=sqlite+aiosqlite:///spoolcloud.db \
+uvicorn spoolcloud.main:app --host 127.0.0.1 --port 8000 --reload
+```
+
+#### 前端开发
+
+```bash
+cd client
+
+# 安装依赖
+npm install
+
+# 启动开发服务器
+VITE_APIURL=/api/v1 npm run dev
+```
+
+前端访问地址：`http://localhost:5173`
+
+#### 默认账号
+首次启动后，您可以使用以下账号登录（如果已初始化）：
+- **用户名**: `admin`
+- **密码**: `admin`
+
+## � 集成支持
+
+SpoolCloud 支持与以下系统集成：
+* [Moonraker](https://moonraker.readthedocs.io/en/latest/configuration/#spoolcloud) (Fluidd, KlipperScreen, Mainsail 等)
+* OctoPrint
+* OctoEverywhere
+* Home Assistant
+
+## 📄 许可证
+
+本项目遵循 MIT 许可证。
+
+---
+*本项目基于 [Spoolman](https://github.com/Donkie/Spoolman) 二次开发。*

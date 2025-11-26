@@ -7,7 +7,7 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import { useEffect, useMemo, useState } from "react";
 import { ExtraFieldFormItem, ParsedExtras, StringifiedExtras } from "../../components/extraFields";
-import { useSpoolmanLocations } from "../../components/otherModels";
+import { useSpoolCloudLocations } from "../../components/otherModels";
 import { searchMatches } from "../../utils/filtering";
 import "../../utils/overrides.css";
 import { formatNumberOnUserInput, numberParser, numberParserAllowEmpty } from "../../utils/parsing";
@@ -164,7 +164,7 @@ export const SpoolCreate: React.FC<IResourceComponentsProps & CreateOrCloneProps
     });
   };
 
-  const locations = useSpoolmanLocations(true);
+  const locations = useSpoolCloudLocations(true);
   const [newLocation, setNewLocation] = useState("");
 
   const allLocations = [...(locations.data || [])];

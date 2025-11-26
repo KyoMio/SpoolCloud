@@ -50,7 +50,7 @@ else
             exit 1
         fi
     fi
-    echo -e "${ORANGE}Current version of Python ($version_number) is too old for Spoolman.${NC}"
+    echo -e "${ORANGE}Current version of Python ($version_number) is too old for SpoolCloud.${NC}"
     echo -e "${ORANGE}Please look up how to install Python 3.9 or later for your specific operating system.${NC}"
     exit 1
 fi
@@ -70,7 +70,7 @@ if [[ -f /etc/os-release ]]; then
         install_cmd="$SUDO $pkg_manager -S --noconfirm"
         echo -e "${GREEN}Detected Arch-based system. Using pacman package manager.${NC}"
     else
-        echo -e "${ORANGE}Your operating system is not supported. Either try to install manually or reach out to spoolman github for support.${NC}"
+        echo -e "${ORANGE}Your operating system is not supported. Either try to install manually or reach out to spoolcloud github for support.${NC}"
         exit 1
     fi
 fi
@@ -141,7 +141,7 @@ fi
 #
 # Install various pip packages if needed
 #
-echo -e "${GREEN}Installing system-wide pip packages needed for Spoolman...${NC}"
+echo -e "${GREEN}Installing system-wide pip packages needed for SpoolCloud...${NC}"
 if [[ $is_externally_managed_env ]]; then
     echo -e "${GREEN}Installing the packages using apt-get instead of pip since pip is externally managed...${NC}"
     if [[ "$pkg_manager" == "apt-get" ]]; then
@@ -169,11 +169,11 @@ if [[ ! "$PATH" =~ "$user_python_bin_dir" ]]; then
 fi
 
 #
-# Install Spoolman
+# Install SpoolCloud
 #
 
 # Install dependencies
-echo -e "${GREEN}Installing Spoolman backend and its dependencies...${NC}"
+echo -e "${GREEN}Installing SpoolCloud backend and its dependencies...${NC}"
 # Create venv if it doesn't exist
 if [ ! -d ".venv" ]; then
     python3 -m venv .venv || exit 1
@@ -208,48 +208,48 @@ if [ "$systemd_option" == "-systemd=no" ]; then
 elif [ "$systemd_option" == "-systemd=yes" ]; then
    choice="y"
 else
-   echo -e "${CYAN}Do you want to install Spoolman as a systemd service? This will automatically start Spoolman when your server starts. (y/n)${NC}"
+   echo -e "${CYAN}Do you want to install SpoolCloud as a systemd service? This will automatically start SpoolCloud when your server starts. (y/n)${NC}"
    read choice
 fi
 
 if [ "$choice" == "y" ] || [ "$choice" == "Y" ]; then
     systemd_user_dir="$HOME/.config/systemd/user"
-    service_name="Spoolman"
+    service_name="SpoolCloud"
 
     # Check if user-level systemd service exists and remove it
     if [ -f "$systemd_user_dir/$service_name.service" ]; then
         echo -e "${ORANGE}User-level systemd service already installed. Removing the existing service.${NC}"
-        systemctl --user stop Spoolman  # Stop the service if it's running
-        systemctl --user disable Spoolman  # Disable the service
+        systemctl --user stop SpoolCloud  # Stop the service if it's running
+        systemctl --user disable SpoolCloud  # Disable the service
         rm "$systemd_user_dir/$service_name.service"  # Remove the user-level service unit file
         systemctl --user daemon-reload  # Reload the systemd user service manager
     fi
 
     # Get the parent directory of the installer script
     script_dir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-    spoolman_dir=$(dirname "$script_dir")
+    spoolcloud_dir=$(dirname "$script_dir")
 
-    # Verify that we found the right spoolman dir by checking for the existence of pyproject.toml
-    if [ ! -f "$spoolman_dir/pyproject.toml" ]; then
-        echo -e "${ORANGE}Could not automatically find the Spoolman directory. Please specify the path to the Spoolman directory (the directory containing pyproject.toml):${NC}"
-        read spoolman_dir
+    # Verify that we found the right spoolcloud dir by checking for the existence of pyproject.toml
+    if [ ! -f "$spoolcloud_dir/pyproject.toml" ]; then
+        echo -e "${ORANGE}Could not automatically find the SpoolCloud directory. Please specify the path to the SpoolCloud directory (the directory containing pyproject.toml):${NC}"
+        read spoolcloud_dir
         # Expand the path
-        spoolman_dir=$(eval echo "$spoolman_dir")
+        spoolcloud_dir=$(eval echo "$spoolcloud_dir")
         # Verify again
-        if [ ! -f "$spoolman_dir/pyproject.toml" ]; then
-            echo -e "${ORANGE}Could not find pyproject.toml in $spoolman_dir. Aborting installation.${NC}"
+        if [ ! -f "$spoolcloud_dir/pyproject.toml" ]; then
+            echo -e "${ORANGE}Could not find pyproject.toml in $spoolcloud_dir. Aborting installation.${NC}"
             exit 1
         fi
     fi
 
     # Define the systemd service unit file
     service_unit="[Unit]
-Description=Spoolman
+Description=SpoolCloud
 
 [Service]
 Type=simple
-ExecStart=bash $spoolman_dir/scripts/start.sh
-WorkingDirectory=$spoolman_dir
+ExecStart=bash $spoolcloud_dir/scripts/start.sh
+WorkingDirectory=$spoolcloud_dir
 User=$USER
 Restart=always
 
@@ -275,16 +275,16 @@ WantedBy=default.target
 
     local_ip=$(hostname -I | awk '{print $1}')
 
-    echo -e "${GREEN}Spoolman systemd service has been installed and Spoolman is now starting.${NC}"
-    echo -e "${GREEN}Spoolman will soon be reachable at ${ORANGE}http://$local_ip:$SPOOLMAN_PORT${NC}"
+    echo -e "${GREEN}SpoolCloud systemd service has been installed and SpoolCloud is now starting.${NC}"
+    echo -e "${GREEN}SpoolCloud will soon be reachable at ${ORANGE}http://$local_ip:$SPOOLCLOUD_PORT${NC}"
     echo -e "${GREEN}Please note that the displayed IP address may be incorrect for your setup. If needed, replace it manually with the correct IP.${NC}"
-    echo -e "${GREEN}You can start/restart/stop the service by running e.g. '${CYAN}sudo systemctl stop Spoolman${GREEN}'${NC}"
-    echo -e "${GREEN}You can disable the service from starting automatically by running '${CYAN}sudo systemctl disable Spoolman${GREEN}'${NC}"
-    echo -e "${GREEN}You can view the Spoolman logs by running '${CYAN}sudo journalctl -u Spoolman${GREEN}'${NC}"
+    echo -e "${GREEN}You can start/restart/stop the service by running e.g. '${CYAN}sudo systemctl stop SpoolCloud${GREEN}'${NC}"
+    echo -e "${GREEN}You can disable the service from starting automatically by running '${CYAN}sudo systemctl disable SpoolCloud${GREEN}'${NC}"
+    echo -e "${GREEN}You can view the SpoolCloud logs by running '${CYAN}sudo journalctl -u SpoolCloud${GREEN}'${NC}"
 else
     echo -e "${ORANGE}Skipping systemd service installation.${NC}"
-    echo -e "${ORANGE}You can start Spoolman manually by running 'bash scripts/start.sh'${NC}"
+    echo -e "${ORANGE}You can start SpoolCloud manually by running 'bash scripts/start.sh'${NC}"
 fi
 
-echo -e "${GREEN}Spoolman has been installed successfully!${NC}"
+echo -e "${GREEN}SpoolCloud has been installed successfully!${NC}"
 echo -e "${GREEN}If you want to connect to an external database, you can edit the .env file and restart the service.${NC}"

@@ -119,7 +119,7 @@
             "bedTemp": "Temperatura da Mesa: {{temp}}",
             "extruderTemp": "Temperatura do Bico: {{temp}}",
             "textSize": "Tamanho do Texto da Etiqueta",
-            "showSpoolmanIcon": "Mostrar ícone do Spoolman",
+            "showSpoolCloudIcon": "Mostrar ícone do SpoolCloud",
             "showVendor": "Fabricante",
             "showContent": "Imprimir Etiqueta",
             "showLotNr": "Número do Lote",
@@ -143,7 +143,7 @@
                     "default": "Por omissão"
                 },
                 "preview": "Pré-visualização:",
-                "tooltip": "Irá usar um endereço proprietário que funcionará apenas se for lido pela funcionalidade do Spoolman. O endereço usará o endereço base definido nas configurações ou, caso não esteja definido, o endereço da página actual."
+                "tooltip": "Irá usar um endereço proprietário que funcionará apenas se for lido pela funcionalidade do SpoolCloud. O endereço usará o endereço base definido nas configurações ou, caso não esteja definido, o endereço da página actual."
             }
         }
     },
@@ -300,46 +300,46 @@
             "spool": "Bobines físicas individuais de um filamento específico.",
             "vendor": "As empresas que fabricam o filamento."
         },
-        "description": "<title>Ajuda</title><p>Aqui estão algumas dicas para começar.</p><p>O Spoolman contém três tipos diferentes de dados:</p><itemsHelp/><p>Para adicionar uma nova bobine para a base de dados, comece por criar um <filamentCreateLink>Filamento</filamentCreateLink>. Feito isso, prossiga para criar uma <spoolCreateLink>Bobine</spoolCreateLink> para esse filamento específico. Se posteriormente adquirir bobines adicionais do mesmo filamento, simplesmente gere Bobines adicionais e reutilize o mesmo objeto Filamento.</p><p>Opcionalmente, também pode criar um <vendorCreateLink>Fabricante</vendorCreateLink> para a empresa que fabrica o filamento, se desejar rastrear essas informações.</p><p>Tem a opção de vincular outros serviços de impressora 3D ao Spoolman, como o Moonraker, que pode monitorizar automaticamente o uso do filamento e atualizar as bobines. Consulte o <readmeLink>README do Spoolman</readmeLink> para obter orientação sobre como configurar.</p>"
+        "description": "<title>Ajuda</title><p>Aqui estão algumas dicas para começar.</p><p>O SpoolCloud contém três tipos diferentes de dados:</p><itemsHelp/><p>Para adicionar uma nova bobine para a base de dados, comece por criar um <filamentCreateLink>Filamento</filamentCreateLink>. Feito isso, prossiga para criar uma <spoolCreateLink>Bobine</spoolCreateLink> para esse filamento específico. Se posteriormente adquirir bobines adicionais do mesmo filamento, simplesmente gere Bobines adicionais e reutilize o mesmo objeto Filamento.</p><p>Opcionalmente, também pode criar um <vendorCreateLink>Fabricante</vendorCreateLink> para a empresa que fabrica o filamento, se desejar rastrear essas informações.</p><p>Tem a opção de vincular outros serviços de impressora 3D ao SpoolCloud, como o Moonraker, que pode monitorizar automaticamente o uso do filamento e atualizar as bobines. Consulte o <readmeLink>README do SpoolCloud</readmeLink> para obter orientação sobre como configurar.</p>"
     },
     "documentTitle": {
-        "suffix": " | Spoolman",
+        "suffix": " | SpoolCloud",
         "home": {
-            "list": "Início | Spoolman"
+            "list": "Início | SpoolCloud"
         },
         "help": {
-            "list": "Ajuda | Spoolman"
+            "list": "Ajuda | SpoolCloud"
         },
         "filament": {
-            "list": "Filamentos | Spoolman",
-            "show": "#{{id}} Mostrar filamento | Spoolman",
-            "edit": "#{{id}} Editar Filamento | Spoolman",
-            "create": "Criar filamento | Spoolman",
-            "clone": "#{{id}} Clonar filamento | Spoolman"
+            "list": "Filamentos | SpoolCloud",
+            "show": "#{{id}} Mostrar filamento | SpoolCloud",
+            "edit": "#{{id}} Editar Filamento | SpoolCloud",
+            "create": "Criar filamento | SpoolCloud",
+            "clone": "#{{id}} Clonar filamento | SpoolCloud"
         },
         "spool": {
-            "list": "Bobines | Spoolman",
-            "show": "#{{id}} Mostrar Bobine | Spoolman",
-            "edit": "#{{id}} Editar Bobine | Spoolman",
-            "create": "Criar Bobine | Spoolman",
-            "clone": "#{{id}} Clonar Bobine | Spoolman"
+            "list": "Bobines | SpoolCloud",
+            "show": "#{{id}} Mostrar Bobine | SpoolCloud",
+            "edit": "#{{id}} Editar Bobine | SpoolCloud",
+            "create": "Criar Bobine | SpoolCloud",
+            "clone": "#{{id}} Clonar Bobine | SpoolCloud"
         },
         "vendor": {
-            "show": "#{{id}} Mostrar Fabricante | Spoolman",
-            "list": "Fabricantes | Spoolman",
-            "create": "Criar Fabricante | Spoolman",
-            "edit": "#{{id}} Editar Fabricante | Spoolman",
-            "clone": "#{{id}} Clonar Fabricante | Spoolman"
+            "show": "#{{id}} Mostrar Fabricante | SpoolCloud",
+            "list": "Fabricantes | SpoolCloud",
+            "create": "Criar Fabricante | SpoolCloud",
+            "edit": "#{{id}} Editar Fabricante | SpoolCloud",
+            "clone": "#{{id}} Clonar Fabricante | SpoolCloud"
         },
-        "default": "Spoolman",
+        "default": "SpoolCloud",
         "locations": {
-            "list": "Locais | Spoolman"
+            "list": "Locais | SpoolCloud"
         }
     },
     "no": "Não",
     "scanner": {
         "title": "Leitor de Código QR",
-        "description": "Digitalize um código QR do Spoolman para ver detalhes sobre a bobine.",
+        "description": "Digitalize um código QR do SpoolCloud para ver detalhes sobre a bobine.",
         "error": {
             "notAllowed": "Não deu permissão de acesso à câmara.",
             "insecureContext": "A página não é protegida por HTTPS.",

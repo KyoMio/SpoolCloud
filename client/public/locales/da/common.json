@@ -11,7 +11,7 @@
             "showSpoolComment": "Spole kommentarer",
             "textSize": "Indholdstekst størrelse",
             "title": "QR kode printer",
-            "showSpoolmanIcon": "Vis Spoolman logo",
+            "showSpoolCloudIcon": "Vis SpoolCloud logo",
             "showLotNr": "Gruppe nr",
             "bedTemp": "BT: {{temp}}",
             "lotNr": "Gruppe nr: {{lot}}",
@@ -72,33 +72,33 @@
     },
     "documentTitle": {
         "vendor": {
-            "create": "Opret producent | Spoolman",
-            "clone": "#{{id}} Klon producent | Spoolman",
-            "edit": "#{{id}} Redigér producent | Spoolman",
-            "list": "Producenter | Spoolman",
-            "show": "#{{id}} Vis producent | Spoolman"
+            "create": "Opret producent | SpoolCloud",
+            "clone": "#{{id}} Klon producent | SpoolCloud",
+            "edit": "#{{id}} Redigér producent | SpoolCloud",
+            "list": "Producenter | SpoolCloud",
+            "show": "#{{id}} Vis producent | SpoolCloud"
         },
-        "default": "Spoolman",
+        "default": "SpoolCloud",
         "spool": {
-            "edit": "#{{id}} Redigér spole | Spoolman",
-            "list": "Spoler | Spoolman",
-            "create": "Opret spole | Spoolman",
-            "show": "#{{id}} Vis spole | Spoolman",
-            "clone": "#{{id}} Klon spole | Spoolman"
+            "edit": "#{{id}} Redigér spole | SpoolCloud",
+            "list": "Spoler | SpoolCloud",
+            "create": "Opret spole | SpoolCloud",
+            "show": "#{{id}} Vis spole | SpoolCloud",
+            "clone": "#{{id}} Klon spole | SpoolCloud"
         },
         "filament": {
-            "list": "Filamenter | Spoolman",
-            "show": "#{{id}} Vis filament | Spoolman",
-            "clone": "#{{id}} Klon filament | Spoolman",
-            "create": "Opret filament | Spoolman",
-            "edit": "#{{id}} Redigér filament | Spoolman"
+            "list": "Filamenter | SpoolCloud",
+            "show": "#{{id}} Vis filament | SpoolCloud",
+            "clone": "#{{id}} Klon filament | SpoolCloud",
+            "create": "Opret filament | SpoolCloud",
+            "edit": "#{{id}} Redigér filament | SpoolCloud"
         },
-        "suffix": " | Spoolman",
+        "suffix": " | SpoolCloud",
         "home": {
-            "list": "Hjem | Spoolman"
+            "list": "Hjem | SpoolCloud"
         },
         "help": {
-            "list": "Hjælp | Spoolman"
+            "list": "Hjælp | SpoolCloud"
         }
     },
     "spool": {
@@ -274,7 +274,7 @@
             "notFound": "Intet kamera fundet.",
             "streamApiNotSupported": "Denne browser understøtter ikke MediaStream API'et."
         },
-        "description": "Skan en Spoolman QR kode for at se detaljer om spolen."
+        "description": "Skan en SpoolCloud QR kode for at se detaljer om spolen."
     },
     "notifications": {
         "deleteSuccess": "Sletning af {{resource}} lykkedes",
@@ -311,7 +311,7 @@
             "filament": "Filament mærker. De har værdier såsom Navn, Materiale, Farve, Diameter m.fl.",
             "spool": "Individuelle fysiske spoler af et specifikt filament."
         },
-        "description": "<title>Hjælp</title><p>Her er nogle tips til at komme i gang.</p><p>Spoolman indeholder 3 forskellige typer data:</p><itemsHelp/><p>For at tilføje en ny spole til databasen, skal du starte med at oprette et <filamentCreateLink>Filament</filamentCreateLink> objekt. Når dette er gjort, fortsættes der ved at oprette et <spoolCreateLink>Spole</spoolCreateLink> objekt for den specifikke spole. Hvis du har flere spoler af samme filament, opretter du blot et nyt spole objekt og genbruger samme filament. </p><p> Du har også mulighed for at oprette et <vendorCreateLink>Producent</vendorCreateLink> objekt for firmaet der producerer filamentet, hvis du ønsker.</p><p>Du har mulighed for at linke andre 3D printer services til Spoolman, Som f.eks. Moonraker. Dette giver mulighed for automatisk at opdatere og overvåge forbruget af filament for hvert print. Læs <readmeLink>Spoolman README</readmeLink> for information om opsætning af dette.</p>",
+        "description": "<title>Hjælp</title><p>Her er nogle tips til at komme i gang.</p><p>SpoolCloud indeholder 3 forskellige typer data:</p><itemsHelp/><p>For at tilføje en ny spole til databasen, skal du starte med at oprette et <filamentCreateLink>Filament</filamentCreateLink> objekt. Når dette er gjort, fortsættes der ved at oprette et <spoolCreateLink>Spole</spoolCreateLink> objekt for den specifikke spole. Hvis du har flere spoler af samme filament, opretter du blot et nyt spole objekt og genbruger samme filament. </p><p> Du har også mulighed for at oprette et <vendorCreateLink>Producent</vendorCreateLink> objekt for firmaet der producerer filamentet, hvis du ønsker.</p><p>Du har mulighed for at linke andre 3D printer services til SpoolCloud, Som f.eks. Moonraker. Dette giver mulighed for automatisk at opdatere og overvåge forbruget af filament for hvert print. Læs <readmeLink>SpoolCloud README</readmeLink> for information om opsætning af dette.</p>",
         "help": "Hjælp"
     },
     "kofi": "Donér på Ko-fi",

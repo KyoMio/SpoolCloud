@@ -110,7 +110,7 @@
             "showSpoolWeight": "Greutate bobină",
             "textSize": "Marimea textului",
             "showVendorComment": "Comentariul furnizorului",
-            "showSpoolmanIcon": "Arata iconul Spoolman",
+            "showSpoolCloudIcon": "Arata iconul SpoolCloud",
             "showSpoolComment": "Bobină Comentariu",
             "extruderTemp": "ET: {{temp}}",
             "showVendor": "Furnizor",
@@ -143,7 +143,7 @@
             "list": ""
         },
         "suffix": "",
-        "default": "Spoolman",
+        "default": "SpoolCloud",
         "help": {
             "list": ""
         }
@@ -282,7 +282,7 @@
             "notReadable": "Accesul la camera nu este posibil."
         },
         "title": "Scanner QR code",
-        "description": "Scanati QR code-ul Spoolman pentru detalii."
+        "description": "Scanati QR code-ul SpoolCloud pentru detalii."
     },
     "table": {
         "actions": "Acțiuni"

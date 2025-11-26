@@ -12,8 +12,8 @@ const QRCodeScannerModal: React.FC = () => {
   const navigate = useNavigate();
 
   const onScan = (result: string) => {
-    // Check for the spoolman ID format
-    const match = result.match(/^web\+spoolman:s-(?<id>[0-9]+)$/);
+    // Check for the spoolcloud ID format
+    const match = result.match(/^web\+spoolcloud:s-(?<id>[0-9]+)$/);
     if (match && match.groups) {
       setVisible(false);
       navigate(`/spool/show/${match.groups.id}`);

@@ -1,6 +1,6 @@
 {
-  "name": "Spoolman",
-  "short_name": "Spoolman",
+  "name": "SpoolCloud",
+  "short_name": "SpoolCloud",
   "description": "Keep track of your inventory of 3D-printer filament spools.",
   "icons": [
     {

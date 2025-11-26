@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { getAPIURL } from "./url";
+import { httpClient } from "./httpClient";
 
 interface SettingResponseValue {
   value: string;
@@ -15,8 +15,8 @@ export function useGetSettings() {
   return useQuery<SettingsResponse>({
     queryKey: ["settings"],
     queryFn: async () => {
-      const response = await fetch(`${getAPIURL()}/setting/`);
-      return response.json();
+      const response = await httpClient.get("/setting/");
+      return response.data;
     },
   });
 }
@@ -25,8 +25,8 @@ export function useGetSetting(key: string) {
   return useQuery<SettingResponseValue>({
     queryKey: ["settings", key],
     queryFn: async () => {
-      const response = await fetch(`${getAPIURL()}/setting/${key}`);
-      return response.json();
+      const response = await httpClient.get(`/setting/${key}`);
+      return response.data;
     },
   });
 }
@@ -36,20 +36,12 @@ export function useSetSetting<T>(key: string) {
 
   return useMutation<SettingResponseValue, unknown, T, SettingResponseValue | undefined>({
     mutationFn: async (value) => {
-      const response = await fetch(`${getAPIURL()}/setting/${key}`, {
-        method: "POST",
+      const response = await httpClient.post(`/setting/${key}`, JSON.stringify(value), {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(JSON.stringify(value)),
       });
-
-      // Throw error if response is not ok
-      if (!response.ok) {
-        throw new Error((await response.json()).message);
-      }
-
-      return response.json();
+      return response.data;
     },
     onMutate: async (value) => {
       await queryClient.cancelQueries(["settings", key]);

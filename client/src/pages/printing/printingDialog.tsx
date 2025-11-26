@@ -197,7 +197,7 @@ const PrintingDialog: React.FC<PrintingDialogProps> = ({
       // Download image
       const link = document.createElement("a");
       link.href = url;
-      link.download = "spoolmanlabel.png";
+      link.download = "spoolcloudlabel.png";
       link.click();
     });
   };

@@ -6,8 +6,8 @@ from logging.config import fileConfig
 from alembic import context
 from sqlalchemy.engine import Connection
 
-from spoolman.database.database import Database, get_connection_url
-from spoolman.database.models import Base
+from spoolcloud.database.database import Database, get_connection_url
+from spoolcloud.database.models import Base
 
 config = context.config
 

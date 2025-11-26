@@ -21,20 +21,20 @@ RUN groupmod -g 1000 users \
 ENV PATH="/home/app/.local/bin:${PATH}"
 
 # Copy and install dependencies
-COPY --chown=app:app pyproject.toml /home/app/spoolman/
-COPY --chown=app:app pdm.lock /home/app/spoolman/
-WORKDIR /home/app/spoolman
+COPY --chown=app:app pyproject.toml /home/app/spoolcloud/
+COPY --chown=app:app pdm.lock /home/app/spoolcloud/
+WORKDIR /home/app/spoolcloud
 RUN pdm sync --prod --no-editable
 
 # Copy and install app
-COPY --chown=app:app migrations /home/app/spoolman/migrations
-COPY --chown=app:app spoolman /home/app/spoolman/spoolman
-COPY --chown=app:app alembic.ini /home/app/spoolman/
-COPY --chown=app:app README.md /home/app/spoolman/
+COPY --chown=app:app migrations /home/app/spoolcloud/migrations
+COPY --chown=app:app spoolcloud /home/app/spoolcloud/spoolcloud
+COPY --chown=app:app alembic.ini /home/app/spoolcloud/
+COPY --chown=app:app README.md /home/app/spoolcloud/
 
 FROM python:3.12-bookworm AS python-runner
 
-LABEL org.opencontainers.image.source=https://github.com/Donkie/Spoolman
+LABEL org.opencontainers.image.source=https://github.com/Donkie/SpoolCloud
 LABEL org.opencontainers.image.description="Keep track of your inventory of 3D-printer filament spools."
 LABEL org.opencontainers.image.licenses=MIT
 
@@ -59,21 +59,21 @@ RUN set -ex; \
 RUN groupmod -g 1000 users \
     && useradd -u 1000 -U app \
     && usermod -G users app \
-    && mkdir -p /home/app/.local/share/spoolman \
-    && chown -R app:app /home/app/.local/share/spoolman
+    && mkdir -p /home/app/.local/share/spoolcloud \
+    && chown -R app:app /home/app/.local/share/spoolcloud
 
 # Copy built client
-COPY --chown=app:app ./client/dist /home/app/spoolman/client/dist
+COPY --chown=app:app ./client/dist /home/app/spoolcloud/client/dist
 
 # Copy built app
-COPY --chown=app:app --from=python-builder /home/app/spoolman /home/app/spoolman
+COPY --chown=app:app --from=python-builder /home/app/spoolcloud /home/app/spoolcloud
 
-COPY entrypoint.sh /home/app/spoolman/entrypoint.sh
-RUN chmod +x /home/app/spoolman/entrypoint.sh
+COPY entrypoint.sh /home/app/spoolcloud/entrypoint.sh
+RUN chmod +x /home/app/spoolcloud/entrypoint.sh
 
-WORKDIR /home/app/spoolman
+WORKDIR /home/app/spoolcloud
 
-ENV PATH="/home/app/spoolman/.venv/bin:${PATH}"
+ENV PATH="/home/app/spoolcloud/.venv/bin:${PATH}"
 
 ARG GIT_COMMIT=unknown
 ARG BUILD_DATE=unknown
@@ -86,4 +86,4 @@ RUN echo "GIT_COMMIT=${GIT_COMMIT}" > build.txt \
 
 # Run command
 EXPOSE 8000
-ENTRYPOINT ["/home/app/spoolman/entrypoint.sh"]
+ENTRYPOINT ["/home/app/spoolcloud/entrypoint.sh"]

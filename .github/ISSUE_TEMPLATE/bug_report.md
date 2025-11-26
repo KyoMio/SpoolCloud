@@ -23,9 +23,9 @@ A clear and concise description of what you expected to happen.
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
 
-**Spoolman Host (please complete the following information):**
+**SpoolCloud Host (please complete the following information):**
  - Installation type: [Docker or Standalone]
- - Installed version: [e.g. 0.17.0, can be found at the bottom of your spoolman website if you don't know]
+ - Installed version: [e.g. 0.17.0, can be found at the bottom of your spoolcloud website if you don't know]
  - OS and Distro: [e.g. Ubuntu, Raspbian]
  - Database type: [SQLite, PostgreSQL, etc]
 

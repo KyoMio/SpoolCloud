@@ -84,7 +84,7 @@ export const Home: React.FC<IResourceComponentsProps> = () => {
         >
           <Logo />
         </div>
-        Spoolman
+        SpoolCloud
       </Title>
       <Row justify="center" gutter={[16, 16]} style={{ marginTop: "3em" }}>
         <ResourceStatsCard

@@ -5,7 +5,7 @@ services:
     command: start-single-node --insecure
     environment:
       - COCKROACH_USER=john
-      - COCKROACH_DATABASE=spoolman
+      - COCKROACH_DATABASE=spoolcloud
       - TZ=Asia/Seoul
     healthcheck:
       test:
@@ -18,24 +18,24 @@ services:
       interval: 5s
       timeout: 10s
       retries: 5
-  spoolman:
-    image: donkie/spoolman:test
+  spoolcloud:
+    image: donkie/spoolcloud:test
     environment:
-      - SPOOLMAN_DB_TYPE=cockroachdb
-      - SPOOLMAN_DB_HOST=db
-      - SPOOLMAN_DB_PORT=26257
-      - SPOOLMAN_DB_NAME=spoolman
-      - SPOOLMAN_DB_USERNAME=john
-      - SPOOLMAN_LOGGING_LEVEL=INFO
+      - SPOOLCLOUD_DB_TYPE=cockroachdb
+      - SPOOLCLOUD_DB_HOST=db
+      - SPOOLCLOUD_DB_PORT=26257
+      - SPOOLCLOUD_DB_NAME=spoolcloud
+      - SPOOLCLOUD_DB_USERNAME=john
+      - SPOOLCLOUD_LOGGING_LEVEL=INFO
       - TZ=Europe/Stockholm
     depends_on:
       db:
         condition: service_healthy
   tester:
-    image: donkie/spoolman-tester:latest
+    image: donkie/spoolcloud-tester:latest
     volumes:
       - ./tests:/tester/tests
     environment:
       - DB_TYPE=cockroachdb
     depends_on:
-      - spoolman
+      - spoolcloud

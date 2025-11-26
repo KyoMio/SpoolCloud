@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getAPIURL } from "./url";
+import { httpClient } from "./httpClient";
 
 export enum SpoolType {
   PLASTIC = "plastic",
@@ -55,8 +55,8 @@ export function useGetExternalDBFilaments() {
     queryKey: ["external", "filaments"],
     staleTime: 60,
     queryFn: async () => {
-      const response = await fetch(`${getAPIURL()}/external/filament`);
-      return response.json();
+      const response = await httpClient.get("/external/filament");
+      return response.data;
     },
   });
 }
@@ -66,8 +66,8 @@ export function useGetExternalDBMaterials() {
     queryKey: ["external", "materials"],
     staleTime: 60,
     queryFn: async () => {
-      const response = await fetch(`${getAPIURL()}/external/material`);
-      return response.json();
+      const response = await httpClient.get("/external/material");
+      return response.data;
     },
   });
 }

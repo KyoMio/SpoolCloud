@@ -1,5 +1,5 @@
 {
-  "name": "spoolman-ui",
+  "name": "spoolcloud-ui",
   "version": "0.22.1",
   "engines": {
     "node": "20.x"
@@ -58,7 +58,7 @@
   "scripts": {
     "dev": "refine dev",
     "build": "tsc && refine build",
-    "build.zip": "cd ./dist && zip -r spoolman-client.zip ./ ./ && cd ..",
+    "build.zip": "cd ./dist && zip -r spoolcloud-client.zip ./ ./ && cd ..",
     "preview": "refine start",
     "refine": "refine",
     "check-i18n": "node scripts/check-i18n.js"

@@ -36,7 +36,7 @@ const UndoableNotification: React.FC<UndoableNotificationProps> = ({ message, ca
   </div>
 );
 
-const SpoolmanNotificationProvider: NotificationProvider = {
+const SpoolCloudNotificationProvider: NotificationProvider = {
   open: ({ key, message: content, type, cancelMutation, undoableTimeout }) => {
     if (type === "progress") {
       message.open({
@@ -62,4 +62,4 @@ const SpoolmanNotificationProvider: NotificationProvider = {
   close: (key) => message.destroy(key),
 };
 
-export default SpoolmanNotificationProvider;
+export default SpoolCloudNotificationProvider;

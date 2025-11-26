@@ -7,7 +7,7 @@ import { getBasePath } from "../utils/url";
 import { Header } from "./header";
 import { Version } from "./version";
 
-const SpoolmanFooter: React.FC = () => {
+const SpoolCloudFooter: React.FC = () => {
   const t = useTranslate();
 
   return (
@@ -46,20 +46,20 @@ const SpoolmanFooter: React.FC = () => {
   );
 };
 
-interface SpoolmanLayoutProps {
+interface SpoolCloudLayoutProps {
   children: React.ReactNode;
 }
 
-export const SpoolmanLayout: React.FC<SpoolmanLayoutProps> = ({ children }) => (
+export const SpoolCloudLayout: React.FC<SpoolCloudLayoutProps> = ({ children }) => (
   <ThemedLayoutV2
     Header={() => <Header sticky />}
     Sider={() => (
       <ThemedSiderV2
         fixed
-        Title={({ collapsed }) => <ThemedTitleV2 collapsed={collapsed} text="Spoolman" icon={<Logo />} />}
+        Title={({ collapsed }) => <ThemedTitleV2 collapsed={collapsed} text="SpoolCloud" icon={<Logo />} />}
       />
     )}
-    Footer={() => <SpoolmanFooter />}
+    Footer={() => <SpoolCloudFooter />}
   >
     {children}
   </ThemedLayoutV2>

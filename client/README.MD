@@ -1,3 +1,3 @@
-# Spoolman UI
+# SpoolCloud UI
 
-A simple [refine](https://github.com/refinedev/refine) based UI for manipulating the data in the Spoolman database.
+A simple [refine](https://github.com/refinedev/refine) based UI for manipulating the data in the SpoolCloud database.

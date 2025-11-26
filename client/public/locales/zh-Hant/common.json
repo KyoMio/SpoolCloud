@@ -116,7 +116,7 @@
                     "default": "預設",
                     "url": "URL"
                 },
-                "tooltip": "將使用專屬連結，僅在使用 Spoolman 的掃描功能掃描時有效（預設）。URL 使用設定中指定的基礎 URL，若未設置則使用目前頁面的 URL。"
+                "tooltip": "將使用專屬連結，僅在使用 SpoolCloud 的掃描功能掃描時有效（預設）。URL 使用設定中指定的基礎 URL，若未設置則使用目前頁面的 URL。"
             },
             "showQRCodeMode": {
                 "no": "否",
@@ -135,7 +135,7 @@
         }
     },
     "scanner": {
-        "description": "掃描Spoolman的QR碼以檢視關於料盤的詳細資料。",
+        "description": "掃描SpoolCloud的QR碼以檢視關於料盤的詳細資料。",
         "error": {
             "notAllowed": "您未被允許存取攝影機。",
             "streamApiNotSupported": "瀏覽器不支援MediaStream API。",
@@ -291,36 +291,36 @@
     },
     "documentTitle": {
         "vendor": {
-            "create": "建立製造商 | Spoolman",
-            "clone": "#{{id}} 複製製造商 | Spoolman",
-            "list": "製造商 | Spoolman",
-            "edit": "#{{id}} 編輯製造商 | Spoolman",
-            "show": "#{{id}} 檢視製造商 | Spoolman"
+            "create": "建立製造商 | SpoolCloud",
+            "clone": "#{{id}} 複製製造商 | SpoolCloud",
+            "list": "製造商 | SpoolCloud",
+            "edit": "#{{id}} 編輯製造商 | SpoolCloud",
+            "show": "#{{id}} 檢視製造商 | SpoolCloud"
         },
-        "default": "Spoolman",
-        "suffix": " | Spoolman",
+        "default": "SpoolCloud",
+        "suffix": " | SpoolCloud",
         "home": {
-            "list": "主頁 | Spoolman"
+            "list": "主頁 | SpoolCloud"
         },
         "help": {
-            "list": "說明 | Spoolman"
+            "list": "說明 | SpoolCloud"
         },
         "filament": {
-            "list": "線材 | Spoolman",
-            "edit": "#{{id}} 編輯線材 | Spoolman",
-            "show": "#{{id}} 檢視線材 | Spoolman",
-            "create": "建立線材 | Spoolman",
-            "clone": "#{{id}} 複製線材 | Spoolman"
+            "list": "線材 | SpoolCloud",
+            "edit": "#{{id}} 編輯線材 | SpoolCloud",
+            "show": "#{{id}} 檢視線材 | SpoolCloud",
+            "create": "建立線材 | SpoolCloud",
+            "clone": "#{{id}} 複製線材 | SpoolCloud"
         },
         "spool": {
-            "create": "建立線盤 | Spoolman",
-            "clone": "#{{id}} 複製線盤 | Spoolman",
-            "show": "#{{id}} 檢視線盤 | Spoolman",
-            "edit": "#{{id}} 編輯線盤 | Spoolman",
-            "list": "線盤 | Spoolman"
+            "create": "建立線盤 | SpoolCloud",
+            "clone": "#{{id}} 複製線盤 | SpoolCloud",
+            "show": "#{{id}} 檢視線盤 | SpoolCloud",
+            "edit": "#{{id}} 編輯線盤 | SpoolCloud",
+            "list": "線盤 | SpoolCloud"
         },
         "locations": {
-            "list": "位置| Spoolman"
+            "list": "位置| SpoolCloud"
         }
     },
     "home": {
@@ -333,7 +333,7 @@
             "spool": "特定線材的單個實體線盤。",
             "vendor": "製造線材的公司。"
         },
-        "description": "<title>說明</title><p>這裡是一些入門提示。</p><p>Spoolman 儲存三種類型的資料：</p><itemsHelp/><p>要將新線材加入資料庫，首先需要建立一個 <filamentCreateLink>線材</filamentCreateLink> 物件。完成後，接著為該特定線材建立一個 <spoolCreateLink>線盤</spoolCreateLink> 物件。如果之後您再獲得相同線材的其他線盤，只需生成更多的線盤物件，並重複使用相同的線材物件。</p><p>如果您希望追蹤製造商資訊，也可以選擇建立一個 <vendorCreateLink>製造商</vendorCreateLink> 物件。</p><p>您還可以將其他3D列印服務與Spoolman連接，例如Moonraker，它可以自動監控線材使用情況並為您更新線盤物件。請參閱 <readmeLink>Spoolman README</readmeLink> 以獲取設置指南。</p>"
+        "description": "<title>說明</title><p>這裡是一些入門提示。</p><p>SpoolCloud 儲存三種類型的資料：</p><itemsHelp/><p>要將新線材加入資料庫，首先需要建立一個 <filamentCreateLink>線材</filamentCreateLink> 物件。完成後，接著為該特定線材建立一個 <spoolCreateLink>線盤</spoolCreateLink> 物件。如果之後您再獲得相同線材的其他線盤，只需生成更多的線盤物件，並重複使用相同的線材物件。</p><p>如果您希望追蹤製造商資訊，也可以選擇建立一個 <vendorCreateLink>製造商</vendorCreateLink> 物件。</p><p>您還可以將其他3D列印服務與SpoolCloud連接，例如Moonraker，它可以自動監控線材使用情況並為您更新線盤物件。請參閱 <readmeLink>SpoolCloud README</readmeLink> 以獲取設置指南。</p>"
     },
     "table": {
         "actions": "操作"

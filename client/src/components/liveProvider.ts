@@ -1,7 +1,7 @@
 import { BaseKey, LiveEvent, LiveProvider } from "@refinedev/core";
 
 /**
- * A spoolman websocket event.
+ * A spoolcloud websocket event.
  */
 interface Event {
   type: "updated" | "deleted" | "added";

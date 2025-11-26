@@ -111,7 +111,7 @@
             "showContent": "Imprimir Etiqueta",
             "useHTTPUrl": {
                 "label": "Endereço do código QR",
-                "tooltip": "Usará um endereço proprietário que funcionará somente se digitalizado a partir do recurso de digitalização do Spoolman (padrão). O URL usa o URL Base, especificada nas Configurações, ou o URL da página atual se nenhuma estiver definida.",
+                "tooltip": "Usará um endereço proprietário que funcionará somente se digitalizado a partir do recurso de digitalização do SpoolCloud (padrão). O URL usa o URL Base, especificada nas Configurações, ou o URL da página atual se nenhuma estiver definida.",
                 "options": {
                     "default": "Padrão",
                     "url": "URL"
@@ -138,7 +138,7 @@
     },
     "scanner": {
         "title": "Leitor de Código QR",
-        "description": "Escaneie um código QR do Spoolman para ver detalhes sobre o carretel.",
+        "description": "Escaneie um código QR do SpoolCloud para ver detalhes sobre o carretel.",
         "error": {
             "notAllowed": "Você não deu permissão de acesso à câmera.",
             "insecureContext": "A página não é servida por HTTPS.",
@@ -293,7 +293,7 @@
     },
     "home": {
         "home": "Início",
-        "welcome": "Bem-vindo à sua instância do Spoolman!",
+        "welcome": "Bem-vindo à sua instância do SpoolCloud!",
         "description": "Parece que você ainda não adicionou nenhum carretel. Veja a <helpPageLink>Página de Ajuda</helpPageLink> para obter ajuda para começar."
     },
     "help": {
@@ -303,7 +303,7 @@
             "spool": "Carretéis físicos individuais de um filamento específico.",
             "vendor": "As empresas que fabricam o filamento."
         },
-        "description": "<title>Ajuda</title><p>Aqui estão algumas dicas para você começar.</p><p>O Spoolman contém três tipos diferentes de dados:</p><itemsHelp/><p>Para adicionar um novo carretel para o banco de dados, comece criando um objeto <filamentCreateLink>Filamento</filamentCreateLink>. Feito isso, prossiga para criar um objeto <spoolCreateLink>Carretel</spoolCreateLink> para esse carretel específico. Se você adquirir carretéis adicionais do mesmo filamento posteriormente, simplesmente crie carretéis adicionais e reutilize o mesmo objeto Filamento.</p><p>Opcionalmente, você também pode gerar um objeto <vendorCreateLink>Fabricante</vendorCreateLink> para a empresa que fabrica o filamento, se você desejar rastrear essas informações.</p><p>Você tem a opção de vincular outros serviços de impressora 3D ao Spoolman, como o Moonraker, o qual pode automaticamente monitorar o uso do filamento e atualizar os carretéis para você. Consulte o <readmeLink>LEIA-ME do Spoolman</readmeLink> para obter orientação sobre como configurar isso.</p>"
+        "description": "<title>Ajuda</title><p>Aqui estão algumas dicas para você começar.</p><p>O SpoolCloud contém três tipos diferentes de dados:</p><itemsHelp/><p>Para adicionar um novo carretel para o banco de dados, comece criando um objeto <filamentCreateLink>Filamento</filamentCreateLink>. Feito isso, prossiga para criar um objeto <spoolCreateLink>Carretel</spoolCreateLink> para esse carretel específico. Se você adquirir carretéis adicionais do mesmo filamento posteriormente, simplesmente crie carretéis adicionais e reutilize o mesmo objeto Filamento.</p><p>Opcionalmente, você também pode gerar um objeto <vendorCreateLink>Fabricante</vendorCreateLink> para a empresa que fabrica o filamento, se você desejar rastrear essas informações.</p><p>Você tem a opção de vincular outros serviços de impressora 3D ao SpoolCloud, como o Moonraker, o qual pode automaticamente monitorar o uso do filamento e atualizar os carretéis para você. Consulte o <readmeLink>LEIA-ME do SpoolCloud</readmeLink> para obter orientação sobre como configurar isso.</p>"
     },
     "table": {
         "actions": "Ações"
@@ -358,37 +358,37 @@
         }
     },
     "documentTitle": {
-        "default": "Spoolman",
-        "suffix": " | Spoolman",
+        "default": "SpoolCloud",
+        "suffix": " | SpoolCloud",
         "home": {
-            "list": "Início | Spoolman"
+            "list": "Início | SpoolCloud"
         },
         "help": {
-            "list": "Ajuda | Spoolman"
+            "list": "Ajuda | SpoolCloud"
         },
         "locations": {
-            "list": "Locais | Spoolman"
+            "list": "Locais | SpoolCloud"
         },
         "filament": {
-            "list": "Filamentos | Spoolman",
-            "show": "Mostrar Filamento #{{id}} | Spoolman",
-            "edit": "Editar Filamento #{{id}} | Spoolman",
-            "create": "Criar Filamento | Spoolman",
-            "clone": "Clonar Filamento #{{id}} | Spoolman"
+            "list": "Filamentos | SpoolCloud",
+            "show": "Mostrar Filamento #{{id}} | SpoolCloud",
+            "edit": "Editar Filamento #{{id}} | SpoolCloud",
+            "create": "Criar Filamento | SpoolCloud",
+            "clone": "Clonar Filamento #{{id}} | SpoolCloud"
         },
         "spool": {
-            "list": "Carretéis | Spoolman",
-            "show": "Mostrar Carretel #{{id}} | Spoolman",
-            "edit": "Editar Carretel #{{id}} | Spoolman",
-            "create": "Criar Carretel | Spoolman",
-            "clone": "Clonar Carretel #{{id}} | Spoolman"
+            "list": "Carretéis | SpoolCloud",
+            "show": "Mostrar Carretel #{{id}} | SpoolCloud",
+            "edit": "Editar Carretel #{{id}} | SpoolCloud",
+            "create": "Criar Carretel | SpoolCloud",
+            "clone": "Clonar Carretel #{{id}} | SpoolCloud"
         },
         "vendor": {
-            "list": "Fabricantes | Spoolman",
-            "show": "Mostrar Fabricante #{{id}} | Spoolman",
-            "edit": "Editar Fabricante #{{id}} | Spoolman",
-            "create": "Criar Fabricante | Spoolman",
-            "clone": "Clonar Fabricante #{{id}} | Spoolman"
+            "list": "Fabricantes | SpoolCloud",
+            "show": "Mostrar Fabricante #{{id}} | SpoolCloud",
+            "edit": "Editar Fabricante #{{id}} | SpoolCloud",
+            "create": "Criar Fabricante | SpoolCloud",
+            "clone": "Clonar Fabricante #{{id}} | SpoolCloud"
         }
     },
     "locations": {

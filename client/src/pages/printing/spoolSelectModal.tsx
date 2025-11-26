@@ -5,7 +5,7 @@ import { t } from "i18next";
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router";
 import { FilteredQueryColumn, SortedColumn, SpoolIconColumn } from "../../components/column";
-import { useSpoolmanFilamentFilter, useSpoolmanMaterials } from "../../components/otherModels";
+import { useSpoolCloudFilamentFilter, useSpoolCloudMaterials } from "../../components/otherModels";
 import { removeUndefined } from "../../utils/filtering";
 import { TableState } from "../../utils/saveload";
 import { ISpool } from "../spools/model";
@@ -146,13 +146,13 @@ const SpoolSelectModal: React.FC<Props> = ({ description, onContinue }) => {
               dataId: "filament.combined_name",
               i18nkey: "spool.fields.filament_name",
               color: (record: ISpoolCollapsed) => record.filament.color_hex,
-              filterValueQuery: useSpoolmanFilamentFilter(),
+              filterValueQuery: useSpoolCloudFilamentFilter(),
             }),
             FilteredQueryColumn({
               ...commonProps,
               id: "filament.material",
               i18nkey: "spool.fields.material",
-              filterValueQuery: useSpoolmanMaterials(),
+              filterValueQuery: useSpoolCloudMaterials(),
             }),
           ])}
         />

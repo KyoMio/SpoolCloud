@@ -86,7 +86,7 @@
             "showSpoolComment": "Opmerking spoel",
             "textSize": "Label tekstgrootte",
             "title": "Label afdrukken",
-            "showSpoolmanIcon": "Spoolman icoon tonen",
+            "showSpoolCloudIcon": "SpoolCloud icoon tonen",
             "showLotNr": "Lotnummer",
             "bedTemp": "BT: {{temp}}",
             "lotNr": "Lotnummer: {{lot}}",
@@ -106,7 +106,7 @@
                     "default": "Standaard"
                 },
                 "label": "QR-codelink",
-                "tooltip": "Er wordt een speciale link gebruikt die alleen werkt als deze wordt gescand via de scanfunctie van Spoolman (standaard). De URL gebruikt de basis-URL die is opgegeven in de instellingen of de URL van de huidige pagina als deze niet is ingesteld.",
+                "tooltip": "Er wordt een speciale link gebruikt die alleen werkt als deze wordt gescand via de scanfunctie van SpoolCloud (standaard). De URL gebruikt de basis-URL die is opgegeven in de instellingen of de URL van de huidige pagina als deze niet is ingesteld.",
                 "preview": "Voorbeeld:"
             }
         },
@@ -148,36 +148,36 @@
     },
     "documentTitle": {
         "vendor": {
-            "create": "Fabrikant maken | Spoolman",
-            "clone": "#{{id}} Fabrikant klonen | Spoolman",
-            "edit": "#{{id}} Fabrikant bewerken | Spoolman",
-            "list": "Fabrikanten | Spoolman",
-            "show": "#{{id}} Fabrikant tonen | Spoolman"
+            "create": "Fabrikant maken | SpoolCloud",
+            "clone": "#{{id}} Fabrikant klonen | SpoolCloud",
+            "edit": "#{{id}} Fabrikant bewerken | SpoolCloud",
+            "list": "Fabrikanten | SpoolCloud",
+            "show": "#{{id}} Fabrikant tonen | SpoolCloud"
         },
-        "default": "Spoolman",
+        "default": "SpoolCloud",
         "spool": {
-            "edit": "#{{id}} Spoel bewerken | Spoolman",
-            "list": "Spoelen | Spoolman",
-            "create": "Spoel maken | Spoolman",
-            "show": "#{{id}} Spoel tonen | Spoolman",
-            "clone": "#{{id}} Spoel klonen | Spoolman"
+            "edit": "#{{id}} Spoel bewerken | SpoolCloud",
+            "list": "Spoelen | SpoolCloud",
+            "create": "Spoel maken | SpoolCloud",
+            "show": "#{{id}} Spoel tonen | SpoolCloud",
+            "clone": "#{{id}} Spoel klonen | SpoolCloud"
         },
         "filament": {
-            "list": "Filamenten | Spoolman",
-            "show": "#{{id}} Filament tonen | Spoolman",
-            "clone": "#{{id}} Filament klonen | Spoolman",
-            "create": "Filament maken | Spoolman",
-            "edit": "#{{id}} Filament bewerken | Spoolman"
+            "list": "Filamenten | SpoolCloud",
+            "show": "#{{id}} Filament tonen | SpoolCloud",
+            "clone": "#{{id}} Filament klonen | SpoolCloud",
+            "create": "Filament maken | SpoolCloud",
+            "edit": "#{{id}} Filament bewerken | SpoolCloud"
         },
-        "suffix": " | Spoolman",
+        "suffix": " | SpoolCloud",
         "home": {
-            "list": "Thuis | Spoolman"
+            "list": "Thuis | SpoolCloud"
         },
         "help": {
-            "list": "Help | Spoolman"
+            "list": "Help | SpoolCloud"
         },
         "locations": {
-            "list": "Locaties | Spoolman"
+            "list": "Locaties | SpoolCloud"
         }
     },
     "spool": {
@@ -308,7 +308,7 @@
             "notFound": "Geen camera gevonden.",
             "streamApiNotSupported": "De browser ondersteunt de MediaStream API niet."
         },
-        "description": "Scan een Spoolman QR-Code om details van de spoel te tonen."
+        "description": "Scan een SpoolCloud QR-Code om details van de spoel te tonen."
     },
     "vendor": {
         "titles": {
@@ -344,7 +344,7 @@
             "filament": "Merken filament. Ze hebben eigenschappen zoals naam, materiaal, kleur, diameter en meer.",
             "spool": "Individuele fysieke spoelen van een specifiek filament."
         },
-        "description": "<title>Help</title><p>Hier zijn enkele tips om u op weg te helpen.</p><p>Spoolman bewaart 3 verschillende soorten gegevens:</p><itemsHelp/><p>Om een nieuwe toe spoel toe te voegen in de database, begin dan met het maken van een <filamentCreateLink>Filament</filamentCreateLink> object. Zodra dat is gebeurd, gaat u verder met het maken van een <spoolCreateLink>Spoel</spoolCreateLink>-object voor die specifieke spoel. Als u later extra spoelen van hetzelfde filament aanschaft, genereert u eenvoudigweg extra Spoel-objecten en hergebruikt u hetzelfde Filament-object.</p><p>Optioneel kunt u ook een <vendorCreateLink>Fabrikant</vendorCreateLink>-object voor het bedrijf genereren als u die informatie wilt bijhouden.</p><p>U heeft de mogelijkheid om andere 3D-printerservices aan Spoolman te koppelen, zoals Moonraker, die automatisch het filament gebruik kan monitoren en de Spoel-objecten voor u kan bijwerken. Raadpleeg de <readmeLink>Spoolman README</readmeLink> voor richtlijnen over hoe u dat kunt instellen.</p>",
+        "description": "<title>Help</title><p>Hier zijn enkele tips om u op weg te helpen.</p><p>SpoolCloud bewaart 3 verschillende soorten gegevens:</p><itemsHelp/><p>Om een nieuwe toe spoel toe te voegen in de database, begin dan met het maken van een <filamentCreateLink>Filament</filamentCreateLink> object. Zodra dat is gebeurd, gaat u verder met het maken van een <spoolCreateLink>Spoel</spoolCreateLink>-object voor die specifieke spoel. Als u later extra spoelen van hetzelfde filament aanschaft, genereert u eenvoudigweg extra Spoel-objecten en hergebruikt u hetzelfde Filament-object.</p><p>Optioneel kunt u ook een <vendorCreateLink>Fabrikant</vendorCreateLink>-object voor het bedrijf genereren als u die informatie wilt bijhouden.</p><p>U heeft de mogelijkheid om andere 3D-printerservices aan SpoolCloud te koppelen, zoals Moonraker, die automatisch het filament gebruik kan monitoren en de Spoel-objecten voor u kan bijwerken. Raadpleeg de <readmeLink>SpoolCloud README</readmeLink> voor richtlijnen over hoe u dat kunt instellen.</p>",
         "help": "Help"
     },
     "kofi": "Tip mij op Ko-fi",

@@ -101,7 +101,7 @@
                 },
                 "preview": "プレビュー:",
                 "label": "QRコードリンク",
-                "tooltip": "Spoolmanのスキャン機能からスキャンした場合にのみ機能する独自リンクを使用します（デフォルト）。URLは設定で指定されたベースURLを使用するか、設定されていない場合は現在のページURLを使用します。"
+                "tooltip": "SpoolCloudのスキャン機能からスキャンした場合にのみ機能する独自リンクを使用します（デフォルト）。URLは設定で指定されたベースURLを使用するか、設定されていない場合は現在のページURLを使用します。"
             },
             "showQRCode": "QRコード印刷",
             "showContent": "ラベル印刷",
@@ -135,7 +135,7 @@
         "clone": "複製"
     },
     "scanner": {
-        "description": "スプールの詳細を表示するには、SpoolmanのQRコードをスキャンしてください。",
+        "description": "スプールの詳細を表示するには、SpoolCloudのQRコードをスキャンしてください。",
         "error": {
             "notReadable": "カメラを読み込むことができません。",
             "notFound": "カメラが見つかりません。",
@@ -296,7 +296,7 @@
             "spool": "特定のフィラメントの個々の物理的なスプール。",
             "vendor": "フィラメントを製造している会社。"
         },
-        "description": "<title>ヘルプ</title><p>使い始めるためのヒントをいくつか紹介します。</p><p>Spoolmanは3種類のデータを管理しています：</p><itemsHelp/><p>データベースに新しいスプールを追加するには、まず<filamentCreateLink>フィラメント</filamentCreateLink>を作成することから始めます。それが完了したら、<spoolCreateLink>スプール</spoolCreateLink>を作成します。後日、同じフィラメントの追加スプールを入手した場合は、追加のスプールを生成し、同じフィラメントを再利用するだけです。</p><p>必要に応じて、フィラメントを製造している<vendorCreateLink>製造者</vendorCreateLink>を作成して、その情報を追跡することもできます。</p><p>Moonrakerなどの他の3DプリンターサービスをSpoolmanにリンクすることもでき、フィラメントの使用状況を自動的に監視し、スプールを更新することができます。設定方法については<readmeLink>Spoolman README</readmeLink>を参照してください。</p>"
+        "description": "<title>ヘルプ</title><p>使い始めるためのヒントをいくつか紹介します。</p><p>SpoolCloudは3種類のデータを管理しています：</p><itemsHelp/><p>データベースに新しいスプールを追加するには、まず<filamentCreateLink>フィラメント</filamentCreateLink>を作成することから始めます。それが完了したら、<spoolCreateLink>スプール</spoolCreateLink>を作成します。後日、同じフィラメントの追加スプールを入手した場合は、追加のスプールを生成し、同じフィラメントを再利用するだけです。</p><p>必要に応じて、フィラメントを製造している<vendorCreateLink>製造者</vendorCreateLink>を作成して、その情報を追跡することもできます。</p><p>Moonrakerなどの他の3DプリンターサービスをSpoolCloudにリンクすることもでき、フィラメントの使用状況を自動的に監視し、スプールを更新することができます。設定方法については<readmeLink>SpoolCloud README</readmeLink>を参照してください。</p>"
     },
     "table": {
         "actions": "アクション"
@@ -352,36 +352,36 @@
     },
     "documentTitle": {
         "home": {
-            "list": "ホーム | Spoolman"
+            "list": "ホーム | SpoolCloud"
         },
         "help": {
-            "list": "ヘルプ | Spoolman"
+            "list": "ヘルプ | SpoolCloud"
         },
-        "default": "Spoolman",
-        "suffix": " | Spoolman",
+        "default": "SpoolCloud",
+        "suffix": " | SpoolCloud",
         "filament": {
-            "edit": "フィラメントの編集 #{{id}} | Spoolman",
-            "clone": "フィラメントの複製 #{{id}} | Spoolman",
-            "show": "フィラメント #{{id}} | Spoolman",
-            "create": "フィラメントの作成 | Spoolman",
-            "list": "フィラメント | Spoolman"
+            "edit": "フィラメントの編集 #{{id}} | SpoolCloud",
+            "clone": "フィラメントの複製 #{{id}} | SpoolCloud",
+            "show": "フィラメント #{{id}} | SpoolCloud",
+            "create": "フィラメントの作成 | SpoolCloud",
+            "list": "フィラメント | SpoolCloud"
         },
         "spool": {
-            "list": "スプール | Spoolman",
-            "show": "スプール #{{id}} | Spoolman",
-            "create": "スプールの作成 | Spoolman",
-            "edit": "スプールの編集 #{{id}} | Spoolman",
-            "clone": "スプールの複製 #{{id}} | Spoolman"
+            "list": "スプール | SpoolCloud",
+            "show": "スプール #{{id}} | SpoolCloud",
+            "create": "スプールの作成 | SpoolCloud",
+            "edit": "スプールの編集 #{{id}} | SpoolCloud",
+            "clone": "スプールの複製 #{{id}} | SpoolCloud"
         },
         "vendor": {
-            "edit": "製造者の編集 #{{id}} | Spoolman",
-            "clone": "製造者の複製 #{{id}} | Spoolman",
-            "show": "製造者 #{{id}} | Spoolman",
-            "create": "製造者の作成 | Spoolman",
-            "list": "製造者 | Spoolman"
+            "edit": "製造者の編集 #{{id}} | SpoolCloud",
+            "clone": "製造者の複製 #{{id}} | SpoolCloud",
+            "show": "製造者 #{{id}} | SpoolCloud",
+            "create": "製造者の作成 | SpoolCloud",
+            "list": "製造者 | SpoolCloud"
         },
         "locations": {
-            "list": "場所 | Spoolman"
+            "list": "場所 | SpoolCloud"
         }
     },
     "locations": {

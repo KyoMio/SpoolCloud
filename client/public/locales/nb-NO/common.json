@@ -120,7 +120,7 @@
             "showSpoolWeight": "Spolevekt",
             "showContent": "Skriv ut etikett",
             "textSize": "Tekststørrelse på etikett",
-            "showSpoolmanIcon": "Vis Spoolman ikon",
+            "showSpoolCloudIcon": "Vis SpoolCloud ikon",
             "showLotNr": "Batch Nr",
             "bedTemp": "BT: {{temp}}",
             "lotNr": "Batch Nr: {{lot}}",
@@ -242,7 +242,7 @@
             "notAllowed": "Du har ikke gitt tilgang til kameraet.",
             "streamApiNotSupported": "Nettleseren støtter ikke MediaStream API."
         },
-        "description": "Skann en Spoolman QR-kode for å se detaljer om spolen."
+        "description": "Skann en SpoolCloud QR-kode for å se detaljer om spolen."
     },
     "notifications": {
         "error": "Feil (statuskode: {{statusCode}})",
@@ -261,27 +261,27 @@
     "loading": "Laster",
     "documentTitle": {
         "vendor": {
-            "create": "Opprett leverandør | Spoolman",
-            "clone": "#{{id}} Klon leverandør | Spoolman",
-            "edit": "#{{id}} Rediger leverandør | Spoolman",
-            "list": "Leverandører | Spoolman",
-            "show": "#{{id}} Vis leverandør | Spoolman"
+            "create": "Opprett leverandør | SpoolCloud",
+            "clone": "#{{id}} Klon leverandør | SpoolCloud",
+            "edit": "#{{id}} Rediger leverandør | SpoolCloud",
+            "list": "Leverandører | SpoolCloud",
+            "show": "#{{id}} Vis leverandør | SpoolCloud"
         },
-        "default": "Spoolman",
+        "default": "SpoolCloud",
         "spool": {
-            "edit": "#{{id}} Rediger spole | Spoolman",
-            "list": "Spoler | Spoolman",
-            "create": "Opprett spole | Spoolman",
-            "show": "#{{id}} Vis spole | Spoolman",
-            "clone": "#{{id}} Klon spole| Spoolman"
+            "edit": "#{{id}} Rediger spole | SpoolCloud",
+            "list": "Spoler | SpoolCloud",
+            "create": "Opprett spole | SpoolCloud",
+            "show": "#{{id}} Vis spole | SpoolCloud",
+            "clone": "#{{id}} Klon spole| SpoolCloud"
         },
-        "suffix": " | Spoolman",
+        "suffix": " | SpoolCloud",
         "filament": {
-            "list": "Filamenter | Spoolman",
-            "show": "#{{id}} Vis Filament | Spoolman",
-            "clone": "#{{id}} Kopier Filament | Spoolman",
-            "create": "Opprett Filament | Spoolman",
-            "edit": "#{{id}} Endre Filament | Spoolman"
+            "list": "Filamenter | SpoolCloud",
+            "show": "#{{id}} Vis Filament | SpoolCloud",
+            "clone": "#{{id}} Kopier Filament | SpoolCloud",
+            "create": "Opprett Filament | SpoolCloud",
+            "edit": "#{{id}} Endre Filament | SpoolCloud"
         },
         "home": {
             "list": ""

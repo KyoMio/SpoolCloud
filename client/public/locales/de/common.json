@@ -109,7 +109,7 @@
             "bedTemp": "BT: {{temp}}",
             "extruderTemp": "ET: {{temp}}",
             "textSize": "Textgröße Label",
-            "showSpoolmanIcon": "Spoolman Icon anzeigen",
+            "showSpoolCloudIcon": "SpoolCloud Icon anzeigen",
             "showVendor": "Hersteller",
             "showContent": "Label drucken",
             "showLotNr": "Chargennummer",
@@ -128,7 +128,7 @@
             "showQRCode": "Drucke QR Code",
             "useHTTPUrl": {
                 "label": "QR Code Link",
-                "tooltip": "Die Standardeinstellung verwendet einen proprietären Link, der nur funktioniert, wenn er mit der Scanfunktion von Spoolman gescannt wird. URL verwendet entweder die in den Einstellungen angegebene Basis-URL oder wenn diese nicht festgelegt ist die aktuelle Seiten-URL.",
+                "tooltip": "Die Standardeinstellung verwendet einen proprietären Link, der nur funktioniert, wenn er mit der Scanfunktion von SpoolCloud gescannt wird. URL verwendet entweder die in den Einstellungen angegebene Basis-URL oder wenn diese nicht festgelegt ist die aktuelle Seiten-URL.",
                 "options": {
                     "default": "Standard",
                     "url": "URL"
@@ -148,7 +148,7 @@
     },
     "scanner": {
         "title": "QR-Code Scanner",
-        "description": "Spoolman QR-Code scannen, um Details der Spule anzuzeigen.",
+        "description": "SpoolCloud QR-Code scannen, um Details der Spule anzuzeigen.",
         "error": {
             "notAllowed": "Zugriff auf Kamera wurde nicht erlaubt.",
             "insecureContext": "Die Seite wird nicht über HTTPS bereitgestellt.",
@@ -305,37 +305,37 @@
         "actions": "Aktionen"
     },
     "documentTitle": {
-        "default": "Spoolman",
-        "suffix": " | Spoolman",
+        "default": "SpoolCloud",
+        "suffix": " | SpoolCloud",
         "filament": {
-            "list": "Filamente | Spoolman",
-            "show": "#{{id}} Filament anzeigen | Spoolman",
-            "edit": "#{{id}} Filament bearbeiten | Spoolman",
-            "create": "Filament erstellen | Spoolman",
-            "clone": "#{{id}} Filament duplizieren | Spoolman"
+            "list": "Filamente | SpoolCloud",
+            "show": "#{{id}} Filament anzeigen | SpoolCloud",
+            "edit": "#{{id}} Filament bearbeiten | SpoolCloud",
+            "create": "Filament erstellen | SpoolCloud",
+            "clone": "#{{id}} Filament duplizieren | SpoolCloud"
         },
         "spool": {
-            "list": "Spulen | Spoolman",
-            "show": "#{{id}} Spule anzeigen | Spoolman",
-            "edit": "#{{id}} Spule bearbeiten | Spoolman",
-            "create": "Spule erstellen | Spoolman",
-            "clone": "#{{id}} Spule duplizieren | Spoolman"
+            "list": "Spulen | SpoolCloud",
+            "show": "#{{id}} Spule anzeigen | SpoolCloud",
+            "edit": "#{{id}} Spule bearbeiten | SpoolCloud",
+            "create": "Spule erstellen | SpoolCloud",
+            "clone": "#{{id}} Spule duplizieren | SpoolCloud"
         },
         "vendor": {
-            "list": "Hersteller | Spoolman",
-            "show": "#{{id}} Hersteller anzeigen | Spoolman",
-            "edit": "#{{id}} Hersteller bearbeiten | Spoolman",
-            "create": "Herstellen erstellen | Spoolman",
-            "clone": "#{{id}} Hersteller duplizieren | Spoolman"
+            "list": "Hersteller | SpoolCloud",
+            "show": "#{{id}} Hersteller anzeigen | SpoolCloud",
+            "edit": "#{{id}} Hersteller bearbeiten | SpoolCloud",
+            "create": "Herstellen erstellen | SpoolCloud",
+            "clone": "#{{id}} Hersteller duplizieren | SpoolCloud"
         },
         "home": {
-            "list": "Home | Spoolman"
+            "list": "Home | SpoolCloud"
         },
         "help": {
-            "list": "Hilfe | Spoolman"
+            "list": "Hilfe | SpoolCloud"
         },
         "locations": {
-            "list": "Orte | Spoolman"
+            "list": "Orte | SpoolCloud"
         }
     },
     "help": {
@@ -344,7 +344,7 @@
             "filament": "Filamentmarken. Diese haben Eigenschaften wie Name, Material, Farbe, Durchmesser und mehr.",
             "spool": "Einzelne, physische Spulen eines bestimmten Filaments."
         },
-        "description": "<title>Hilfe</title><p>Hier sind einige Tipps für den Start.</p><p>Spoolman hält 3 verschiedene Datentypen: </p><itemsHelp/><p>Um eine neue Spule zur Datenbank hinzuzufügen, beginne mit der Erstellung eines <filamentCreateLink>Filamentobjekts</filamentCreateLink>. Anschließend erstelle ein <spoolCreateLink>Spulenobjekt</spoolCreateLink> für genau diese Spule. Wenn später weitere Spulen desselben Filaments dazukommen, erstelle einfach ein weiteres Spulenobjekt und verwende das gleiche Filamentobjekt.</p><p>Optional kann auch ein <vendorCreateLink>Herstellerobjekt</vendorCreateLink> für die Firma erstellt werden, die dieses Filament hergestellt hat, falls auch diese Informationen gespeichert werden sollen.</p><p>Es besteht die Möglichkeit verschiedene 3D-Druckdienste, wie Moonraker, an Spoolman anzubinden, welche anschließend automatisch den Filamentverbrauch nachverfolgen und das Spulenobjekt aktualisieren können. Weitere Hilfe, wie dies eingerichtet wird, findet sich in der <readmeLink>Spoolman README</readmeLink>.</p>",
+        "description": "<title>Hilfe</title><p>Hier sind einige Tipps für den Start.</p><p>SpoolCloud hält 3 verschiedene Datentypen: </p><itemsHelp/><p>Um eine neue Spule zur Datenbank hinzuzufügen, beginne mit der Erstellung eines <filamentCreateLink>Filamentobjekts</filamentCreateLink>. Anschließend erstelle ein <spoolCreateLink>Spulenobjekt</spoolCreateLink> für genau diese Spule. Wenn später weitere Spulen desselben Filaments dazukommen, erstelle einfach ein weiteres Spulenobjekt und verwende das gleiche Filamentobjekt.</p><p>Optional kann auch ein <vendorCreateLink>Herstellerobjekt</vendorCreateLink> für die Firma erstellt werden, die dieses Filament hergestellt hat, falls auch diese Informationen gespeichert werden sollen.</p><p>Es besteht die Möglichkeit verschiedene 3D-Druckdienste, wie Moonraker, an SpoolCloud anzubinden, welche anschließend automatisch den Filamentverbrauch nachverfolgen und das Spulenobjekt aktualisieren können. Weitere Hilfe, wie dies eingerichtet wird, findet sich in der <readmeLink>SpoolCloud README</readmeLink>.</p>",
         "help": "Hilfe"
     },
     "kofi": "Schick mir ein Trinkgeld über Ko-fi",

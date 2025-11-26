@@ -28,10 +28,10 @@ import {
 } from "../../components/column";
 import { useLiveify } from "../../components/liveify";
 import {
-    useSpoolmanFilamentFilter,
-    useSpoolmanLocations,
-    useSpoolmanLotNumbers,
-    useSpoolmanMaterials,
+    useSpoolCloudFilamentFilter,
+    useSpoolCloudLocations,
+    useSpoolCloudLotNumbers,
+    useSpoolCloudMaterials,
 } from "../../components/otherModels";
 import { removeUndefined } from "../../utils/filtering";
 import { EntityType, useGetFields } from "../../utils/queryFields";
@@ -365,13 +365,13 @@ export const SpoolList: React.FC<IResourceComponentsProps> = () => {
                   }
                 : record.filament.color_hex,
             dataId: "filament.combined_name",
-            filterValueQuery: useSpoolmanFilamentFilter(),
+            filterValueQuery: useSpoolCloudFilamentFilter(),
           }),
           FilteredQueryColumn({
             ...commonProps,
             id: "filament.material",
             i18nkey: "spool.fields.material",
-            filterValueQuery: useSpoolmanMaterials(),
+            filterValueQuery: useSpoolCloudMaterials(),
             width: 120,
           }),
           SortedColumn({
@@ -426,14 +426,14 @@ export const SpoolList: React.FC<IResourceComponentsProps> = () => {
             ...commonProps,
             id: "location",
             i18ncat: "spool",
-            filterValueQuery: useSpoolmanLocations(),
+            filterValueQuery: useSpoolCloudLocations(),
             width: 120,
           }),
           FilteredQueryColumn({
             ...commonProps,
             id: "lot_nr",
             i18ncat: "spool",
-            filterValueQuery: useSpoolmanLotNumbers(),
+            filterValueQuery: useSpoolCloudLotNumbers(),
             width: 120,
           }),
           DateColumn({

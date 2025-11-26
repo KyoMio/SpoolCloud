@@ -1,11 +1,11 @@
 # Migrations
 
-Migrations are used to create and update the database schema. They are run automatically every time Spoolman starts.
+Migrations are used to create and update the database schema. They are run automatically every time SpoolCloud starts.
 
-To create a new migration, edit the tables as desired in `spoolman/database/models.py`, then start the Spoolman server to update your local sqlite database.
+To create a new migration, edit the tables as desired in `spoolcloud/database/models.py`, then start the SpoolCloud server to update your local sqlite database.
 
 ```bash
-pdm run python -m spoolman.main
+pdm run python -m spoolcloud.main
 ```
 
 Stop the server once it's up.

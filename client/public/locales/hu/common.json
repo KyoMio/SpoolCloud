@@ -11,7 +11,7 @@
             "showSpoolComment": "Orsó Megjegyzés",
             "textSize": "Tartalom szöveg mérete",
             "title": "QR kód nyomtatása",
-            "showSpoolmanIcon": "Spoolman ikon megjelenítése",
+            "showSpoolCloudIcon": "SpoolCloud ikon megjelenítése",
             "showLotNr": "Tételszám",
             "bedTemp": "BT: {{temp}}",
             "lotNr": "Tételszám: {{lot}}",
@@ -62,33 +62,33 @@
     },
     "documentTitle": {
         "vendor": {
-            "create": "Gyártó létrehozása | Spoolman",
-            "clone": "#{{id}} Gyártó másolása | Spoolman",
-            "edit": "#{{id}} Gyártó szerkesztése | Spoolman",
-            "list": "Gyártók | Spoolman",
-            "show": "#{{id}} Gyártó megjelenítése | Spoolman"
+            "create": "Gyártó létrehozása | SpoolCloud",
+            "clone": "#{{id}} Gyártó másolása | SpoolCloud",
+            "edit": "#{{id}} Gyártó szerkesztése | SpoolCloud",
+            "list": "Gyártók | SpoolCloud",
+            "show": "#{{id}} Gyártó megjelenítése | SpoolCloud"
         },
-        "default": "Spoolman",
+        "default": "SpoolCloud",
         "spool": {
-            "edit": "#{{id}} Tekercs szerkesztése | Spoolman",
-            "list": "Tekercs | Spoolman",
-            "create": "Tekercs létrehozása | Spoolman",
-            "show": "#{{id}} Tekercs megjelítése | Spoolman",
-            "clone": "#{{id}} Tekercs másolása | Spoolman"
+            "edit": "#{{id}} Tekercs szerkesztése | SpoolCloud",
+            "list": "Tekercs | SpoolCloud",
+            "create": "Tekercs létrehozása | SpoolCloud",
+            "show": "#{{id}} Tekercs megjelítése | SpoolCloud",
+            "clone": "#{{id}} Tekercs másolása | SpoolCloud"
         },
         "filament": {
-            "list": "Filamentek | Spoolman",
-            "show": "#{{id}} Filamentek mejelenítése | Spoolman",
-            "clone": "#{{id}} Filament másolása | Spoolman",
-            "create": "Filament létrehozása | Spoolman",
-            "edit": "#{{id}} Filament szerkesztése | Spoolman"
+            "list": "Filamentek | SpoolCloud",
+            "show": "#{{id}} Filamentek mejelenítése | SpoolCloud",
+            "clone": "#{{id}} Filament másolása | SpoolCloud",
+            "create": "Filament létrehozása | SpoolCloud",
+            "edit": "#{{id}} Filament szerkesztése | SpoolCloud"
         },
-        "suffix": " | Spoolman",
+        "suffix": " | SpoolCloud",
         "home": {
-            "list": "Kezdőlap | Spoolman"
+            "list": "Kezdőlap | SpoolCloud"
         },
         "help": {
-            "list": "Segítség | Spoolman"
+            "list": "Segítség | SpoolCloud"
         }
     },
     "spool": {
@@ -244,7 +244,7 @@
             "notFound": "Nem található kamera.",
             "streamApiNotSupported": "A böngésző nem támogatja a MediaStream API-t."
         },
-        "description": "Olvass be egy Spoolman QR kódot a tekercsről szóló részletek megtekintéséhez."
+        "description": "Olvass be egy SpoolCloud QR kódot a tekercsről szóló részletek megtekintéséhez."
     },
     "notifications": {
         "deleteSuccess": "Sikeresen törölve {{resource}}",
@@ -286,7 +286,7 @@
             "filament": "Filament márkája. Olyan tulajdonságokkal rendelkeznek, mint a név, az anyag, a szín, az átmérő stb."
         },
         "help": "Segítség",
-        "description": "<title>Segítség</title><p>Íme néhány tipp a kezdéshez.</p><p>A Spoolman 3 különböző adattípust tartalmaz:</p><itemsHelp/><p>Ha új tekercs szeretne hozzáadni az adatbázishoz, kezdje azzal, hogy létrehoz egy <filamentCreateLink>Filament</filamentCreateLink> objektumot. Amikor ezzel megvan, folytassa azzal, hogy létrehoz egy <spoolCreateLink>Tekercs</spoolCreateLink> objektumot az adott tekercs. Ha később további tekercsket szerez ugyanabból a filamentből, egyszerűen generáljon további Tekercs objektumokat, és újra használja ugyanazt a Filament objektumot.</p><p>Opcionálisan létrehozhat egy <vendorCreateLink>Gyártó</vendorCreateLink> objektumot is a filamentet gyártó vállalathoz, ha szeretné követni ezt az információt.</p><p>A Spoolmanhez más 3D-nyomtató szolgáltatásokat is csatlakoztathat, például a Moonrakert, amely automatikusan figyelemmel kíséri a filamenthasználatot, és frissíti az Tekercs objektumokat. Olvassa el a <readmeLink>Spoolman README</readmeLink> fájlt a beállításokkal kapcsolatos útmutatásért.</p>"
+        "description": "<title>Segítség</title><p>Íme néhány tipp a kezdéshez.</p><p>A SpoolCloud 3 különböző adattípust tartalmaz:</p><itemsHelp/><p>Ha új tekercs szeretne hozzáadni az adatbázishoz, kezdje azzal, hogy létrehoz egy <filamentCreateLink>Filament</filamentCreateLink> objektumot. Amikor ezzel megvan, folytassa azzal, hogy létrehoz egy <spoolCreateLink>Tekercs</spoolCreateLink> objektumot az adott tekercs. Ha később további tekercsket szerez ugyanabból a filamentből, egyszerűen generáljon további Tekercs objektumokat, és újra használja ugyanazt a Filament objektumot.</p><p>Opcionálisan létrehozhat egy <vendorCreateLink>Gyártó</vendorCreateLink> objektumot is a filamentet gyártó vállalathoz, ha szeretné követni ezt az információt.</p><p>A SpoolCloudhez más 3D-nyomtató szolgáltatásokat is csatlakoztathat, például a Moonrakert, amely automatikusan figyelemmel kíséri a filamenthasználatot, és frissíti az Tekercs objektumokat. Olvassa el a <readmeLink>SpoolCloud README</readmeLink> fájlt a beállításokkal kapcsolatos útmutatásért.</p>"
     },
     "settings": {
         "settings": "Beállítások",

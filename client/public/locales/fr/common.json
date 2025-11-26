@@ -11,7 +11,7 @@
             "showSpoolComment": "Commentaire sur la bobine",
             "textSize": "Taille du texte de l'étiquette",
             "title": "Impression d'étiquettes",
-            "showSpoolmanIcon": "Montrer l'icône Spoolman",
+            "showSpoolCloudIcon": "Montrer l'icône SpoolCloud",
             "showLotNr": "N° de Lot",
             "bedTemp": "BT : {{temp}}",
             "lotNr": "N° de Lot : {{lot}}",
@@ -26,7 +26,7 @@
                 "withIcon": "Avec icône"
             },
             "useHTTPUrl": {
-                "tooltip": "Utilise un lien privé qui ne marchera que si il est scanné depuis Spoolman (défaut). URL utilises soit l'URL spécifiée dans les options soit l'URL de la page actuelle si ce n'est pas défini.",
+                "tooltip": "Utilise un lien privé qui ne marchera que si il est scanné depuis SpoolCloud (défaut). URL utilises soit l'URL spécifiée dans les options soit l'URL de la page actuelle si ce n'est pas défini.",
                 "options": {
                     "default": "Défaut",
                     "url": "URL"
@@ -91,36 +91,36 @@
     },
     "documentTitle": {
         "vendor": {
-            "create": "Créer le fabricant | Spoolman",
-            "clone": "#{{id}} Cloner le fabricant | Spoolman",
-            "edit": "#{{id}} Éditer le fabricant| Spoolman",
-            "list": "Fabricants | Spoolman",
-            "show": "#{{id}} Afficher le fabricant | Spoolman"
+            "create": "Créer le fabricant | SpoolCloud",
+            "clone": "#{{id}} Cloner le fabricant | SpoolCloud",
+            "edit": "#{{id}} Éditer le fabricant| SpoolCloud",
+            "list": "Fabricants | SpoolCloud",
+            "show": "#{{id}} Afficher le fabricant | SpoolCloud"
         },
-        "default": "Spoolman",
+        "default": "SpoolCloud",
         "spool": {
-            "edit": "#{{id}} Editer la Bobine | Spoolman",
-            "list": "Bobines | Spoolman",
-            "create": "Créer la Bobine | Spoolman",
-            "show": "#{{id}} Afficher la Bobine | Spoolman",
-            "clone": "#{{id}} Cloner la Bobine | Spoolman"
+            "edit": "#{{id}} Editer la Bobine | SpoolCloud",
+            "list": "Bobines | SpoolCloud",
+            "create": "Créer la Bobine | SpoolCloud",
+            "show": "#{{id}} Afficher la Bobine | SpoolCloud",
+            "clone": "#{{id}} Cloner la Bobine | SpoolCloud"
         },
         "filament": {
-            "list": "Filaments | Spoolman",
-            "show": "#{{id}} Afficher le filament | Spoolman",
-            "clone": "#{{id}} Cloner le Filament | Spoolman",
-            "create": "Créer le filament | Spoolman",
-            "edit": "#{{id}} Editer le Filament | Spoolman"
+            "list": "Filaments | SpoolCloud",
+            "show": "#{{id}} Afficher le filament | SpoolCloud",
+            "clone": "#{{id}} Cloner le Filament | SpoolCloud",
+            "create": "Créer le filament | SpoolCloud",
+            "edit": "#{{id}} Editer le Filament | SpoolCloud"
         },
-        "suffix": " | Spoolman",
+        "suffix": " | SpoolCloud",
         "home": {
-            "list": "Accueil | Spoolman"
+            "list": "Accueil | SpoolCloud"
         },
         "help": {
-            "list": "Aide | Spoolman"
+            "list": "Aide | SpoolCloud"
         },
         "locations": {
-            "list": "Emplacements | Spoolman"
+            "list": "Emplacements | SpoolCloud"
         }
     },
     "spool": {
@@ -283,7 +283,7 @@
             "notFound": "Aucun appareil photo n'a été trouvé.",
             "streamApiNotSupported": "Le navigateur ne prend pas en charge l'API MediaStream."
         },
-        "description": "Scannez un code QR de Spoolman pour afficher les détails de la bobine."
+        "description": "Scannez un code QR de SpoolCloud pour afficher les détails de la bobine."
     },
     "notifications": {
         "deleteSuccess": "Suppression réussie {{resource}}",
@@ -345,7 +345,7 @@
             "filament": "Marques de filament. Contient les propriétés comme le nom, le matériau, la couleur, le diamètre, etc.",
             "spool": "Les bobines physiques pour un filament spécifique."
         },
-        "description": "<title>Aide</title><p>Voici quelques informations pour commencer.</p><p>Spoolman garde 3 types d'informations différentes :</p><itemsHelp/><p>Pour ajouter une nouvelle bobine dans la base de données, commencez par créer un objet <filamentCreateLink>Filament</filamentCreateLink>. Une fois cela fait, créez un objet <spoolCreateLink>bobine</spoolCreateLink> pour cette bobine spécifique. Si vous achetez plus tard des bobines supplémentaires du même filament, créez simplement un objet bobine supplémentaire et réutilisez le même objet Filament.</p><p>En option, vous pouvez créer un <vendorCreateLink>Fabricant</vendorCreateLink> pour la société qui fabrique le filament si vous voulez garder une trace de cette information.</p><p>Vous avez l'option de connecter d'autres service d'impression 3D à Spoolman, comme Moonraker, pour qu'ils puissent suivre automatiquement votre utilisation de filament et mettre automatiquement à jour l'objet Bobine pour vous. Voir le <readmeLink>README Spoolman</readmeLink> pour avoir la marche à suivre pour le mettre en place.</p>",
+        "description": "<title>Aide</title><p>Voici quelques informations pour commencer.</p><p>SpoolCloud garde 3 types d'informations différentes :</p><itemsHelp/><p>Pour ajouter une nouvelle bobine dans la base de données, commencez par créer un objet <filamentCreateLink>Filament</filamentCreateLink>. Une fois cela fait, créez un objet <spoolCreateLink>bobine</spoolCreateLink> pour cette bobine spécifique. Si vous achetez plus tard des bobines supplémentaires du même filament, créez simplement un objet bobine supplémentaire et réutilisez le même objet Filament.</p><p>En option, vous pouvez créer un <vendorCreateLink>Fabricant</vendorCreateLink> pour la société qui fabrique le filament si vous voulez garder une trace de cette information.</p><p>Vous avez l'option de connecter d'autres service d'impression 3D à SpoolCloud, comme Moonraker, pour qu'ils puissent suivre automatiquement votre utilisation de filament et mettre automatiquement à jour l'objet Bobine pour vous. Voir le <readmeLink>README SpoolCloud</readmeLink> pour avoir la marche à suivre pour le mettre en place.</p>",
         "help": "Aide"
     },
     "kofi": "Me donner un pourboire sur Ko-fi",

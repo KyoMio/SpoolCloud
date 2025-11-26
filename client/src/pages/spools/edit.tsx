@@ -7,7 +7,7 @@ import dayjs from "dayjs";
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router";
 import { ExtraFieldFormItem, ParsedExtras, StringifiedExtras } from "../../components/extraFields";
-import { useSpoolmanLocations } from "../../components/otherModels";
+import { useSpoolCloudLocations } from "../../components/otherModels";
 import { searchMatches } from "../../utils/filtering";
 import { formatNumberOnUserInput, numberParser, numberParserAllowEmpty } from "../../utils/parsing";
 import { EntityType, useGetFields } from "../../utils/queryFields";
@@ -148,7 +148,7 @@ export const SpoolEdit: React.FC<IResourceComponentsProps> = () => {
     });
   };
 
-  const locations = useSpoolmanLocations(true);
+  const locations = useSpoolCloudLocations(true);
   const settingsLocation = useLocations();
   const [newLocation, setNewLocation] = useState("");
 
