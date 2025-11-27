@@ -88,6 +88,16 @@ class Database:
             pool_pre_ping=True,
             **connection_options,
         )
+
+        if self.connection_url.drivername == "sqlite+aiosqlite":
+            from sqlalchemy import event
+
+            @event.listens_for(self.engine.sync_engine, "connect")
+            def _enable_foreign_keys(dbapi_connection, connection_record):  # noqa: ANN001, ANN202
+                cursor = dbapi_connection.cursor()
+                cursor.execute("PRAGMA foreign_keys=ON")
+                cursor.close()
+
         self.session_maker = async_sessionmaker(self.engine, autocommit=False, autoflush=True, expire_on_commit=False)
 
     def backup(self, target_path: Union[str, PathLike[str]]) -> None:

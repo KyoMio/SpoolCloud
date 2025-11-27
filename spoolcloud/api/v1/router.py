@@ -4,8 +4,9 @@
 
 import asyncio
 import logging
+from typing import Annotated
 
-from fastapi import FastAPI, WebSocket, WebSocketDisconnect
+from fastapi import FastAPI, WebSocket, WebSocketDisconnect, Depends
 from fastapi.responses import JSONResponse
 from starlette.requests import Request
 from starlette.responses import Response
@@ -23,6 +24,7 @@ from . import (
     field,
     filament,
     filament_preset,
+    invite_code,
     invite_code,
     models,
     notification,
@@ -110,7 +112,9 @@ async def health() -> models.HealthCheck:
     response_model=models.BackupResponse,
     responses={500: {"model": models.Message}},
 )
-async def backup():  # noqa: ANN201
+async def backup(
+    current_user: Annotated[models.User, Depends(auth.require_admin)],
+):  # noqa: ANN201
     """Trigger a database backup."""
     path = await backup_global_db()
     if path is None:
@@ -127,6 +131,7 @@ async def backup():  # noqa: ANN201
 )
 async def notify(
     websocket: WebSocket,
+    current_user: Annotated[models.User, Depends(auth.get_current_user_ws)],
 ) -> None:
     await websocket.accept()
     websocket_manager.connect((), websocket)

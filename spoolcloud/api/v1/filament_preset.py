@@ -12,7 +12,7 @@ from spoolcloud import auth
 from spoolcloud.api.v1.models import FilamentPreset, Message
 from spoolcloud.database import filament_preset, models
 from spoolcloud.database.database import get_db_session
-from spoolcloud.exceptions import ItemDeleteError
+from spoolcloud.exceptions import ItemDeleteError, ItemNotFoundError
 
 logger = logging.getLogger(__name__)
 
@@ -24,6 +24,7 @@ router = APIRouter(
 
 class FilamentPresetParameters(BaseModel):
     name: str = Field(max_length=64, description="Preset name.")
+    code: Optional[str] = Field(None, max_length=32, description="Preset code.")
     filament_ids: Optional[list[int]] = Field(None, description="List of filament IDs in this preset.")
 
 
@@ -72,6 +73,7 @@ async def create(
         db=db,
         user_id=current_user.id,
         name=body.name,
+        code=body.code,
         filament_ids=body.filament_ids,
     )
     return FilamentPreset.from_db(db_item)
@@ -119,5 +121,46 @@ async def delete(
         return JSONResponse(
             status_code=403,
             content={"message": "Failed to delete filament preset."},
+        )
+    return Message(message="Success!")
+
+
+class FilamentPresetReplaceParameters(BaseModel):
+    new_preset_id: int = Field(description="The ID of the new filament preset to use.")
+
+
+@router.post(
+    "/{preset_id}/replace",
+    name="Replace and delete filament preset",
+    description="Replace a filament preset with another one for all filaments, then delete the old one.",
+    response_model=Message,
+    responses={
+        403: {"model": Message},
+        404: {"model": Message},
+    },
+)
+async def replace_and_delete(
+    db: Annotated[AsyncSession, Depends(get_db_session)],
+    current_user: Annotated[models.User, Depends(auth.get_current_user)],
+    preset_id: int,
+    body: FilamentPresetReplaceParameters,
+) -> Message:
+    try:
+        await filament_preset.replace_and_delete(
+            db=db,
+            old_preset_id=preset_id,
+            new_preset_id=body.new_preset_id,
+            user_id=current_user.id,
+        )
+    except ItemNotFoundError as exc:
+        return JSONResponse(
+            status_code=404,
+            content={"message": str(exc)},
+        )
+    except ItemDeleteError:
+        logger.exception("Failed to replace and delete filament preset.")
+        return JSONResponse(
+            status_code=403,
+            content={"message": "Failed to replace and delete filament preset."},
         )
     return Message(message="Success!")

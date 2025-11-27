@@ -21,6 +21,8 @@ import { useTranslation } from "react-i18next";
 import { getAPIURL } from "../../utils/url";
 import { TOKEN_KEY } from "../../authProvider";
 
+import { PresetReplaceModal } from "../../components/presetReplaceModal";
+
 const { Title, Text } = Typography;
 
 interface Notification {
@@ -30,6 +32,7 @@ interface Notification {
     type: string;
     is_read: boolean;
     created_at: string;
+    data?: Record<string, any>;
 }
 
 interface NotificationConfig {
@@ -301,6 +304,25 @@ export const NotificationsPage: React.FC = () => {
         }
     };
 
+    const [replaceModalOpen, setReplaceModalOpen] = useState(false);
+    const [replacePresetId, setReplacePresetId] = useState<number | null>(null);
+    const [replaceNotificationId, setReplaceNotificationId] = useState<number | null>(null);
+
+    const handleResolveConflict = (notification: Notification) => {
+        if (notification.data?.preset_id) {
+            setReplacePresetId(notification.data.preset_id);
+            setReplaceNotificationId(notification.id);
+            setReplaceModalOpen(true);
+        }
+    };
+
+    const handleReplaceSuccess = async () => {
+        if (replaceNotificationId) {
+            await handleDelete(replaceNotificationId);
+        }
+        invalidate({ resource: "filament-preset", invalidates: ["list"] });
+    };
+
     const notificationsList = (
         <Card>
             <Space direction="vertical" style={{ width: "100%" }}>
@@ -319,6 +341,15 @@ export const NotificationsPage: React.FC = () => {
                     renderItem={(item) => (
                         <List.Item
                             actions={[
+                                item.type === "warning" && item.data?.action === "replace_preset" && (
+                                    <Button
+                                        size="small"
+                                        type="primary"
+                                        onClick={() => handleResolveConflict(item)}
+                                    >
+                                        {t("notifications.resolve", "Resolve")}
+                                    </Button>
+                                ),
                                 !item.is_read && (
                                     <Button size="small" onClick={() => handleMarkAsRead(item.id)} icon={<CheckOutlined />}>
                                         {t("notificationsPage.list.markRead")}
@@ -339,6 +370,7 @@ export const NotificationsPage: React.FC = () => {
                                     <Space>
                                         {item.title}
                                         {!item.is_read && <Tag color="blue">{t("notificationsPage.list.unread")}</Tag>}
+                                        {item.type === "warning" && <Tag color="orange">{t("notifications.types.warning", "Warning")}</Tag>}
                                     </Space>
                                 }
                                 description={
@@ -355,6 +387,15 @@ export const NotificationsPage: React.FC = () => {
                     )}
                 />
             </Space>
+            {replacePresetId && (
+                <PresetReplaceModal
+                    isOpen={replaceModalOpen}
+                    onClose={() => setReplaceModalOpen(false)}
+                    presetId={replacePresetId}
+                    notificationId={replaceNotificationId || undefined}
+                    onSuccess={handleReplaceSuccess}
+                />
+            )}
         </Card>
     );
 

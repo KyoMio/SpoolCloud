@@ -113,6 +113,7 @@ class Filament(BaseModel):
         examples=["PolyTerra™ Charcoal Black"],
     )
     vendor: Optional[Vendor] = Field(None, description="The vendor of this filament type.")
+    preset_id: Optional[int] = Field(None, description="The ID of the filament preset.")
     material: Optional[str] = Field(
         None,
         max_length=64,
@@ -206,6 +207,7 @@ class Filament(BaseModel):
             registered=item.registered,
             name=item.name,
             vendor=Vendor.from_db(item.vendor) if item.vendor is not None else None,
+            preset_id=item.preset_id,
             material=item.material,
             price=item.price,
             density=item.density,
@@ -429,9 +431,16 @@ class SettingEvent(Event):
     resource: Literal["setting"] = Field(description="Resource type.")
 
 
+class FilamentPresetParameters(BaseModel):
+    name: str = Field(max_length=64, description="Preset name.")
+    code: Optional[str] = Field(None, max_length=32, description="Preset code.")
+    filament_ids: Optional[list[int]] = Field(None, description="List of filament IDs in this preset.")
+
+
 class FilamentPreset(BaseModel):
     id: int = Field(description="Unique internal ID of this preset.")
     name: str = Field(max_length=64, description="Preset name.")
+    code: Optional[str] = Field(None, max_length=32, description="Preset code.")
     filaments: list[Filament] = Field(description="List of filaments in this preset.")
 
     @staticmethod
@@ -439,6 +448,7 @@ class FilamentPreset(BaseModel):
         return FilamentPreset(
             id=item.id,
             name=item.name,
+            code=item.code,
             filaments=[Filament.from_db(f) for f in item.filaments],
         )
 

@@ -15,14 +15,7 @@ from spoolcloud.database import database, models
 router = APIRouter(prefix="/invite-code", tags=["invite-code (邀请码)"])
 
 
-async def require_admin(current_user: Annotated[models.User, Depends(auth.get_current_user)]) -> models.User:
-    """Dependency to require admin role."""
-    if not current_user.is_admin:
-        raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN,
-            detail="Admin access required",
-        )
-    return current_user
+from spoolcloud.api.v1.auth import require_admin
 
 
 @router.post("", status_code=status.HTTP_201_CREATED)

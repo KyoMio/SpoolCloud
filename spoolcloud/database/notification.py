@@ -76,6 +76,32 @@ async def create_notification(
     return notification
 
 
+async def find_notification_by_preset(
+    *,
+    db: AsyncSession,
+    user_id: int,
+    preset_id: int,
+) -> Optional[models.InternalNotification]:
+    """Find an existing conflict notification for a preset."""
+    stmt = (
+        select(models.InternalNotification)
+        .where(
+            models.InternalNotification.user_id == user_id,
+            models.InternalNotification.type == NotificationType.WARNING.value,
+            models.InternalNotification.is_read == False,
+        )
+    )
+    result = await db.execute(stmt)
+    notifications = result.scalars().all()
+    
+    # Check data field for matching preset_id
+    for notif in notifications:
+        if notif.data and notif.data.get("preset_id") == preset_id and notif.data.get("action") == "replace_preset":
+            return notif
+    
+    return None
+
+
 async def get_notifications(
     *,
     db: AsyncSession,

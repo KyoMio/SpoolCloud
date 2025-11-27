@@ -11,6 +11,7 @@ from pydantic import BaseModel, Field, field_validator, model_validator
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from spoolcloud import auth
+from spoolcloud.api.v1 import auth as v1_auth
 from spoolcloud.api.v1.models import Filament, FilamentEvent, Message, MultiColorDirection
 from spoolcloud.database import filament, models
 from spoolcloud.database.database import get_db_session
@@ -39,6 +40,7 @@ class FilamentParameters(BaseModel):
         ),
         examples=["PolyTerra™ Charcoal Black"],
     )
+    preset_id: Optional[int] = Field(None, description="The ID of the filament preset.")
     vendor_id: Optional[int] = Field(None, description="The ID of the vendor of this filament type.")
     material: Optional[str] = Field(
         None,
@@ -376,6 +378,7 @@ async def find(
 )
 async def notify_any(
     websocket: WebSocket,
+    current_user: Annotated[models.User, Depends(v1_auth.get_current_user_ws)],
 ) -> None:
     await websocket.accept()
     websocket_manager.connect(("filament",), websocket)
@@ -414,6 +417,7 @@ async def get(
 async def notify(
     websocket: WebSocket,
     filament_id: int,
+    current_user: Annotated[models.User, Depends(v1_auth.get_current_user_ws)],
 ) -> None:
     await websocket.accept()
     websocket_manager.connect(("filament", str(filament_id)), websocket)
@@ -453,6 +457,7 @@ async def create(  # noqa: ANN201
         diameter=body.diameter,
         name=body.name,
         vendor_id=body.vendor_id,
+        preset_id=body.preset_id,
         material=body.material,
         price=body.price,
         weight=body.weight,

@@ -75,6 +75,7 @@ class FilamentPreset(Base):
     user_id: Mapped[int] = mapped_column(ForeignKey("user.id"), index=True)
     user: Mapped["User"] = relationship(back_populates="presets")
     name: Mapped[str] = mapped_column(String(64))
+    code: Mapped[Optional[str]] = mapped_column(String(32), nullable=True)
     
     filaments: Mapped[list["Filament"]] = relationship(back_populates="preset")
 

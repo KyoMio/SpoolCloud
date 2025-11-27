@@ -9,7 +9,7 @@ from sqlalchemy.future import select
 from spoolcloud import auth
 from spoolcloud.api.v1 import models as v1_models
 from spoolcloud.database import database, models
-from spoolcloud.api.v1.invite_code import require_admin
+from spoolcloud.api.v1.auth import require_admin
 
 router = APIRouter(prefix="/admin", tags=["admin (管理员)"])
 

@@ -67,7 +67,13 @@ function subscribeSingle(
     return () => {};
   }
 
-  const websocketURL = id ? toWebsocketURL(`${apiUrl}/${resource}/${id}`) : toWebsocketURL(`${apiUrl}/${resource}`);
+  let websocketURL = id ? toWebsocketURL(`${apiUrl}/${resource}/${id}`) : toWebsocketURL(`${apiUrl}/${resource}`);
+  
+  // Add auth token
+  const token = localStorage.getItem("token");
+  if (token) {
+    websocketURL += `?token=${token}`;
+  }
 
   const ws = new WebSocket(websocketURL);
   ws.onmessage = (message) => {

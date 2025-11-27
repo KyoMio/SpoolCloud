@@ -3,9 +3,9 @@
 import hashlib
 import secrets
 from datetime import datetime
-from typing import Annotated
+from typing import Annotated, Optional
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status, WebSocket, Query
 from fastapi.responses import JSONResponse
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -194,3 +194,31 @@ async def change_password(
     await db.commit()
     
     return v1_models.Message(message="Password changed successfully.")
+
+
+async def require_admin(current_user: Annotated[models.User, Depends(auth.get_current_user)]) -> models.User:
+    """Dependency to require admin role."""
+    if not current_user.is_admin:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Admin access required",
+        )
+    return current_user
+
+
+async def get_current_user_ws(
+    websocket: WebSocket,
+    token: Optional[str] = Query(None),
+    db: AsyncSession = Depends(database.get_db_session),
+) -> models.User:
+    """Get the current user from a websocket connection."""
+    if token is None:
+        await websocket.close(code=status.WS_1008_POLICY_VIOLATION)
+        raise HTTPException(status_code=403, detail="Authentication required")
+
+    try:
+        user = await auth.get_current_user(token=token, api_key=None, db=db)
+        return user
+    except HTTPException:
+        await websocket.close(code=status.WS_1008_POLICY_VIOLATION)
+        raise HTTPException(status_code=403, detail="Invalid credentials")
