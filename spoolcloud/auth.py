@@ -12,7 +12,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 
 from spoolcloud.database.database import get_db_session
-from spoolcloud.database.models import APIKey, User
+from spoolcloud.database.models import APIKey, User, UserRole
 from spoolcloud.env import get_auth_secret
 
 # Password hashing
@@ -60,8 +60,14 @@ async def ensure_admin_user(db: AsyncSession) -> None:
         logger = logging.getLogger(__name__)
         logger.info("No users found. Creating default admin user (admin/admin).")
         
-        admin = await create_user(db, "admin", "admin")
-        admin.is_admin = True
+        hashed_password = get_password_hash("admin")
+        admin = User(
+            username="admin", 
+            password_hash=hashed_password, 
+            is_admin=True, 
+            role=UserRole.ADMIN.value
+        )
+        db.add(admin)
         await db.commit()
         logger.info("Default admin user created successfully.")
 
