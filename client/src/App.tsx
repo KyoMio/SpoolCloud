@@ -23,6 +23,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router";
 import { TOKEN_KEY, authProvider } from "./authProvider";
+import { accessControlProvider } from "./components/accessControlProvider";
 import dataProvider from "./components/dataProvider";
 import { Favicon } from "./components/favicon";
 import { SpoolCloudLayout } from "./components/layout";
@@ -109,6 +110,7 @@ function App() {
                             notificationProvider={SpoolCloudNotificationProvider}
                             authProvider={authProvider}
                             i18nProvider={i18nProvider}
+                            accessControlProvider={accessControlProvider}
                             routerProvider={routerBindings}
                             liveProvider={liveProvider(getAPIURL())}
                             resources={[

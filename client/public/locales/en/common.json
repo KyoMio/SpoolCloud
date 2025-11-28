@@ -44,7 +44,11 @@
         "editError": "Error when editing {{resource}} (status code: {{statusCode}})",
         "importProgress": "Importing: {{processed}}/{{total}}",
         "saveSuccessful": "Save successful!",
-        "validationError": "Validation error: {{error}}"
+        "validationError": "Validation error: {{error}}",
+        "resolve": "Resolve",
+        "types": {
+            "warning": "Warning"
+        }
     },
     "kofi": "Tip me on Ko-fi",
     "loading": "Loading",
@@ -410,7 +414,8 @@
         "apiKeyCreateFailed": "Failed to create API key.",
         "apiKeyDeleted": "API key deleted.",
         "apiKeyDeleteFailed": "Failed to delete API key.",
-        "apiKeyWarning": "This is your API key. Copy it now, you won't be able to see it again!"
+        "apiKeyWarning": "This is your API key. Copy it now, you won't be able to see it again!",
+        "apiKeyDescription": "Prefix: {{prefix}} | Created: {{date}}"
     },
     "notificationsPage": {
         "title": "Notifications",
@@ -421,6 +426,7 @@
         "list": {
             "empty": "No notifications",
             "markAllRead": "Mark all as read",
+            "markAllReadSuccess": "All notifications marked as read",
             "markRead": "Mark as read",
             "delete": "Delete",
             "read": "Read",
@@ -442,7 +448,14 @@
             "saveError": "Failed to save configuration.",
             "testNotification": "Test Notification",
             "testSuccess": "Test notification sent successfully!",
-            "testError": "Failed to send test notification. Please check your configuration."
+            "testError": "Failed to send test notification. Please check your configuration.",
+            "smtpServer": "SMTP Server",
+            "smtpPort": "SMTP Port",
+            "email": "Email",
+            "password": "Password",
+            "emailTo": "Email To",
+            "emailToPlaceholder": "Leave empty to send to yourself",
+            "headers": "Headers"
         }
     },
     "pages": {
@@ -483,23 +496,6 @@
             "haveAccount": "Already have an account?",
             "login": "Sign in"
         }
-    },
-    "profile": {
-        "title": "User Profile",
-        "general": "General",
-        "apiKeys": "API Keys",
-        "oldPassword": "Old Password",
-        "newPassword": "New Password",
-        "changePassword": "Change Password",
-        "passwordChanged": "Password changed successfully",
-        "passwordChangeFailed": "Failed to change password",
-        "createApiKey": "Create API Key",
-        "apiKeyLabel": "Label",
-        "apiKeyWarning": "Save this key in a safe place. You won't be able to see it again!",
-        "apiKeyCreated": "API Key created successfully",
-        "apiKeyCreateFailed": "Failed to create API Key",
-        "apiKeyDeleted": "API Key deleted successfully",
-        "apiKeyDeleteFailed": "Failed to delete API Key"
     },
     "userManagement": {
         "title": "User Management",

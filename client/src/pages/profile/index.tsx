@@ -372,9 +372,10 @@ export const ProfilePage = () => {
                             >
                                 <List.Item.Meta
                                     title={item.label}
-                                    description={`Prefix: ${item.key_prefix} | Created: ${new Date(
-                                        item.created_at
-                                    ).toLocaleString()}`}
+                                    description={t("profile.apiKeyDescription", {
+                                        prefix: item.key_prefix,
+                                        date: new Date(item.created_at).toLocaleString(),
+                                    })}
                                 />
                             </List.Item>
                         )}

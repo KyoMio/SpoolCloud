@@ -116,7 +116,7 @@ export const NotificationsPage: React.FC = () => {
             }
         });
         invalidate({ resource: "notification", invalidates: ["list"] });
-        message.success(t("notificationsPage.list.markAllReadSuccess") || "All notifications marked as read");
+        message.success(t("notificationsPage.list.markAllReadSuccess"));
     };
 
     const handleDelete = async (id: number) => {
@@ -347,7 +347,7 @@ export const NotificationsPage: React.FC = () => {
                                         type="primary"
                                         onClick={() => handleResolveConflict(item)}
                                     >
-                                        {t("notifications.resolve", "Resolve")}
+                                        {t("notifications.resolve")}
                                     </Button>
                                 ),
                                 !item.is_read && (
@@ -370,7 +370,7 @@ export const NotificationsPage: React.FC = () => {
                                     <Space>
                                         {item.title}
                                         {!item.is_read && <Tag color="blue">{t("notificationsPage.list.unread")}</Tag>}
-                                        {item.type === "warning" && <Tag color="orange">{t("notifications.types.warning", "Warning")}</Tag>}
+                                        {item.type === "warning" && <Tag color="orange">{t("notifications.types.warning")}</Tag>}
                                     </Space>
                                 }
                                 description={

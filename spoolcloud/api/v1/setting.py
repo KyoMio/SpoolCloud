@@ -4,7 +4,7 @@ import asyncio
 import logging
 from typing import Annotated, Union
 
-from fastapi import APIRouter, Body, Depends, WebSocket, WebSocketDisconnect
+from fastapi import APIRouter, Body, Depends, Request, WebSocket, WebSocketDisconnect
 from fastapi.responses import JSONResponse
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -67,7 +67,7 @@ async def get(
         return JSONResponse(status_code=404, content=Message(message=str(e)).dict())
 
     try:
-        db_item = await setting.get(db, definition)
+        db_item = await setting.get(db, definition, user_id=current_user.id)
         value = db_item.value
         is_set = True
     except ItemNotFoundError:
@@ -95,7 +95,7 @@ async def find(
     settings: dict[str, SettingResponse] = {}
 
     # First get all settings that have been set.
-    db_items = await setting.get_all(db)
+    db_items = await setting.get_all(db, user_id=current_user.id)
     for db_item in db_items:
         try:
             definition = parse_setting(db_item.key)
@@ -155,18 +155,34 @@ async def notify(
     ),
     response_model_exclude_none=True,
     response_model=SettingResponse,
-    responses={404: {"model": Message}},
+    responses={404: {"model": Message}, 403: {"model": Message}},
 )
 async def update(
     db: Annotated[AsyncSession, Depends(get_db_session)],
     current_user: Annotated[User, Depends(auth.get_current_user)],
     key: str,
-    body: Annotated[str, Body()],
+    request: Request,
 ) -> Union[SettingResponse, JSONResponse]:
     try:
         definition = parse_setting(key)
     except ValueError as e:
         return JSONResponse(status_code=404, content=Message(message=str(e)).dict())
+
+    # Check permissions
+    if definition.is_user_specific:
+        # User-specific settings can be updated by any authenticated user
+        target_user_id = current_user.id
+    else:
+        # Global settings can only be updated by admins
+        if not current_user.is_admin:
+            return JSONResponse(
+                status_code=403, 
+                content=Message(message="Only administrators can change global settings.").dict()
+            )
+        target_user_id = None
+
+    body_bytes = await request.body()
+    body = body_bytes.decode("utf-8")
 
     if body and body != "null":
         try:
@@ -174,17 +190,20 @@ async def update(
         except ValueError as e:
             return JSONResponse(status_code=400, content=Message(message=str(e)).dict())
 
-        await setting.update(db=db, definition=definition, value=body)
-        logger.info('Setting "%s" has been set to "%s".', key, body)
+        await setting.update(db=db, definition=definition, value=body, user_id=target_user_id)
+        logger.info('Setting "%s" has been set to "%s" for user_id=%s.', key, body, target_user_id)
     else:
-        await setting.delete(db=db, definition=definition)
-        logger.info('Setting "%s" has been unset.', key)
+        await setting.delete(db=db, definition=definition, user_id=target_user_id)
+        logger.info('Setting "%s" has been unset for user_id=%s.', key, target_user_id)
 
     await db.commit()
 
     # Get the new value of the setting.
     try:
-        db_item = await setting.get(db, definition)
+        # For verification, we fetch what we just set.
+        # If it was user specific, we fetch for user.
+        # If it was global, we fetch global (user_id=None).
+        db_item = await setting.get(db, definition, user_id=target_user_id)
         value = db_item.value
         is_set = True
     except ItemNotFoundError:

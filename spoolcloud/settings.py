@@ -25,6 +25,7 @@ class SettingDefinition:
     key: str
     type: SettingType
     default: str
+    is_user_specific: bool = False
 
     def validate_type(self, value: str) -> None:  # noqa: C901
         """Validate that the value has the correct type."""
@@ -49,9 +50,9 @@ class SettingDefinition:
 SETTINGS: dict[str, SettingDefinition] = {}
 
 
-def register_setting(key: str, typ: SettingType, default: str) -> None:
+def register_setting(key: str, typ: SettingType, default: str, is_user_specific: bool = False) -> None:
     """Register a setting."""
-    SETTINGS[key] = SettingDefinition(key, typ, default)
+    SETTINGS[key] = SettingDefinition(key, typ, default, is_user_specific)
 
 
 def parse_setting(key: str) -> SettingDefinition:
@@ -70,5 +71,5 @@ register_setting("extra_fields_filament", SettingType.ARRAY, json.dumps([]))
 register_setting("extra_fields_spool", SettingType.ARRAY, json.dumps([]))
 register_setting("base_url", SettingType.STRING, json.dumps(""))
 
-register_setting("locations", SettingType.ARRAY, json.dumps([]))
-register_setting("locations_spoolorders", SettingType.OBJECT, json.dumps({}))
+register_setting("locations", SettingType.ARRAY, json.dumps([]), is_user_specific=True)
+register_setting("locations_spoolorders", SettingType.OBJECT, json.dumps({}), is_user_specific=True)

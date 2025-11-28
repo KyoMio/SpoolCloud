@@ -202,6 +202,15 @@ class VendorField(Base):
     value: Mapped[str] = mapped_column(Text())
 
 
+class UserSetting(Base):
+    __tablename__ = "user_setting"
+
+    user_id: Mapped[int] = mapped_column(ForeignKey("user.id"), primary_key=True, index=True)
+    key: Mapped[str] = mapped_column(String(64), primary_key=True, index=True)
+    value: Mapped[str] = mapped_column(Text())
+    last_updated: Mapped[datetime] = mapped_column()
+
+
 class FilamentField(Base):
     __tablename__ = "filament_field"
 

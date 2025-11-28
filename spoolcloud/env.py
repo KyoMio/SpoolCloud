@@ -12,6 +12,41 @@ from urllib import parse
 
 from platformdirs import user_data_dir
 
+
+def load_dotenv() -> None:
+    """Load environment variables from .env file."""
+    env_file = Path(".env")
+    if not env_file.exists():
+        return
+
+    try:
+        with env_file.open(encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if not line or line.startswith("#"):
+                    continue
+
+                # Split by first =
+                parts = line.split("=", 1)
+                if len(parts) != 2:
+                    continue
+
+                key, value = parts[0].strip(), parts[1].strip()
+
+                # Remove surrounding quotes if present
+                if (value.startswith('"') and value.endswith('"')) or \
+                   (value.startswith("'") and value.endswith("'")):
+                    value = value[1:-1]
+
+                # Set only if not already set (os.environ priority)
+                if key not in os.environ:
+                    os.environ[key] = value
+    except Exception as e:
+        # Logger might not be configured yet, but we can try printing or ignoring
+        print(f"Failed to load .env file: {e}")
+
+load_dotenv()
+
 logger = logging.getLogger(__name__)
 
 
