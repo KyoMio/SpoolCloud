@@ -446,7 +446,14 @@
             "password": "密码",
             "emailTo": "收件人",
             "emailToPlaceholder": "留空则发送给自己",
-            "headers": "Headers"
+            "headers": "Headers",
+            "language": "通知语言",
+            "types": {
+                "label": "通知类型",
+                "system": "系统提示",
+                "deduction": "耗材扣减提醒",
+                "low_supply": "耗材余量不足提醒"
+            }
         }
     },
     "pages": {

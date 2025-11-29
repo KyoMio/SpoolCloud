@@ -459,6 +459,7 @@ class NotificationConfig(BaseModel):
     webhook_url: Optional[str] = Field(None, description="Webhook URL (for channels that use webhooks).")
     config_data: Optional[dict] = Field(None, description="Channel-specific configuration data.")
     is_enabled: bool = Field(description="Whether notifications are enabled.")
+    notification_types: Optional[list[str]] = Field(None, description="List of enabled notification types.")
 
     @staticmethod
     def from_db(item: models.NotificationConfig) -> "NotificationConfig":
@@ -476,6 +477,7 @@ class NotificationConfig(BaseModel):
             webhook_url=item.webhook_url,
             config_data=config_data,
             is_enabled=item.is_enabled,
+            notification_types=item.notification_types,
         )
 
 

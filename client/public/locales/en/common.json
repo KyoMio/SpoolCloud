@@ -455,7 +455,13 @@
             "password": "Password",
             "emailTo": "Email To",
             "emailToPlaceholder": "Leave empty to send to yourself",
-            "headers": "Headers"
+            "headers": "Headers",
+            "types": {
+                "label": "Notification Types",
+                "system": "System Messages",
+                "deduction": "Filament Usage",
+                "low_supply": "Low Supply Warning"
+            }
         }
     },
     "pages": {

@@ -27,6 +27,8 @@ async def update_config(
     webhook_url: Optional[str],
     config_data: Optional[str],
     is_enabled: bool,
+    notification_types: Optional[list[str]] = None,
+    language: str = "zh-CN",
 ) -> models.NotificationConfig:
     """Update or create notification configuration for a user."""
     result = await db.execute(
@@ -39,6 +41,8 @@ async def update_config(
         config.webhook_url = webhook_url
         config.config_data = config_data
         config.is_enabled = is_enabled
+        config.notification_types = notification_types
+        config.language = language
     else:
         config = models.NotificationConfig(
             user_id=user_id,
@@ -46,6 +50,8 @@ async def update_config(
             webhook_url=webhook_url,
             config_data=config_data,
             is_enabled=is_enabled,
+            notification_types=notification_types,
+            language=language,
         )
         db.add(config)
 
@@ -73,6 +79,20 @@ async def create_notification(
     )
     db.add(notification)
     await db.commit()
+    
+    # Forward to external notification service if enabled
+    # We use "system" as the type for internal notifications forwarding
+    from spoolcloud.services.notification_service import NotificationService
+    # We don't await this to avoid blocking? Or should we?
+    # For reliability, we await it. If it fails, we just log error (handled in service).
+    await NotificationService.send_notification(
+        db=db,
+        user_id=user_id,
+        type="system",
+        title=title,
+        message=message,
+    )
+    
     return notification
 
 

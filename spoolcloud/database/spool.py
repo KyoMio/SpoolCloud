@@ -104,11 +104,14 @@ async def create(
 
 async def get_by_id(db: AsyncSession, spool_id: int, user_id: int) -> models.Spool:
     """Get a spool object from the database by the unique ID."""
-    spool = await db.get(
-        models.Spool,
-        spool_id,
-        options=[joinedload("*")],  # Load all nested objects as well
+    stmt = (
+        sqlalchemy.select(models.Spool)
+        .where(models.Spool.id == spool_id)
+        .options(joinedload(models.Spool.filament).joinedload(models.Filament.vendor))
     )
+    result = await db.execute(stmt)
+    spool = result.unique().scalar_one_or_none()
+    
     if spool is None or spool.user_id != user_id:
         raise ItemNotFoundError(f"No spool with ID {spool_id} found.")
     return spool

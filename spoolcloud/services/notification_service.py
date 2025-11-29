@@ -1,7 +1,10 @@
 """Notification service for sending notifications through various channels."""
 import json
 import logging
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from sqlalchemy.ext.asyncio import AsyncSession
 import httpx
 import smtplib
 from email.mime.text import MIMEText
@@ -13,6 +16,52 @@ logger = logging.getLogger(__name__)
 class NotificationService:
     """Service for sending notifications through different channels."""
     
+    @staticmethod
+    async def send_notification(
+        db: "AsyncSession",
+        user_id: int,
+        type: str,
+        title: str,
+        message: str,
+    ) -> tuple[bool, str]:
+        """Send a notification to the user's configured channel if enabled."""
+        from spoolcloud.database import notification
+        
+        config = await notification.get_config(db, user_id)
+        if not config or not config.is_enabled:
+            return False, "Notifications disabled or not configured."
+            
+        # Check if type is enabled
+        # If notification_types is None or empty, we assume all are enabled (or none? Plan said default to all)
+        # But in the model we didn't set a default. Let's assume if it's None, all are enabled for backward compatibility.
+        # If it's a list, check if type is in it.
+        if config.notification_types is not None:
+             # If it's a list (JSON decoded), check if type is in it
+            if isinstance(config.notification_types, list) and type not in config.notification_types:
+                return False, f"Notification type '{type}' is disabled."
+        
+        # Parse config_data
+        import json
+        config_data = {}
+        if config.config_data:
+            try:
+                config_data = json.loads(config.config_data)
+            except json.JSONDecodeError:
+                pass
+                
+        if config.channel == "serverchan":
+            return await NotificationService._send_serverchan(config.webhook_url, title, message)
+        elif config.channel == "bark":
+            return await NotificationService._send_bark(config_data, title, message)
+        elif config.channel == "synochat":
+            return await NotificationService._send_synochat(config.webhook_url, title, message)
+        elif config.channel == "email":
+            return await NotificationService._send_email(config_data, title, message)
+        elif config.channel == "webhook":
+            return await NotificationService._send_webhook(config.webhook_url, config_data, title, message)
+        else:
+            return False, f"Unsupported channel: {config.channel}"
+
     @staticmethod
     async def send_test_notification(
         channel: str,
@@ -35,6 +84,10 @@ class NotificationService:
                 return await NotificationService._send_bark(config_data or {}, test_title, test_message)
             elif channel == "synochat":
                 return await NotificationService._send_synochat(webhook_url, test_title, test_message)
+            elif channel == "email":
+                return await NotificationService._send_email(config_data or {}, test_title, test_message)
+            elif channel == "webhook":
+                return await NotificationService._send_webhook(webhook_url, config_data or {}, test_title, test_message)
             else:
                 return False, f"Unsupported channel: {channel}"
         except Exception as e:

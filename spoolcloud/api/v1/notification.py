@@ -27,6 +27,11 @@ class NotificationConfigParameters(BaseModel):
     webhook_url: Optional[str] = Field(None, description="Webhook URL (for channels that use webhooks).")
     config_data: Optional[dict] = Field(None, description="Channel-specific configuration data.")
     is_enabled: bool = Field(default=True, description="Whether notifications are enabled.")
+    notification_types: Optional[list[str]] = Field(
+        None, 
+        description="List of enabled notification types (system, deduction, low_supply). If None, all are enabled."
+    )
+    language: str = Field(default="zh-CN", description="Notification language (zh-CN, en-US).")
 
 
 @router.get(
@@ -48,6 +53,8 @@ async def get_config(
         channel="serverchan",
         webhook_url="",
         is_enabled=True,
+        notification_types=["system", "deduction", "low_supply"], # Default to all enabled
+        language="zh-CN",
     )
 
 
@@ -74,6 +81,8 @@ async def update_config(
         webhook_url=body.webhook_url,
         config_data=config_data_str,
         is_enabled=body.is_enabled,
+        notification_types=body.notification_types,
+        language=body.language,
     )
     return NotificationConfig.from_db(db_item)
 

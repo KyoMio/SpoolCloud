@@ -15,6 +15,7 @@ import {
     Tabs,
     Tag,
     Typography,
+    Checkbox,
 } from "antd";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -41,6 +42,8 @@ interface NotificationConfig {
     webhook_url?: string;
     config_data?: Record<string, any>;
     is_enabled: boolean;
+    notification_types?: string[];
+    language?: string;
 }
 
 export const NotificationsPage: React.FC = () => {
@@ -78,6 +81,8 @@ export const NotificationsPage: React.FC = () => {
                 is_enabled: config.is_enabled,
                 channel: config.channel,
                 webhook_url: config.webhook_url,
+                notification_types: config.notification_types || ["system", "deduction", "low_supply"],
+                language: config.language || "zh-CN",
                 ...config.config_data,
             });
         }
@@ -153,6 +158,8 @@ export const NotificationsPage: React.FC = () => {
                     webhook_url: values.webhook_url || null,
                     config_data: Object.keys(config_data).length > 0 ? config_data : null,
                     is_enabled: values.is_enabled,
+                    notification_types: values.notification_types,
+                    language: values.language,
                 },
                 config: {
                     headers: {
@@ -423,6 +430,30 @@ export const NotificationsPage: React.FC = () => {
                         valuePropName="checked"
                     >
                         <Switch />
+                    </Form.Item>
+
+                    <Form.Item
+                        name="notification_types"
+                        label={t("notificationsPage.config.types.label")}
+                    >
+                        <Checkbox.Group>
+                            <Space direction="vertical">
+                                <Checkbox value="system">{t("notificationsPage.config.types.system")}</Checkbox>
+                                <Checkbox value="deduction">{t("notificationsPage.config.types.deduction")}</Checkbox>
+                                <Checkbox value="low_supply">{t("notificationsPage.config.types.low_supply")}</Checkbox>
+                            </Space>
+                        </Checkbox.Group>
+                    </Form.Item>
+
+                    <Form.Item
+                        name="language"
+                        label={t("notificationsPage.config.language")}
+                        initialValue="zh-CN"
+                    >
+                        <Select>
+                            <Select.Option value="zh-CN">简体中文</Select.Option>
+                            <Select.Option value="en-US">English</Select.Option>
+                        </Select>
                     </Form.Item>
 
                     <Form.Item

@@ -5,11 +5,12 @@ import logging
 from datetime import datetime
 from typing import Annotated, Optional
 
-from fastapi import APIRouter, Depends, Query, WebSocket, WebSocketDisconnect
+from fastapi import APIRouter, Depends, Query, BackgroundTasks, WebSocket, WebSocketDisconnect
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field, field_validator
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.orm import joinedload
 
 from spoolcloud import auth
 from spoolcloud.api.v1.models import Message, Spool, SpoolEvent
@@ -26,8 +27,6 @@ router = APIRouter(
     prefix="/spool",
     tags=["spool (线轴)"],
 )
-
-# ruff: noqa: D103,B008
 
 
 class SpoolParameters(BaseModel):
@@ -515,25 +514,126 @@ async def use(  # noqa: ANN201
     current_user: Annotated[models.User, Depends(auth.get_current_user)],
     spool_id: int,
     body: SpoolUseParameters,
+    background_tasks: BackgroundTasks,
 ):
-    if body.use_weight is not None and body.use_length is not None:
-        return JSONResponse(
-            status_code=400,
-            content={"message": "Only specify either use_weight or use_length."},
-        )
+    # Calculate remaining weight before update
+    spool_before = await spool.get_by_id(db, spool_id, current_user.id)
+    remaining_weight_before = None
+    if spool_before.initial_weight is not None:
+        remaining_weight_before = max(spool_before.initial_weight - spool_before.used_weight, 0)
+    elif spool_before.filament.weight is not None:
+        remaining_weight_before = max(spool_before.filament.weight - spool_before.used_weight, 0)
 
     if body.use_weight is not None:
-        db_item = await spool.use_weight(db, spool_id, current_user.id, body.use_weight)
-        return Spool.from_db(db_item)
-
-    if body.use_length is not None:
-        db_item = await spool.use_length(db, spool_id, current_user.id, body.use_length)
-        return Spool.from_db(db_item)
-
-    return JSONResponse(
-        status_code=400,
-        content={"message": "Either use_weight or use_length must be specified."},
+        await spool.use_weight(db, spool_id, current_user.id, body.use_weight)
+    elif body.use_length is not None:
+        await spool.use_length(db, spool_id, current_user.id, body.use_length)
+    else:
+        return JSONResponse(
+            status_code=400,
+            content={"message": "Either use_weight or use_length must be specified."},
+        )
+        
+    # Re-fetch the spool to ensure it's fresh and relationships are loaded
+    # This prevents MissingGreenlet error when accessing relationships after commit
+    db_item = await spool.get_by_id(db, spool_id, current_user.id)
+        
+    # Calculate remaining weight after update
+    remaining_weight_after = None
+    if db_item.initial_weight is not None:
+        remaining_weight_after = max(db_item.initial_weight - db_item.used_weight, 0)
+    elif db_item.filament.weight is not None:
+        remaining_weight_after = max(db_item.filament.weight - db_item.used_weight, 0)
+        
+    # Trigger notifications in background
+    background_tasks.add_task(
+        send_usage_notifications,
+        user_id=current_user.id,
+        spool_id=spool_id,
+        use_weight=body.use_weight,
+        use_length=body.use_length,
+        remaining_weight_before=remaining_weight_before,
+        remaining_weight_after=remaining_weight_after,
+        spool_name=f"{db_item.filament.name} (#{spool_id})" if db_item.filament and db_item.filament.name else f"Spool #{spool_id}",
     )
+            
+    return Spool.from_db(db_item)
+
+async def send_usage_notifications(
+    user_id: int,
+    spool_id: int,
+    use_weight: float | None,
+    use_length: float | None,
+    remaining_weight_before: float | None,
+    remaining_weight_after: float | None,
+    spool_name: str,
+) -> None:
+    """Send usage notifications in the background."""
+    from spoolcloud.database.database import get_db_session_context
+    from spoolcloud.services.notification_service import NotificationService
+    import asyncio
+
+    async with get_db_session_context() as db:
+        try:
+            # Get user language
+            from spoolcloud.database import notification
+            config = await notification.get_config(db, user_id)
+            language = config.language if config else "zh-CN"
+            
+            # Translations
+            translations = {
+                "zh-CN": {
+                    "deduction_title": "耗材使用提醒",
+                    "deduction_message": "已使用 {usage} ({spool_name})。剩余: {remaining:.1f}g",
+                    "deduction_message_no_remaining": "已使用 {usage} ({spool_name})。",
+                    "low_supply_title": "余量不足警告",
+                    "low_supply_message": "{spool_name} 余量不足！剩余: {remaining:.1f}g",
+                },
+                "en-US": {
+                    "deduction_title": "Filament Used",
+                    "deduction_message": "Used {usage} from {spool_name}. Remaining: {remaining:.1f}g",
+                    "deduction_message_no_remaining": "Used {usage} from {spool_name}.",
+                    "low_supply_title": "Low Supply Warning",
+                    "low_supply_message": "{spool_name} is running low! Remaining: {remaining:.1f}g",
+                }
+            }
+            
+            t = translations.get(language, translations["zh-CN"])
+
+            # 1. Deduction notification
+            usage_str = ""
+            if use_weight is not None:
+                usage_str = f"{use_weight}g"
+            elif use_length is not None:
+                usage_str = f"{use_length}mm"
+                
+            message = t["deduction_message_no_remaining"].format(usage=usage_str, spool_name=spool_name)
+            if remaining_weight_after is not None:
+                message = t["deduction_message"].format(usage=usage_str, spool_name=spool_name, remaining=remaining_weight_after)
+
+            await NotificationService.send_notification(
+                db=db,
+                user_id=user_id,
+                type="deduction",
+                title=t["deduction_title"],
+                message=message,
+            )
+            
+            # 2. Low supply notification
+            # Trigger if it is below 100g (User requested to trigger every time)
+            if remaining_weight_after is not None and remaining_weight_after < 100:
+                # Add delay to prevent rate limiting or message grouping
+                await asyncio.sleep(1)
+                
+                await NotificationService.send_notification(
+                    db=db,
+                    user_id=user_id,
+                    type="low_supply",
+                    title=t["low_supply_title"],
+                    message=t["low_supply_message"].format(spool_name=spool_name, remaining=remaining_weight_after),
+                )
+        except Exception as e:
+            logger.error(f"Failed to send notification: {e}")
 
 
 @router.put(
@@ -554,7 +654,9 @@ async def measure(  # noqa: ANN201
     body: SpoolMeasureParameters,
 ):
     try:
-        db_item = await spool.measure(db, spool_id, current_user.id, body.weight)
+        await spool.measure(db, spool_id, current_user.id, body.weight)
+        # Re-fetch the spool to ensure it's fresh and relationships are loaded
+        db_item = await spool.get_by_id(db, spool_id, current_user.id)
         return Spool.from_db(db_item)
     except SpoolMeasureError as e:
         logger.exception("Failed to update spool measurement.")
