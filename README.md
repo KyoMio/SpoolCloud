@@ -24,13 +24,16 @@ SpoolCloud 在原版基础上增加了以下核心功能：
     *   支持多种通知渠道：**Server酱**、**Bark**、**Synology Chat**。
     *   **动态配置**：针对不同渠道提供专属配置界面（如 API Key, Device Key 等）。
     *   **一键测试**：配置页面内置测试按钮，确保通知服务正常工作。
+*   **🎨 耗材预设**：
+    *   支持创建和管理耗材预设，方便快速录入。
+    *   支持**预设代码**，用于快速检索和匹配。
 *   **🛡️ 权限管理**：区分管理员和普通用户权限。
 
 ## 🚀 核心功能
 
 *   **耗材管理**：全面记录耗材类型、制造商和单个线盘的信息。
 *   **Bambu Lab 集成**：支持 Bambu Lab 耗材预设。
-*   **API 集成**：提供完整的 REST API。
+*   **API 集成**：提供完整的 REST API，并附带 [Swagger UI 文档](/api/v1/docs)。
 *   **实时更新**：通过 WebSocket 实时推送线盘更新。
 *   **中央数据库**：自动同步 SpoolmanDB 的制造商和耗材数据。
 *   **多数据库支持**：支持 SQLite, PostgreSQL, MySQL 和 CockroachDB。
@@ -39,7 +42,7 @@ SpoolCloud 在原版基础上增加了以下核心功能：
 ## 📸 截图
 
 **Web 客户端预览：**
-![image](https://github.com/xxx/SpoolCloud/assets/xxx/xxx)
+*(截图待更新)*
 
 ## �️ 快速开始
 
@@ -63,6 +66,8 @@ alembic upgrade head
 SPOOLCLOUD_ALLOW_REGISTRATION=true \
 SPOOLCLOUD_DB_TYPE=sqlite \
 SPOOLCLOUD_DB_URL=sqlite+aiosqlite:///spoolcloud.db \
+SPOOLCLOUD_AUTH_SECRET=dev-secret-key \
+SPOOLCLOUD_METRICS_ENABLED=true \
 uvicorn spoolcloud.main:app --host 127.0.0.1 --port 8000 --reload
 ```
 
@@ -75,7 +80,7 @@ cd client
 npm install
 
 # 启动开发服务器
-VITE_APIURL=/api/v1 npm run dev
+npm run dev
 ```
 
 前端访问地址：`http://localhost:5173`

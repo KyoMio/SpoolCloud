@@ -470,8 +470,9 @@ export const NotificationsPage: React.FC = () => {
                                             <Select.Option value="serverchan">ServerChan</Select.Option>
                                             <Select.Option value="bark">Bark</Select.Option>
                                             <Select.Option value="synochat">Synology Chat</Select.Option>
-                                            <Select.Option value="email">Email</Select.Option>
-                                            <Select.Option value="webhook">Webhook</Select.Option>
+                                            {/* Email and Webhook are hidden for now as requested */}
+                                            {/* <Select.Option value="email">Email</Select.Option> */}
+                                            {/* <Select.Option value="webhook">Webhook</Select.Option> */}
                                         </Select>
                                     </Form.Item>
                                     <Button
