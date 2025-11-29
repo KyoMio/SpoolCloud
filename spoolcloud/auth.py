@@ -23,7 +23,7 @@ ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 * 30  # 30 days
 
 # OAuth2 Scheme
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="api/v1/auth/token")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="api/v1/auth/token", auto_error=False)
 api_key_header = APIKeyHeader(name="Authorization", auto_error=False)
 
 
@@ -85,77 +85,49 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -
 
 
 async def get_current_user(
-    token: str = Depends(oauth2_scheme),
+    token: Optional[str] = Depends(oauth2_scheme),
     api_key: Optional[str] = Depends(api_key_header),
     db: AsyncSession = Depends(get_db_session),
 ) -> User:
     """Get the current user from JWT token or API Key."""
-    # 1. Try API Key first
-    if api_key:
-        # Expect format "Bearer sk-..." or just "sk-..."? 
-        # APIKeyHeader usually returns the value.
-        # If user sends "Authorization: Bearer <key>", api_key will be "Bearer <key>"
-        # We should handle both.
-        if api_key.startswith("Bearer "):
-            key_value = api_key.split(" ")[1]
-        else:
-            key_value = api_key
-        
-        # Check if it looks like an API key (e.g. starts with sk-)
-        # If it's a JWT, it might also be passed here if the client uses Authorization header for JWT.
-        # So we need to distinguish.
-        # Let's assume API keys have a distinct prefix or we try to decode as JWT first?
-        # Actually, if oauth2_scheme is used, it extracts Bearer token.
-        # If we use APIKeyHeader, it extracts the whole header.
-        
-        # Strategy:
-        # If token is valid JWT, use it.
-        # If not, try to treat it as API Key.
-        pass
-
-    # Actually, oauth2_scheme will extract the token from "Authorization: Bearer <token>".
-    # So `token` variable will hold the token string.
-    # If the user provided an API Key as a Bearer token, `token` will be the API Key.
-    
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",
         headers={"WWW-Authenticate": "Bearer"},
     )
 
-    # Try to decode as JWT
+    # Determine the token/key to validate
+    token_to_validate = token
+
+    # If OAuth2 didn't extract a token (e.g. missing Bearer prefix), try the API key header directly
+    if not token_to_validate and api_key:
+        if api_key.startswith("Bearer "):
+            token_to_validate = api_key.split(" ")[1]
+        else:
+            token_to_validate = api_key
+
+    if not token_to_validate:
+        raise credentials_exception
+
+    # 1. Try to decode as JWT
     try:
-        payload = jwt.decode(token, get_auth_secret(), algorithms=[ALGORITHM])
+        payload = jwt.decode(token_to_validate, get_auth_secret(), algorithms=[ALGORITHM])
         username: str = payload.get("sub")
         if username is None:
             raise credentials_exception
+        
+        # If JWT valid, get user
+        result = await db.execute(select(User).where(User.username == username))
+        user = result.scalars().first()
+        if user is None:
+            raise credentials_exception
+        return user
+
     except JWTError:
-        # Not a valid JWT. Check if it is an API Key.
-        # API Key format: sk-<prefix>...
-        # We need to hash it and check DB.
-        # But we don't store the key, we store the hash.
-        # Wait, the plan says: "key_hash: String (存储哈希值，不存明文)"
-        # And "key_prefix: String".
-        # We should probably verify the prefix first to avoid hashing everything.
-        
-        # In this implementation plan, we didn't specify exact API key format validation here,
-        # but we should try to look it up.
-        
+        # 2. Not a valid JWT. Treat as API Key.
         # Hash the token (which is the API key)
-        # But wait, we need to know WHICH user it belongs to?
-        # No, we search by hash.
-        # But hashing is one-way. We can't search by hash if we use a salted hash like argon2.
-        # If we use SHA256 (fast), we can search.
-        # The plan said "key_hash: String".
-        # If we use argon2 for API keys, we can't search efficiently.
-        # Usually API keys are: prefix + secret.
-        # We can store the hash of the secret.
-        # But to find the user, we either need to iterate all keys (slow) or store a lookup ID in the key.
-        # Or use a fast hash like SHA256 for API keys since they are high entropy.
-        # Let's assume SHA256 for API keys.
-        
         import hashlib
-        key_hash = hashlib.sha256(token.encode()).hexdigest()
+        key_hash = hashlib.sha256(token_to_validate.encode()).hexdigest()
         
         result = await db.execute(select(APIKey).where(APIKey.key_hash == key_hash))
         api_key_obj = result.scalars().first()
@@ -172,10 +144,3 @@ async def get_current_user(
                 return user
         
         raise credentials_exception
-
-    # If JWT valid
-    result = await db.execute(select(User).where(User.username == username))
-    user = result.scalars().first()
-    if user is None:
-        raise credentials_exception
-    return user
