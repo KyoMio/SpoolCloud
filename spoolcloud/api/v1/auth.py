@@ -123,7 +123,7 @@ class UserCreate(v1_models.BaseModel):
     name="Register user",
     description="Register a new user with invite code.",
     response_model=v1_models.User,
-    responses={400: {" model": v1_models.Message}, 403: {"model": v1_models.Message}},
+    responses={400: {"model": v1_models.Message}, 403: {"model": v1_models.Message}},
 )
 async def register(
     db: Annotated[AsyncSession, Depends(database.get_db_session)],

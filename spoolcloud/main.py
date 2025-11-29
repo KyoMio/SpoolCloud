@@ -54,6 +54,80 @@ logger = logging.getLogger(__name__)
 app = FastAPI(
     debug=env.is_debug_mode(),
     title="SpoolCloud",
+    description="""
+    REST API for SpoolCloud.
+    SpoolCloud 的 REST API。
+
+    The API is served on the path `/api/v1/`.
+    API 服务路径为 `/api/v1/`。
+
+    Some endpoints also serve a websocket on the same path. The websocket is used to listen for changes to the data
+    that the endpoint serves. The websocket messages are JSON objects. Additionally, there is a root-level websocket
+    endpoint that listens for changes to any data in the database.
+
+    部分端点在相同路径上也提供 WebSocket 服务。WebSocket 用于监听端点服务数据的变化。WebSocket 消息为 JSON 对象。此外，还有一个根级别的 WebSocket 端点，用于监听数据库中任何数据的变化。
+
+    ## Authentication / 鉴权
+
+    该项目支持两种鉴权方式：**JWT 令牌 (Token)** 和 **API 密钥 (API Key)**。
+
+    这两种方式都需要在 HTTP 请求头中添加 `Authorization` 字段，格式均为 `Bearer <你的凭证>`。
+
+    ### 1. 使用 JWT 令牌 (适合前端或临时会话)
+
+    **获取 Token:**
+    你需要先通过用户名和密码调用登录接口获取 Token。
+
+    *   **接口**: `POST /api/v1/auth/token`
+    *   **Content-Type**: `application/x-www-form-urlencoded`
+    *   **参数**:
+        *   `username`: 你的用户名
+        *   `password`: 你的密码
+
+    **响应示例**:
+    ```json
+    {
+      "access_token": "eyJhbGciOiJIUzI1NiIsInR...",
+      "token_type": "bearer"
+    }
+    ```
+
+    **使用方式**:
+    在后续请求的 Header 中带上：
+    ```http
+    Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR...
+    ```
+
+    ### 2. 使用 API 密钥 (适合第三方集成或脚本)
+
+    **获取 API Key**:
+    你需要先登录（或使用 JWT）调用接口生成一个永久有效的 API Key。
+
+    *   **接口**: `POST /api/v1/auth/api-key`
+    *   **Body**:
+        ```json
+        {
+          "label": "My Script Key"
+        }
+        ```
+
+    **响应示例**:
+    ```json
+    {
+      "id": 1,
+      "key_prefix": "sk-abc12345",
+      "label": "My Script Key",
+      "created_at": "2023-10-27T10:00:00Z",
+      "key": "sk-abc12345..."  // 注意：完整的 Key 只会显示这一次
+    }
+    ```
+
+    **使用方式**:
+    与 JWT 一样，将其放在 Header 中：
+    ```http
+    Authorization: Bearer sk-abc12345...
+    ```
+    """,
     version=env.get_version(),
     docs_url=None,  # Disable main app docs
     redoc_url=None,  # Disable main app redoc
