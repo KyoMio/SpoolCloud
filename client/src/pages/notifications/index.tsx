@@ -51,6 +51,7 @@ export const NotificationsPage: React.FC = () => {
     const [form] = Form.useForm();
     const invalidate = useInvalidate();
     const [selectedChannel, setSelectedChannel] = useState<string>("serverchan");
+    const isEnabled = Form.useWatch("is_enabled", form);
 
     const { data: notificationsData, isLoading: isLoadingNotifications } = useList<Notification>({
         resource: "notification",
@@ -422,7 +423,7 @@ export const NotificationsPage: React.FC = () => {
                     form={form}
                     layout="vertical"
                     onFinish={handleConfigFinish}
-                    initialValues={{ is_enabled: true, channel: "serverchan" }}
+                    initialValues={{ is_enabled: false, channel: "serverchan" }}
                 >
                     <Form.Item
                         name="is_enabled"
@@ -432,57 +433,65 @@ export const NotificationsPage: React.FC = () => {
                         <Switch />
                     </Form.Item>
 
-                    <Form.Item
-                        name="notification_types"
-                        label={t("notificationsPage.config.types.label")}
-                    >
-                        <Checkbox.Group>
-                            <Space direction="vertical">
-                                <Checkbox value="system">{t("notificationsPage.config.types.system")}</Checkbox>
-                                <Checkbox value="deduction">{t("notificationsPage.config.types.deduction")}</Checkbox>
-                                <Checkbox value="low_supply">{t("notificationsPage.config.types.low_supply")}</Checkbox>
-                            </Space>
-                        </Checkbox.Group>
-                    </Form.Item>
+                    {isEnabled && (
+                        <>
+                            <Form.Item
+                                name="notification_types"
+                                label={t("notificationsPage.config.types.label")}
+                            >
+                                <Checkbox.Group>
+                                    <Space direction="vertical">
+                                        <Checkbox value="system">{t("notificationsPage.config.types.system")}</Checkbox>
+                                        <Checkbox value="deduction">{t("notificationsPage.config.types.deduction")}</Checkbox>
+                                        <Checkbox value="low_supply">{t("notificationsPage.config.types.low_supply")}</Checkbox>
+                                    </Space>
+                                </Checkbox.Group>
+                            </Form.Item>
 
-                    <Form.Item
-                        name="language"
-                        label={t("notificationsPage.config.language")}
-                        initialValue="zh-CN"
-                    >
-                        <Select>
-                            <Select.Option value="zh-CN">简体中文</Select.Option>
-                            <Select.Option value="en-US">English</Select.Option>
-                        </Select>
-                    </Form.Item>
+                            <Form.Item
+                                name="language"
+                                label={t("notificationsPage.config.language")}
+                                initialValue="zh-CN"
+                            >
+                                <Select>
+                                    <Select.Option value="zh-CN">简体中文</Select.Option>
+                                    <Select.Option value="en-US">English</Select.Option>
+                                </Select>
+                            </Form.Item>
 
-                    <Form.Item
-                        name="channel"
-                        label={t("notificationsPage.config.channel")}
-                        rules={[{ required: true }]}
-                    >
-                        <Select onChange={(value) => setSelectedChannel(value)}>
-                            <Select.Option value="serverchan">ServerChan</Select.Option>
-                            <Select.Option value="bark">Bark</Select.Option>
-                            <Select.Option value="synochat">Synology Chat</Select.Option>
-                        </Select>
-                    </Form.Item>
+                            <Form.Item label={t("notificationsPage.config.channel")}>
+                                <Space>
+                                    <Form.Item
+                                        name="channel"
+                                        noStyle
+                                        rules={[{ required: true }]}
+                                    >
+                                        <Select onChange={(value) => setSelectedChannel(value)} style={{ width: 200 }}>
+                                            <Select.Option value="serverchan">ServerChan</Select.Option>
+                                            <Select.Option value="bark">Bark</Select.Option>
+                                            <Select.Option value="synochat">Synology Chat</Select.Option>
+                                            <Select.Option value="email">Email</Select.Option>
+                                            <Select.Option value="webhook">Webhook</Select.Option>
+                                        </Select>
+                                    </Form.Item>
+                                    <Button
+                                        icon={<SendOutlined />}
+                                        onClick={handleTestNotification}
+                                        loading={isTestingNotification}
+                                    >
+                                        {t("notificationsPage.config.testNotification")}
+                                    </Button>
+                                </Space>
+                            </Form.Item>
 
-                    {renderChannelFields()}
+                            {renderChannelFields()}
+                        </>
+                    )}
 
                     <Form.Item>
-                        <Space>
-                            <Button type="primary" htmlType="submit" loading={isUpdatingConfig}>
-                                {t("notificationsPage.config.save")}
-                            </Button>
-                            <Button
-                                icon={<SendOutlined />}
-                                onClick={handleTestNotification}
-                                loading={isTestingNotification}
-                            >
-                                {t("notificationsPage.config.testNotification")}
-                            </Button>
-                        </Space>
+                        <Button type="primary" htmlType="submit" loading={isUpdatingConfig}>
+                            {t("notificationsPage.config.save")}
+                        </Button>
                     </Form.Item>
                 </Form>
             )}

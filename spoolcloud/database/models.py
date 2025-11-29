@@ -89,7 +89,7 @@ class NotificationConfig(Base):
     channel: Mapped[str] = mapped_column(String(32))  # serverchan, bark, synochat, email, webhook
     webhook_url: Mapped[str] = mapped_column(Text, nullable=True)  # Primary URL for webhooks
     config_data: Mapped[Optional[str]] = mapped_column(Text, nullable=True)  # JSON string for channel-specific config
-    is_enabled: Mapped[bool] = mapped_column(Boolean, default=True)
+    is_enabled: Mapped[bool] = mapped_column(Boolean, default=False)
     notification_types: Mapped[Optional[list[str]]] = mapped_column(JSON, nullable=True, comment="List of enabled notification types")
     language: Mapped[str] = mapped_column(String(10), default="zh-CN", comment="Notification language (zh-CN, en-US)")
 

@@ -23,7 +23,7 @@ async def get_config(db: AsyncSession, user_id: int) -> Optional[models.Notifica
 async def update_config(
     db: AsyncSession,
     user_id: int,
-    channel: str,
+    channel: Optional[str],
     webhook_url: Optional[str],
     config_data: Optional[str],
     is_enabled: bool,
@@ -37,7 +37,8 @@ async def update_config(
     config = result.scalars().first()
 
     if config:
-        config.channel = channel
+        if channel:
+            config.channel = channel
         config.webhook_url = webhook_url
         config.config_data = config_data
         config.is_enabled = is_enabled
@@ -46,7 +47,7 @@ async def update_config(
     else:
         config = models.NotificationConfig(
             user_id=user_id,
-            channel=channel,
+            channel=channel or "serverchan",
             webhook_url=webhook_url,
             config_data=config_data,
             is_enabled=is_enabled,

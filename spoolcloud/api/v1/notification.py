@@ -23,10 +23,10 @@ router = APIRouter(
 
 
 class NotificationConfigParameters(BaseModel):
-    channel: str = Field(description="Notification channel (serverchan, bark, synochat, email, webhook).")
+    channel: Optional[str] = Field(None, description="Notification channel (serverchan, bark, synochat, email, webhook).")
     webhook_url: Optional[str] = Field(None, description="Webhook URL (for channels that use webhooks).")
     config_data: Optional[dict] = Field(None, description="Channel-specific configuration data.")
-    is_enabled: bool = Field(default=True, description="Whether notifications are enabled.")
+    is_enabled: bool = Field(default=False, description="Whether notifications are enabled.")
     notification_types: Optional[list[str]] = Field(
         None, 
         description="List of enabled notification types (system, deduction, low_supply). If None, all are enabled."
@@ -52,7 +52,7 @@ async def get_config(
         id=-1,  # Dummy ID
         channel="serverchan",
         webhook_url="",
-        is_enabled=True,
+        is_enabled=False,
         notification_types=["system", "deduction", "low_supply"], # Default to all enabled
         language="zh-CN",
     )
