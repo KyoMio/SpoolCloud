@@ -245,38 +245,21 @@
             "comment": "备注",
             "settings_extruder_temp": "挤出头温度",
             "settings_bed_temp": "热床温度",
+            "add_spool": "添加料盘",
             "color_hex": "颜色",
-            "spools": "显示料盘",
-            "external_id": "外部ID",
+            "single_color": "单色",
             "multi_color": "多色",
+            "coaxial": "同轴",
             "longitudinal": "纵向",
-            "coaxial": "共挤出",
-            "single_color": "单色"
+            "external_id": "外部ID",
+            "preset": "预设"
         },
         "fields_help": {
-            "name": "耗材名称，用于区分来自同一制造商的不同耗材类型。例如在耗材名称中包含颜色信息。",
-            "material": "例如PLA、ABS、PETG等。",
-            "price": "一整卷耗材的价格。",
-            "weight": "一整卷耗材的重量（净重）。不应包括料盘本身的重量，仅计算耗材的重量。通常在包装上注明。",
-            "spool_weight": "空料盘的重量。使用它来计算耗材的重量。",
-            "article_number": "例如EAN、UPC等。",
-            "multi_color_direction": "耗材可以通过两种方式实现多种颜色：共挤出：例如双色耗材，具有稳定的多色组合。纵向颜色变化：例如渐变色耗材，颜色沿着料盘逐渐变化。"
-        },
-        "titles": {
-            "create": "创建耗材",
-            "clone": "克隆耗材",
-            "edit": "编辑耗材",
-            "list": "耗材列表",
-            "show": "查看耗材",
-            "show_title": "[耗材 #{{id}}] {{name}}"
+            "preset": "选择耗材预设（可选）",
+            "multi_color_direction": "耗材颜色的方向。"
         },
         "form": {
-            "filament_updated": "自您打开此页面以来，此耗材已被其他人/事物更新。保存将覆盖这些更改！",
-            "import_external_description": "在列表中选择一种耗材以自动填充耗材创建表单中的详细信息。这将覆盖您在表单中输入的任何数据。<br><br>如果有必要，在您点击“确定”时将自动创建一个制造商对象。",
-            "import_external": "从外部导入"
-        },
-        "buttons": {
-            "add_spool": "添加料盘"
+            "select_preset": "选择预设"
         }
     },
     "vendor": {

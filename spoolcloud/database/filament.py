@@ -9,7 +9,7 @@ import sqlalchemy
 from sqlalchemy import func, select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.orm import contains_eager, joinedload
+from sqlalchemy.orm import contains_eager, joinedload, selectinload
 
 from spoolcloud.api.v1.models import EventType, Filament, FilamentEvent, MultiColorDirection
 from spoolcloud.database import models, vendor
@@ -90,7 +90,10 @@ async def get_by_id(db: AsyncSession, filament_id: int, user_id: int) -> models.
     stmt = (
         select(models.Filament)
         .where(models.Filament.id == filament_id, models.Filament.user_id == user_id)
-        .options(joinedload("*"))  # Load all nested objects as well
+        .options(
+            joinedload(models.Filament.vendor).joinedload(models.Vendor.extra),
+            selectinload(models.Filament.extra),
+        )
     )
     result = await db.execute(stmt)
     filament = result.unique().scalars().first()

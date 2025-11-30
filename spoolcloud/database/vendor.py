@@ -43,9 +43,15 @@ async def create(
     return vendor
 
 
+from sqlalchemy.orm import selectinload
+
 async def get_by_id(db: AsyncSession, vendor_id: int, user_id: int) -> models.Vendor:
     """Get a vendor object from the database by the unique ID."""
-    stmt = select(models.Vendor).where(models.Vendor.id == vendor_id, models.Vendor.user_id == user_id)
+    stmt = (
+        select(models.Vendor)
+        .where(models.Vendor.id == vendor_id, models.Vendor.user_id == user_id)
+        .options(selectinload(models.Vendor.extra))
+    )
     result = await db.execute(stmt)
     vendor = result.scalars().first()
     if vendor is None:

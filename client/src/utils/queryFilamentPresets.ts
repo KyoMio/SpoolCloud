@@ -3,8 +3,8 @@ import { httpClient } from "./httpClient";
 
 export interface FilamentPreset {
     id: number;
-    user_id: number;
     name: string;
+    code?: string;
 }
 
 export function useGetFilamentPresets() {

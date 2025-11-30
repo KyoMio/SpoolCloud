@@ -235,38 +235,28 @@
             "comment": "Comment",
             "settings_extruder_temp": "Extruder Temp",
             "settings_bed_temp": "Bed Temp",
+            "add_spool": "Add Spool",
             "color_hex": "Color",
-            "single_color": "Single",
-            "multi_color": "Multi",
-            "coaxial": "Coextruded",
+            "single_color": "Single Color",
+            "multi_color": "Multi Color",
+            "coaxial": "Coaxial",
             "longitudinal": "Longitudinal",
             "external_id": "External ID",
-            "spools": "Show Spools"
+            "preset": "Preset"
         },
         "fields_help": {
-            "name": "Filament name, to distinguish this filament type among others from the same manufacturer. Should contain the color for example.",
-            "material": "E.g. PLA, ABS, PETG, etc.",
-            "price": "Price of a full spool.",
-            "weight": "The filament weight of a full spool (net weight). This should not include the weight of the spool itself, only the filament. It is what is usually written on the packaging.",
-            "spool_weight": "The weight of an empty spool. Used to determine measured weight of a spool.",
-            "article_number": "E.g. EAN, UPC, etc.",
-            "multi_color_direction": "Filaments can have multiple colors in two ways: either through coextrusion, like dual-color filaments with consistent multi-colors, or through longitudinal color changes, like gradient filaments that shift colors along the spool."
-        },
-        "titles": {
-            "create": "Create Filament",
-            "clone": "Clone Filament",
-            "edit": "Edit Filament",
-            "list": "Filaments",
-            "show": "Show Filament",
-            "show_title": "[Filament #{{id}}] {{name}}"
+            "preset": "Select a filament preset (optional)",
+            "multi_color_direction": "The direction of the colors in the filament.",
+            "name": "Filament name, to distinguish this filament type among others from the same vendor.",
+            "material": "The material of this filament, e.g. PLA.",
+            "price": "The price of this filament.",
+            "weight": "The weight of the filament in a full spool (net weight).",
+            "spool_weight": "The empty spool weight.",
+            "article_number": "Vendor article number, e.g. EAN, QR code, etc."
         },
         "form": {
-            "filament_updated": "This filament has been updated by someone/something else since you opened this page. Saving will overwrite those changes!",
-            "import_external": "Import from External",
-            "import_external_description": "Select a filament in the list to automatically populate its details in the filament creation form. This will overwrite any data you have entered in the form.<br><br>A Manufacturer object will be created automatically when you click Ok, if necessary."
-        },
-        "buttons": {
-            "add_spool": "Add Spool"
+            "select_preset": "Select a preset",
+            "filament_updated": "This filament has been updated by someone/something else since you opened this page. Saving will overwrite those changes!"
         }
     },
     "vendor": {

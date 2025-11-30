@@ -71,7 +71,12 @@ async def find(
     stmt = (
         select(models.FilamentPreset)
         .where(models.FilamentPreset.user_id == user_id)
-        .options(joinedload(models.FilamentPreset.filaments))
+        .options(
+            selectinload(models.FilamentPreset.filaments).options(
+                joinedload(models.Filament.vendor).joinedload(models.Vendor.extra),
+                selectinload(models.Filament.extra),
+            )
+        )
     )
     result = await db.execute(stmt)
     return list(result.unique().scalars().all())

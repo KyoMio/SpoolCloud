@@ -58,6 +58,42 @@ async def get(
     return FilamentPreset.from_db(db_item)
 
 
+class FilamentPresetBatchParameters(BaseModel):
+    name: str = Field(max_length=64, description="Preset name.")
+    code: Optional[str] = Field(None, max_length=32, description="Preset code.")
+
+
+@router.post(
+    "/batch",
+    name="Batch create filament presets",
+    description="Create multiple filament presets at once.",
+    response_model=list[FilamentPreset],
+)
+async def create_batch(
+    db: Annotated[AsyncSession, Depends(get_db_session)],
+    current_user: Annotated[models.User, Depends(auth.get_current_user)],
+    body: list[FilamentPresetBatchParameters],
+) -> list[FilamentPreset]:
+    created_presets = []
+    for item in body:
+        db_item = await filament_preset.create(
+            db=db,
+            user_id=current_user.id,
+            name=item.name,
+            code=item.code,
+            filament_ids=None,
+        )
+        # We know filaments is empty because we passed filament_ids=None
+        # Manually construct the response to avoid potential lazy load issues
+        created_presets.append(FilamentPreset(
+            id=db_item.id,
+            name=db_item.name,
+            code=db_item.code,
+            filaments=[],
+        ))
+    return created_presets
+
+
 @router.post(
     "",
     name="Create filament preset",
