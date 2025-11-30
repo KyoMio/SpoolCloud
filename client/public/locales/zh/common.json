@@ -245,21 +245,39 @@
             "comment": "备注",
             "settings_extruder_temp": "挤出头温度",
             "settings_bed_temp": "热床温度",
-            "add_spool": "添加料盘",
             "color_hex": "颜色",
             "single_color": "单色",
             "multi_color": "多色",
-            "coaxial": "同轴",
-            "longitudinal": "纵向",
-            "external_id": "外部ID",
-            "preset": "预设"
+            "list": "制造商列表",
+            "show": "查看制造商",
+            "show_title": "[制造商 #{{id}}] {{name}}",
+            "preset": "预设",
+            "preset_name": "预设名称",
+            "external_id": "外部编号"
+        },
+        "buttons": {
+            "add_spool": "添加料盘"
         },
         "fields_help": {
-            "preset": "选择耗材预设（可选）",
-            "multi_color_direction": "耗材颜色的方向。"
+            "name": "耗材名称，用于区分同一制造商的其他耗材类型。",
+            "material": "耗材的材料，例如PLA。",
+            "empty_spool_weight": "来自此制造商的空料盘重量。",
+            "external_id": "外部编号",
+            "registered": "登记时间",
+            "comment": "备注",
+            "multi_color_direction": "多色耗材的方向。",
+            "preset": "选择一个 Bambu Lab 耗材预设（可选）",
+            "price": "1kg 耗材的价格。",
+            "weight": "耗材的净重（不含料盘）。",
+            "spool_weight": "空料盘的重量。",
+            "article_number": "制造商的该耗材产品编号。"
         },
         "form": {
-            "select_preset": "选择预设"
+            "vendor_updated": "自您打开此页面以来，此制造商已被其他人/事物更新。保存将覆盖这些更改！"
+        },
+        "titles": {
+            "list": "耗材列表",
+            "edit": "编辑耗材"
         }
     },
     "vendor": {
@@ -269,22 +287,18 @@
             "name": "名称",
             "registered": "登记时间",
             "comment": "备注",
-            "external_id": "外部ID",
-            "empty_spool_weight": "空料盘重量"
-        },
-        "titles": {
-            "create": "创建制造商",
-            "clone": "克隆制造商",
-            "edit": "编辑制造商",
-            "list": "制造商列表",
-            "show": "查看制造商",
-            "show_title": "[制造商 #{{id}}] {{name}}"
-        },
-        "form": {
-            "vendor_updated": "自您打开此页面以来，此制造商已被其他人/事物更新。保存将覆盖这些更改！"
+            "empty_spool_weight": "空料盘重量",
+            "external_id": "外部编号"
         },
         "fields_help": {
             "empty_spool_weight": "来自此制造商的空料盘重量。"
+        },
+        "titles": {
+            "list": "制造商列表",
+            "create": "创建制造商",
+            "edit": "编辑制造商",
+            "show": "查看制造商",
+            "clone": "克隆制造商"
         }
     },
     "table": {
@@ -349,18 +363,6 @@
                 "datetime": "日期时间",
                 "text": "文本",
                 "integer": "整数",
-                "choice": "选项"
-            },
-            "delete_confirm_description": "这将删除该字段以及所有实体的关联数据。",
-            "description": "<p>这里你可以为你的实体添加额外的自定义字段。</p><p>一旦添加了字段，就无法更改其键或类型；对于选择类型字段，无法删除选项或更改多选状态。如果删除字段，则所有实体的相关数据将被删除。</p><p>键是其他程序读取/写入数据的标识，因此，如果你的自定义字段需要与第三方程序集成，请确保设置正确。默认值仅适用于新项目。</p><p>额外字段在表视图中无法进行排序或过滤。</p>",
-            "params": {
-                "name": "名称",
-                "field_type": "类型",
-                "order": "顺序",
-                "default_value": "默认值",
-                "multi_choice": "多选",
-                "choices": "选择项",
-                "key": "键",
                 "unit": "单位"
             },
             "boolean_true": "是",

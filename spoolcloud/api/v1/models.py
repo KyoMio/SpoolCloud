@@ -100,6 +100,20 @@ class MultiColorDirection(Enum):
     LONGITUDINAL = "longitudinal"
 
 
+class FilamentPresetBasic(BaseModel):
+    id: int = Field(description="Unique internal ID of this preset.")
+    name: str = Field(max_length=64, description="Preset name.")
+    code: Optional[str] = Field(None, max_length=32, description="Preset code.")
+
+    @staticmethod
+    def from_db(item: models.FilamentPreset) -> "FilamentPresetBasic":
+        return FilamentPresetBasic(
+            id=item.id,
+            name=item.name,
+            code=item.code,
+        )
+
+
 class Filament(BaseModel):
     id: int = Field(description="Unique internal ID of this filament type.")
     registered: SpoolCloudDateTime = Field(description="When the filament was registered in the database. UTC Timezone.")
@@ -114,6 +128,7 @@ class Filament(BaseModel):
     )
     vendor: Optional[Vendor] = Field(None, description="The vendor of this filament type.")
     preset_id: Optional[int] = Field(None, description="The ID of the filament preset.")
+    preset: Optional[FilamentPresetBasic] = Field(None, description="The filament preset.")
     material: Optional[str] = Field(
         None,
         max_length=64,
@@ -208,6 +223,7 @@ class Filament(BaseModel):
             name=item.name,
             vendor=Vendor.from_db(item.vendor) if item.vendor is not None else None,
             preset_id=item.preset_id,
+            preset=FilamentPresetBasic.from_db(item.preset) if item.preset is not None else None,
             material=item.material,
             price=item.price,
             density=item.density,
@@ -437,10 +453,7 @@ class FilamentPresetParameters(BaseModel):
     filament_ids: Optional[list[int]] = Field(None, description="List of filament IDs in this preset.")
 
 
-class FilamentPreset(BaseModel):
-    id: int = Field(description="Unique internal ID of this preset.")
-    name: str = Field(max_length=64, description="Preset name.")
-    code: Optional[str] = Field(None, max_length=32, description="Preset code.")
+class FilamentPreset(FilamentPresetBasic):
     filaments: list[Filament] = Field(description="List of filaments in this preset.")
 
     @staticmethod

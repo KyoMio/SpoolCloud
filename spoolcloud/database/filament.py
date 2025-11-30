@@ -92,6 +92,7 @@ async def get_by_id(db: AsyncSession, filament_id: int, user_id: int) -> models.
         .where(models.Filament.id == filament_id, models.Filament.user_id == user_id)
         .options(
             joinedload(models.Filament.vendor).joinedload(models.Vendor.extra),
+            joinedload(models.Filament.preset),
             selectinload(models.Filament.extra),
         )
     )
@@ -127,7 +128,10 @@ async def find(
     stmt = (
         select(models.Filament)
         .where(models.Filament.user_id == user_id)
-        .options(contains_eager(models.Filament.vendor))
+        .options(
+            contains_eager(models.Filament.vendor),
+            joinedload(models.Filament.preset),
+        )
         .join(models.Filament.vendor, isouter=True)
     )
 

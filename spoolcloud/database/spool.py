@@ -107,7 +107,10 @@ async def get_by_id(db: AsyncSession, spool_id: int, user_id: int) -> models.Spo
     stmt = (
         sqlalchemy.select(models.Spool)
         .where(models.Spool.id == spool_id)
-        .options(joinedload(models.Spool.filament).joinedload(models.Filament.vendor))
+        .options(
+            joinedload(models.Spool.filament).joinedload(models.Filament.vendor),
+            joinedload(models.Spool.filament).joinedload(models.Filament.preset),
+        )
     )
     result = await db.execute(stmt)
     spool = result.unique().scalar_one_or_none()
@@ -145,7 +148,10 @@ async def find(  # noqa: C901, PLR0912
         .where(models.Spool.user_id == user_id)
         .join(models.Spool.filament, isouter=True)
         .join(models.Filament.vendor, isouter=True)
-        .options(contains_eager(models.Spool.filament).contains_eager(models.Filament.vendor))
+        .options(
+            contains_eager(models.Spool.filament).contains_eager(models.Filament.vendor),
+            contains_eager(models.Spool.filament).joinedload(models.Filament.preset),
+        )
     )
 
     stmt = add_where_clause_int(stmt, models.Spool.filament_id, filament_id)

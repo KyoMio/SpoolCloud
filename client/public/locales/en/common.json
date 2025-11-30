@@ -199,6 +199,9 @@
             "archive": "Archive Spool",
             "adjust": "Adjust Spool Filament"
         },
+        "messages": {
+            "archive": "Are you sure you want to archive this spool?"
+        },
         "form": {
             "measurement_type": {
                 "length": "Length",
@@ -209,9 +212,6 @@
             "adjust_filament_value": "Consume Amount",
             "new_location_prompt": "Enter a new location",
             "spool_updated": "This spool has been updated by someone/something else since you opened this page. Saving will overwrite those changes!"
-        },
-        "messages": {
-            "archive": "Are you sure you want to archive this spool?"
         },
         "formats": {
             "last_used": "Last used {{date}}"
@@ -235,28 +235,39 @@
             "comment": "Comment",
             "settings_extruder_temp": "Extruder Temp",
             "settings_bed_temp": "Bed Temp",
-            "add_spool": "Add Spool",
             "color_hex": "Color",
             "single_color": "Single Color",
             "multi_color": "Multi Color",
-            "coaxial": "Coaxial",
-            "longitudinal": "Longitudinal",
-            "external_id": "External ID",
-            "preset": "Preset"
+            "list": "Manufacturers",
+            "show": "Show Manufacturer",
+            "show_title": "[Manufacturer #{{id}}] {{name}}",
+            "preset": "Preset",
+            "preset_name": "Preset Name",
+            "external_id": "External ID"
+        },
+        "buttons": {
+            "add_spool": "Add Spool"
         },
         "fields_help": {
-            "preset": "Select a filament preset (optional)",
-            "multi_color_direction": "The direction of the colors in the filament.",
             "name": "Filament name, to distinguish this filament type among others from the same vendor.",
             "material": "The material of this filament, e.g. PLA.",
-            "price": "The price of this filament.",
-            "weight": "The weight of the filament in a full spool (net weight).",
-            "spool_weight": "The empty spool weight.",
-            "article_number": "Vendor article number, e.g. EAN, QR code, etc."
+            "empty_spool_weight": "The weight of an empty spool from this manufacturer.",
+            "external_id": "External ID",
+            "registered": "Registered",
+            "comment": "Comment",
+            "multi_color_direction": "The direction of the multi-color filament.",
+            "preset": "Select a Bambu Lab filament preset (optional)",
+            "price": "Price of 1kg of filament.",
+            "weight": "The net weight of the filament (excluding spool).",
+            "spool_weight": "The weight of the empty spool.",
+            "article_number": "Manufacturer's article number for this filament."
         },
         "form": {
-            "select_preset": "Select a preset",
-            "filament_updated": "This filament has been updated by someone/something else since you opened this page. Saving will overwrite those changes!"
+            "vendor_updated": "This manufacturer has been updated by someone/something else since you opened this page. Saving will overwrite those changes!"
+        },
+        "titles": {
+            "list": "Filaments",
+            "edit": "Edit Filament"
         }
     },
     "vendor": {
@@ -264,24 +275,57 @@
         "fields": {
             "id": "ID",
             "name": "Name",
-            "empty_spool_weight": "Empty Spool Weight",
-            "external_id": "External ID",
             "registered": "Registered",
-            "comment": "Comment"
+            "comment": "Comment",
+            "empty_spool_weight": "Empty Spool Weight",
+            "external_id": "External ID"
         },
         "fields_help": {
             "empty_spool_weight": "The weight of an empty spool from this manufacturer."
         },
         "titles": {
-            "create": "Create Manufacturer",
-            "clone": "Clone Manufacturer",
-            "edit": "Edit Manufacturer",
             "list": "Manufacturers",
+            "create": "Create Manufacturer",
+            "edit": "Edit Manufacturer",
             "show": "Show Manufacturer",
-            "show_title": "[Manufacturer #{{id}}] {{name}}"
+            "clone": "Clone Manufacturer"
+        }
+    },
+    "table": {
+        "actions": "Actions"
+    },
+    "documentTitle": {
+        "default": "SpoolCloud",
+        "suffix": " | SpoolCloud",
+        "filament": {
+            "list": "Filaments | SpoolCloud",
+            "show": "#{{id}} Show Filament | SpoolCloud",
+            "edit": "#{{id}} Edit Filament | SpoolCloud",
+            "create": "Create Filament | SpoolCloud",
+            "clone": "#{{id}} Clone Filament | SpoolCloud"
         },
-        "form": {
-            "vendor_updated": "This manufacturer has been updated by someone/something else since you opened this page. Saving will overwrite those changes!"
+        "spool": {
+            "list": "Spools | SpoolCloud",
+            "show": "#{{id}} Show Spool | SpoolCloud",
+            "edit": "#{{id}} Edit Spool | SpoolCloud",
+            "create": "Create Spool | SpoolCloud",
+            "clone": "#{{id}} Clone Spool | SpoolCloud"
+        },
+        "vendor": {
+            "list": "Manufacturers | SpoolCloud",
+            "show": "#{{id}} Show Manufacturer | SpoolCloud",
+            "edit": "#{{id}} Edit Manufacturer | SpoolCloud",
+            "create": "Create Manufacturer | SpoolCloud",
+            "clone": "#{{id}} Clone Manufacturer | SpoolCloud"
+        },
+        "home": {
+            "list": "Home | SpoolCloud"
+        },
+        "help": {
+            "list": "Help | SpoolCloud"
+        },
+        "locations": {
+            "list": "Locations | SpoolCloud"
         }
     },
     "home": {
@@ -297,9 +341,6 @@
             "vendor": "The companies that make the filament."
         },
         "description": "<title>Help</title><p>Here are some tips to get you started.</p><p>SpoolCloud holds 3 different types of data:</p><itemsHelp/><p>To add a new spool to the database, start by creating a <filamentCreateLink>Filament</filamentCreateLink> object. Once that's done, proceed to create a <spoolCreateLink>Spool</spoolCreateLink> object for that specific spool. If you acquire additional spools of the same filament later on, simply generate additional Spool objects and reuse the same Filament object.</p><p>Optionally, you can also generate a <vendorCreateLink>Manufacturer</vendorCreateLink> object for the company manufacturing the filament if you wish to track that information.</p><p>You have the option to link other 3D printer services to SpoolCloud, like Moonraker, which can automatically monitor filament usage and update the Spool objects for you. Refer to the <readmeLink>SpoolCloud README</readmeLink> for guidance on how to set that up.</p>"
-    },
-    "table": {
-        "actions": "Actions"
     },
     "settings": {
         "settings": "Settings",
@@ -348,40 +389,6 @@
             "key_not_changed": "Please change the key to something else.",
             "delete_confirm": "Delete field {{name}}?",
             "delete_confirm_description": "This will delete the field and all associated data for all entities."
-        }
-    },
-    "documentTitle": {
-        "default": "SpoolCloud",
-        "suffix": " | SpoolCloud",
-        "home": {
-            "list": "Home | SpoolCloud"
-        },
-        "help": {
-            "list": "Help | SpoolCloud"
-        },
-        "locations": {
-            "list": "Locations | SpoolCloud"
-        },
-        "filament": {
-            "list": "Filaments | SpoolCloud",
-            "show": "#{{id}} Show Filament | SpoolCloud",
-            "edit": "#{{id}} Edit Filament | SpoolCloud",
-            "create": "Create Filament | SpoolCloud",
-            "clone": "#{{id}} Clone Filament | SpoolCloud"
-        },
-        "spool": {
-            "list": "Spools | SpoolCloud",
-            "show": "#{{id}} Show Spool | SpoolCloud",
-            "edit": "#{{id}} Edit Spool | SpoolCloud",
-            "create": "Create Spool | SpoolCloud",
-            "clone": "#{{id}} Clone Spool | SpoolCloud"
-        },
-        "vendor": {
-            "list": "Manufacturers | SpoolCloud",
-            "show": "#{{id}} Show Manufacturer | SpoolCloud",
-            "edit": "#{{id}} Edit Manufacturer | SpoolCloud",
-            "create": "Create Manufacturer | SpoolCloud",
-            "clone": "#{{id}} Clone Manufacturer | SpoolCloud"
         }
     },
     "locations": {
