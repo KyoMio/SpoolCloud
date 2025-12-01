@@ -1,6 +1,8 @@
 """Notification service for sending notifications through various channels."""
 import json
 import logging
+import asyncio
+import time
 from typing import Any, Dict, Optional, TYPE_CHECKING
 
 if TYPE_CHECKING:
@@ -16,6 +18,9 @@ logger = logging.getLogger(__name__)
 class NotificationService:
     """Service for sending notifications through different channels."""
     
+    _lock = asyncio.Lock()
+    _last_sent_time = 0.0
+
     @staticmethod
     async def send_notification(
         db: "AsyncSession",
@@ -25,42 +30,50 @@ class NotificationService:
         message: str,
     ) -> tuple[bool, str]:
         """Send a notification to the user's configured channel if enabled."""
-        from spoolcloud.database import notification
-        
-        config = await notification.get_config(db, user_id)
-        if not config or not config.is_enabled:
-            return False, "Notifications disabled or not configured."
+        async with NotificationService._lock:
+            current_time = time.time()
+            time_diff = current_time - NotificationService._last_sent_time
+            if time_diff < 0.5:
+                await asyncio.sleep(0.5 - time_diff)
             
-        # Check if type is enabled
-        # If notification_types is None or empty, we assume all are enabled (or none? Plan said default to all)
-        # But in the model we didn't set a default. Let's assume if it's None, all are enabled for backward compatibility.
-        # If it's a list, check if type is in it.
-        if config.notification_types is not None:
-             # If it's a list (JSON decoded), check if type is in it
-            if isinstance(config.notification_types, list) and type not in config.notification_types:
-                return False, f"Notification type '{type}' is disabled."
-        
-        # Parse config_data
-        import json
-        config_data = {}
-        if config.config_data:
-            try:
-                config_data = json.loads(config.config_data)
-            except json.JSONDecodeError:
-                pass
+            NotificationService._last_sent_time = time.time()
+
+            from spoolcloud.database import notification
+            
+            config = await notification.get_config(db, user_id)
+            if not config or not config.is_enabled:
+                return False, "Notifications disabled or not configured."
                 
-        if config.channel == "serverchan":
-            return await NotificationService._send_serverchan(config.webhook_url, title, message)
-        elif config.channel == "bark":
-            return await NotificationService._send_bark(config_data, title, message)
-        elif config.channel == "synochat":
-            return await NotificationService._send_synochat(config.webhook_url, title, message)
-        elif config.channel == "email":
-            return await NotificationService._send_email(config_data, title, message)
-        elif config.channel == "webhook":
-            return await NotificationService._send_webhook(config.webhook_url, config_data, title, message)
-        else:
-            return False, f"Unsupported channel: {config.channel}"
+            # Check if type is enabled
+            # If notification_types is None or empty, we assume all are enabled (or none? Plan said default to all)
+            # But in the model we didn't set a default. Let's assume if it's None, all are enabled for backward compatibility.
+            # If it's a list, check if type is in it.
+            if config.notification_types is not None:
+                 # If it's a list (JSON decoded), check if type is in it
+                if isinstance(config.notification_types, list) and type not in config.notification_types:
+                    return False, f"Notification type '{type}' is disabled."
+            
+            # Parse config_data
+            import json
+            config_data = {}
+            if config.config_data:
+                try:
+                    config_data = json.loads(config.config_data)
+                except json.JSONDecodeError:
+                    pass
+                    
+            if config.channel == "serverchan":
+                return await NotificationService._send_serverchan(config.webhook_url, title, message)
+            elif config.channel == "bark":
+                return await NotificationService._send_bark(config_data, title, message)
+            elif config.channel == "synochat":
+                return await NotificationService._send_synochat(config.webhook_url, title, message)
+            elif config.channel == "email":
+                return await NotificationService._send_email(config_data, title, message)
+            elif config.channel == "webhook":
+                return await NotificationService._send_webhook(config.webhook_url, config_data, title, message)
+            else:
+                return False, f"Unsupported channel: {config.channel}"
 
     @staticmethod
     async def send_test_notification(
